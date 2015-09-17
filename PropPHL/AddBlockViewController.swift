@@ -15,7 +15,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    @IBOutlet weak var addressMapSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var addressMapRKControl: AddressMapSwitch!
     @IBOutlet weak var findBlockButton: FindBlockButton!
     @IBOutlet weak var findLocationButton: UIBarButtonItem!
     @IBOutlet weak var savedBlocksButton: UIBarButtonItem!
@@ -31,18 +31,23 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     override func viewDidLoad() {
         super.viewDidLoad()
         addressTextField.delegate = self
+        addressTextField.backgroundColor = .silverColor()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if let segmentValue = defaults.valueForKey("savedSegment") {
-            addressMapSegmentedControl.selectedSegmentIndex = segmentValue as! Int
+            addressMapRKControl.setSelectedIndex(segmentValue as! Int, animated: false)
         }
-        toggleAddressAndMap(addressMapSegmentedControl.selectedSegmentIndex)
-        subscribeToKeyboardNotifications()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+        toggleAddressAndMap(addressMapRKControl.selectedIndex)
         centerMap()
+        subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        unsubscribeFromKeyboardNotifications()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -52,7 +57,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     // MARK: - IBActions
 
     @IBAction func savedBlocksButtonPressed(sender: UIBarButtonItem) {
-        print(addressMapSegmentedControl.selectedSegmentIndex)
+        //print(addressMapSegmentedControl.selectedSegmentIndex)
         let blockTableVC = self.storyboard?.instantiateViewControllerWithIdentifier("propPHLNavVC") as! UINavigationController!
         self.presentViewController(blockTableVC, animated: true, completion: nil)
     }
@@ -68,28 +73,50 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     @IBAction func findBlockButtonPressed(sender: UIButton) {
+        addressMapRKControl.selectedIndex == 1 ?
+            findBlockButtonTypedAddress() :
+            findBlockButtonSentFromPin()
+    }
+    
+    func dummy() -> Void {
+        print("dummy")
+    }
+    
+    func findBlockButtonTypedAddress() {
+        findBlockButton.enabled = false
         dismissKeyboard()
+        let message = addressTextField.text!
+        if addressTextField.text == "" {
+            findBlockButton.enabled = true
+            let title = "Please enter an address!"
+            let actions = ["Close"]
+            findBlockButton.enabled = true
+            showAlert(message, title: title, actions: actions)
+        } else {
+            let title = "Is this the right block?"
+            let actions = ["Yes", "No"]
+            findBlockButton.enabled = true
+            showAlert(message, title: title, actions: actions)
+        }
+    }
+    
+    func findBlockButtonSentFromPin() {
+        findBlockButton.enabled = false
         if let loc = placemark {
             let message = "\(loc.addressDictionary) && \(loc.areasOfInterest)"
             let title = "voici"
             let actions = ["close"]
+            findBlockButton.enabled = true
             showAlert(message, title: title, actions: actions)
         } else {
-            print("block button pressed")
+            findBlockButton.enabled = true
+            return
         }
     }
     
-    func showAlert(message: String, title: String, actions: [String]) {
-        let alert = DOAlertController(title: title, message: message, preferredStyle: .Alert)
-        for actionTitle in actions {
-            let action = DOAlertAction(title: actionTitle, style: .Default, handler: nil)
-            alert.addAction(action)
-        }
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-    @IBAction func addressMapSegmentedControlValueChanged(sender: UISegmentedControl) {
-        toggleAddressAndMap(sender.selectedSegmentIndex)
+    @IBAction func addressMapRKControlValueChanged(sender: AddressMapSwitch) {
+        toggleAddressAndMap(sender.selectedIndex)
+        print(sender.selectedIndex)
     }
     
     func toggleAddressAndMap(segmentIndex: Int) {
@@ -173,14 +200,14 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     // move view up by specified value on receiving notification
     func keyboardWillShow(notification: NSNotification) {
-        findBlockButton.enabled = false
+        //findBlockButton.enabled = false
         self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
     // move view down by specified value on receiving notification
     func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y += getKeyboardHeight(notification)
-        findBlockButton.enabled = true
+        //findBlockButton.enabled = true
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
@@ -191,7 +218,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         view.endEditing(true)
-        print("go")
         dismissKeyboard()
         return false
     }
@@ -199,5 +225,34 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     func dismissKeyboard() {
         addressTextField.resignFirstResponder()
     }
-}
+    
+    // MARK: - Show Alerts
 
+    func showAlert(message: String, title: String, actions: [String]) {
+        let alert = DOAlertController(title: title, message: message, preferredStyle: .Alert)
+        for actionTitle in actions {
+            if actionTitle == "Yes" {
+                let action = DOAlertAction(title: actionTitle, style: .Default) { UIAlertAction in self.yesAction() }
+                alert.addAction(action)
+            } else if actionTitle == "No" {
+                let action = DOAlertAction(title: actionTitle, style: .Default) { UIAlertAction in self.noAction() }
+                alert.addAction(action)
+            } else {
+                let action = DOAlertAction(title: actionTitle, style: .Default, handler: nil)
+                alert.addAction(action)
+            }
+        }
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func yesAction() {
+        PHLOPAClient.sharedInstance().getPropertyJSONByBlockUsingCompletionHandler(addressTextField.text!, skip: 0) { (success, errorString) in
+            
+        }
+    }
+    
+    func noAction() {
+        print("No")
+    }
+    
+}

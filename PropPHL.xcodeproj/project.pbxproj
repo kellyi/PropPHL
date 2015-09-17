@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF1B2F291BAB60470031FA2B /* AddressMapSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F281BAB60470031FA2B /* AddressMapSwitch.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5A4D3F1BA883FA007CD7D8 /* PHLLandIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D3E1BA883FA007CD7D8 /* PHLLandIClient.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5A4D431BA89554007CD7D8 /* CouncilmaticClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D421BA89554007CD7D8 /* CouncilmaticClient.swift */; settings = {ASSET_TAGS = (); }; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF1B2F281BAB60470031FA2B /* AddressMapSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressMapSwitch.swift; sourceTree = "<group>"; };
 		DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGRunKeeperSwitch.swift; sourceTree = "<group>"; };
 		DF5A4D3E1BA883FA007CD7D8 /* PHLLandIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHLLandIClient.swift; sourceTree = "<group>"; };
 		DF5A4D421BA89554007CD7D8 /* CouncilmaticClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouncilmaticClient.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				DF80FBEA1BAA0E8100B6D2CE /* FindBlockButton.swift */,
 				DF80FBEC1BAA0F0D00B6D2CE /* ColorsExtension.swift */,
 				DF80FBEE1BAA591500B6D2CE /* DOAlertController.swift */,
+				DF1B2F281BAB60470031FA2B /* AddressMapSwitch.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */,
 				DFC1D9871BA6887E002482C4 /* PHLOPAClient.swift in Sources */,
 				DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */,
+				DF1B2F291BAB60470031FA2B /* AddressMapSwitch.swift in Sources */,
 				DFC1D9511BA6847F002482C4 /* AddBlockViewController.swift in Sources */,
 				DF80FBEB1BAA0E8100B6D2CE /* FindBlockButton.swift in Sources */,
 				DFC1D98B1BA6890F002482C4 /* BlockTableViewController.swift in Sources */,

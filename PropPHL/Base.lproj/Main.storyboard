@@ -19,16 +19,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="200 s 45th st" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dD3-sg-m3S">
-                                <rect key="frame" x="15" y="237" width="565" height="30"/>
+                                <rect key="frame" x="15" y="234" width="565" height="30"/>
                                 <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="go"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Philadelphia, PA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6f-Mx-VBG">
-                                <rect key="frame" x="239" y="289" width="123" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <rect key="frame" x="221" y="286" width="158" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tNc-jh-nj7">
@@ -47,19 +47,15 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="otH-jZ-BSh"/>
-                                    <barButtonItem style="plain" id="rKZ-uT-99W">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="dwi-VJ-lP0">
-                                            <rect key="frame" x="235" y="8" width="129" height="29"/>
+                                    <barButtonItem style="plain" id="Man-MP-hlK">
+                                        <view key="customView" contentMode="scaleToFill" id="aZW-bC-pnJ" customClass="AddressMapSwitch" customModule="PropPHL" customModuleProvider="target">
+                                            <rect key="frame" x="217" y="6" width="166" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="Map"/>
-                                                <segment title="Address"/>
-                                            </segments>
-                                            <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
-                                                <action selector="addressMapSegmentedControlValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Xhb-bV-IPw"/>
+                                                <action selector="addressMapRKControlValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="kuC-71-rtE"/>
                                             </connections>
-                                        </segmentedControl>
+                                        </view>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jHO-8V-CJ5"/>
                                     <barButtonItem systemItem="search" id="hdz-Gw-7Fg">
@@ -71,7 +67,7 @@
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8S-Q7-Xrv" customClass="FindBlockButton" customModule="PropPHL" customModuleProvider="target">
-                                <rect key="frame" x="230" y="490" width="140" height="44"/>
+                                <rect key="frame" x="230" y="468" width="140" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="7GU-cK-wNm"/>
@@ -92,7 +88,7 @@
                             <constraint firstItem="p6f-Mx-VBG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2U2-Qc-Ot2"/>
                             <constraint firstItem="3Mm-ox-nNn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="7sN-ye-Ais"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dD3-sg-m3S" secondAttribute="trailing" id="9JI-aw-07V"/>
-                            <constraint firstItem="3Mm-ox-nNn" firstAttribute="top" secondItem="A8S-Q7-Xrv" secondAttribute="bottom" constant="22" id="CRF-x8-PRA"/>
+                            <constraint firstItem="3Mm-ox-nNn" firstAttribute="top" secondItem="A8S-Q7-Xrv" secondAttribute="bottom" constant="44" id="CRF-x8-PRA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tNc-jh-nj7" secondAttribute="bottom" id="DdV-dq-NsH"/>
                             <constraint firstItem="p6f-Mx-VBG" firstAttribute="top" secondItem="dD3-sg-m3S" secondAttribute="bottom" constant="22" id="IAf-df-vG4"/>
                             <constraint firstItem="tNc-jh-nj7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="K3s-dQ-4QL"/>
@@ -106,7 +102,7 @@
                     </view>
                     <connections>
                         <outlet property="addBlockMapView" destination="tNc-jh-nj7" id="9do-D9-Bbr"/>
-                        <outlet property="addressMapSegmentedControl" destination="dwi-VJ-lP0" id="eHZ-pp-qxz"/>
+                        <outlet property="addressMapRKControl" destination="aZW-bC-pnJ" id="YHg-Xj-uus"/>
                         <outlet property="addressTextField" destination="dD3-sg-m3S" id="UT9-Kd-jwl"/>
                         <outlet property="findBlockButton" destination="A8S-Q7-Xrv" id="A6r-aP-Ehi"/>
                         <outlet property="findLocationButton" destination="hdz-Gw-7Fg" id="wY4-Qn-2Ci"/>
