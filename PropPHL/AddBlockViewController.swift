@@ -18,7 +18,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBOutlet weak var addressMapSegmentedControl: UISegmentedControl!
     @IBOutlet weak var findBlockButton: FindBlockButton!
     @IBOutlet weak var findLocationButton: UIBarButtonItem!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var savedBlocksButton: UIBarButtonItem!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var phillyLabel: UILabel!
     @IBOutlet weak var addBlockMapView: MKMapView!
@@ -51,9 +51,10 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     // MARK: - IBActions
 
-    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func savedBlocksButtonPressed(sender: UIBarButtonItem) {
         print(addressMapSegmentedControl.selectedSegmentIndex)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        let blockTableVC = self.storyboard?.instantiateViewControllerWithIdentifier("propPHLNavVC") as! UINavigationController!
+        self.presentViewController(blockTableVC, animated: true, completion: nil)
     }
     
     @IBAction func findByLocationButtonPressed(sender: UIBarButtonItem) {
@@ -79,9 +80,9 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     func showAlert(message: String, title: String, actions: [String]) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let alert = DOAlertController(title: title, message: message, preferredStyle: .Alert)
         for actionTitle in actions {
-            let action = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
+            let action = DOAlertAction(title: actionTitle, style: .Default, handler: nil)
             alert.addAction(action)
         }
         self.presentViewController(alert, animated: true, completion: nil)
@@ -185,7 +186,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-        return (keyboardSize.CGRectValue().height - 44)
+        return (keyboardSize.CGRectValue().height - 44.0)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

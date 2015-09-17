@@ -14,13 +14,12 @@ class BlockTableViewController: UITableViewController {
         super.viewDidLoad()
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addBlock")
-        self.navigationItem.rightBarButtonItem = addButton
+        self.navigationItem.leftBarButtonItem = addButton
         self.title = "PropPHL"
     }
     
     func addBlock() {
-        let addBlockVC = self.storyboard?.instantiateViewControllerWithIdentifier("addBlockVC") as! AddBlockViewController
-        self.presentViewController(addBlockVC, animated: true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
