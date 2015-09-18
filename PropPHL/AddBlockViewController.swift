@@ -32,8 +32,8 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         super.viewDidLoad()
         addressTextField.delegate = self
         addressTextField.backgroundColor = .silverColor()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        //view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,20 +50,14 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         unsubscribeFromKeyboardNotifications()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        dismissKeyboard()
-    }
-    
     // MARK: - IBActions
 
     @IBAction func savedBlocksButtonPressed(sender: UIBarButtonItem) {
-        //print(addressMapSegmentedControl.selectedSegmentIndex)
         let blockTableVC = self.storyboard?.instantiateViewControllerWithIdentifier("propPHLNavVC") as! UINavigationController!
         self.presentViewController(blockTableVC, animated: true, completion: nil)
     }
     
     @IBAction func findByLocationButtonPressed(sender: UIBarButtonItem) {
-        print("location button pressed")
         sender.enabled = false
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -78,10 +72,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             findBlockButtonSentFromPin()
     }
     
-    func dummy() -> Void {
-        print("dummy")
-    }
-    
     func findBlockButtonTypedAddress() {
         findBlockButton.enabled = false
         dismissKeyboard()
@@ -89,7 +79,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if addressTextField.text == "" {
             findBlockButton.enabled = true
             let title = "Please enter an address!"
-            let actions = ["Close"]
+            let actions = ["Ok"]
             findBlockButton.enabled = true
             showAlert(message, title: title, actions: actions)
         } else {
@@ -105,7 +95,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if let loc = placemark {
             let message = "\(loc.addressDictionary) && \(loc.areasOfInterest)"
             let title = "voici"
-            let actions = ["close"]
+            let actions = ["Ok"]
             findBlockButton.enabled = true
             showAlert(message, title: title, actions: actions)
         } else {
@@ -218,7 +208,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         view.endEditing(true)
-        dismissKeyboard()
         return false
     }
     
@@ -246,13 +235,76 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     func yesAction() {
-        PHLOPAClient.sharedInstance().getPropertyJSONByBlockUsingCompletionHandler(addressTextField.text!, skip: 0) { (success, errorString) in
-            
+        var userGivenAddress = addressTextField.text!
+        if userGivenAddress.characters.first == " " {
+            userGivenAddress = String(userGivenAddress.characters.dropFirst())
+        }
+        if let blockAddress = streetBlockFromAddressString(userGivenAddress) {
+            PHLOPAClient.sharedInstance().getPropertyJSONByBlockUsingCompletionHandler(blockAddress, skip: 0) { (success, errorString) in
+                
+            }
+        } else {
+            print("couldn't validate address")
         }
     }
     
     func noAction() {
         print("No")
+    }
+    
+    // MARK: - Address Input Validation
+    
+    func roundStringToHundreds(n: String) -> Int? {
+        func roundNToHundreds(n: Int) -> Int {
+            return n > 100 ? ((n / 100) * 100) : n
+        }
+        return Int(n) != nil ? roundNToHundreds(Int(n)!) : nil
+    }
+    
+    func getStreetNumberFromAddressString(s: String) -> String? {
+        if s.characters.count == 0 {
+            return nil
+        } else if Int(s) != nil {
+            return s
+        } else if s.characters.first == " " {
+            let newS = String(s.characters.dropFirst())
+            return getStreetNumberFromAddressString(newS)
+        } else if s.containsString("-") {
+            let newS = s.componentsSeparatedByString("-")[0]
+            return getStreetNumberFromAddressString(newS)
+        } else if s.containsString(" ") {
+            let newS = (s.componentsSeparatedByString(" ")[0])
+            return getStreetNumberFromAddressString(newS)
+        } else {
+            return nil
+        }
+    }
+    
+    func getStreetStringFromAddressString(s: String, flag: Bool = false) -> String? {
+        let c: [Character] = ["1","2","3","4","5","6","7","8","9","0","-"]
+        if s.characters.count == 0 {
+            return nil
+        } else if s.characters.first == " " {
+            let newS = String(s.characters.dropFirst())
+            return getStreetStringFromAddressString(newS, flag: true)
+        } else if c.contains(s.characters.first!) && flag == false {
+            let newS = String(s.characters.dropFirst())
+            return getStreetStringFromAddressString(newS)
+        } else {
+            return s
+        }
+    }
+    
+    func streetBlockFromAddressString(s: String) -> String? {
+        if let n = getStreetNumberFromAddressString(s) {
+            if let street = getStreetStringFromAddressString(s) {
+                return "\(roundStringToHundreds(n)!) \(street)"
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
     }
     
 }
