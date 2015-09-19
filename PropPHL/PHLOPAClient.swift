@@ -12,6 +12,7 @@ class PHLOPAClient: NSObject {
    
     // API documentation: http://phlapi.com/opaapi.html
    
+    var savedBlocks = [Block]()
     var savedProperties = [Property]()
     var total = 0
     
@@ -32,6 +33,7 @@ class PHLOPAClient: NSObject {
     // MARK: - Make API Call
     
     func getPropertyJSONByBlockUsingCompletionHandler(block: String, skip: Int, completionHandler: (success: Bool, errorString: String?) -> Void) {
+        print("called \(skip/30 + 1)x")
         if skip == 0 { savedProperties = [] }
         let escapedBlock = escapeURLSpaces(block)
         let fullURLString = "\(addressLink)block/\(escapedBlock)/\(formatParameter)\(skip)"
@@ -48,12 +50,14 @@ class PHLOPAClient: NSObject {
                 for p in properties {
                     let dict = p as! NSDictionary
                     let property = self.propertyFromDictionary(dict)
-                    print("\(property!.fullAddress) : \(property!.salesPrice) : \(property!.salesDate.description)")
-
                     self.savedProperties.append(property!)
                 }
                 if self.savedProperties.count < self.total {
                     self.getPropertyJSONByBlockUsingCompletionHandler(block, skip: skip+30, completionHandler: completionHandler)
+                } else {
+                    let blockToAppend = self.blockFromData(self.savedProperties, streetAddress: block)
+                    self.savedBlocks.append(blockToAppend!)
+                    self.savedProperties = []
                 }
             }
             completionHandler(success: true, errorString: nil)
@@ -67,22 +71,57 @@ class PHLOPAClient: NSObject {
         return toEscape.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: [], range: nil)
     }
     
+    func blockFromData(properties: [Property], streetAddress: String) -> Block? {
+        let timeWhenAdded = NSDate()
+        //let pin = properties[0].pin as Pin
+        let initializerDictionary = [
+            "timeWhenAdded": timeWhenAdded as NSDate,
+            "properties": properties as [Property],
+            "streetAddress": streetAddress as String,
+            //"pin": pin as Pin
+        ] as [String:AnyObject]
+        return Block(blockDictionary: initializerDictionary)
+    }
+    
+    func pinFromDictionary(pinDictionary: NSDictionary) -> Pin? {
+        let latitude = pinDictionary["latitude"] as! Double
+        print("latitude reached")
+        let longitude = pinDictionary["longitude"] as! Double
+        print("longitude reached")
+        let streetAddress = pinDictionary["streetAddress"] as! String
+        print("streetAddress reached")
+        let initializerDictionary = [
+            "latitude": latitude,
+            "longitude": longitude,
+            "streetAddress": streetAddress
+        ] as [String:AnyObject]
+        print("set pin initializer dictionary")
+        return Pin(pinDictionary: initializerDictionary)
+    }
+    
     // create a Property object from a dictionary
     func propertyFromDictionary(propertyDictionary: NSDictionary) -> Property? {
         let coordinates = propertyDictionary["geometry"] as! NSDictionary
+        let latitude = coordinates["x"] as! Double
+        let longitude = coordinates["y"] as! Double
         let salesInfo = propertyDictionary["sales_information"] as! NSDictionary
         let characteristics = propertyDictionary["characteristics"] as! NSDictionary
         let valDictionary = propertyDictionary["valuation_history"] as! NSArray
         let valHistory = valDictionary[0] as! NSDictionary
+        let pinDictionary = [
+            "latitude": latitude,
+            "longitude": longitude,
+            "streetAddress": propertyDictionary["full_address"] as! String
+        ] as [String:AnyObject]
+        //let pin = Pin(pinDictionary: pinDictionary)
         let initializerDictionary = [
             "property_id": propertyDictionary["property_id"] as! String,
             "full_address": propertyDictionary["full_address"] as! String,
-            "x": coordinates["x"] as! Double,
-            "y": coordinates["y"] as! Double,
+            //"pin": pin as Pin,
             "description": characteristics["description"] as! String,
             "sales_date": stringToDate(salesInfo["sales_date"] as! String) as NSDate,
             "sales_price": salesInfo["sales_price"] as! NSNumber,
-            "market_value": valHistory["market_value"] as! NSNumber,
+            "assessment": valHistory["market_value"] as! NSNumber,
             "taxes": valHistory["taxes"] as! NSNumber
         ]
         return Property(propDictionary: initializerDictionary)

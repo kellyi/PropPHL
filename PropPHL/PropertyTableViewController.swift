@@ -10,6 +10,8 @@ import UIKit
 
 class PropertyTableViewController: UITableViewController {
 
+    var properties = [Property]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Properties"
@@ -17,15 +19,17 @@ class PropertyTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return properties.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let property = properties[indexPath.row]
+        let title = property.fullAddress
+        let detail = String(property.assessment)
+        cell.textLabel?.text = title
+        cell.detailTextLabel?.text = detail
         return cell
     }
 
@@ -65,14 +69,12 @@ class PropertyTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "propTableVCtoPropDetailVC" {
+            let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell)
+            let propDetailVC = segue.destinationViewController as! PropertyDetailViewController
+            propDetailVC.selectedProperty = properties[indexPath!.row]
+        }
     }
-    */
 
 }

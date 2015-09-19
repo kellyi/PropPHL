@@ -10,27 +10,29 @@ import UIKit
 
 class PropertyDetailViewController: UIViewController {
 
+    var selectedProperty: Property?
+    
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var assessmentLabel: UILabel!
+    @IBOutlet weak var taxesLabel: UILabel!
+    @IBOutlet weak var saleDateLabel: UILabel!
+    @IBOutlet weak var salePriceLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         self.title = "Property Detail"
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let currentProperty = selectedProperty!
+        addressLabel.text = currentProperty.fullAddress
+        assessmentLabel.text = "\(currentProperty.assessment)"
+        taxesLabel.text = "\(currentProperty.taxes)"
+        salePriceLabel.text = "\(currentProperty.salesPrice)"
+        saleDateLabel.text = "\(currentProperty.salesDate)"
+        descriptionLabel.text = currentProperty.description
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
