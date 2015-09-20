@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DF1B2F291BAB60470031FA2B /* AddressMapSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F281BAB60470031FA2B /* AddressMapSwitch.swift */; settings = {ASSET_TAGS = (); }; };
 		DF1B2F2D1BADB9640031FA2B /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F2C1BADB9640031FA2B /* Pin.swift */; settings = {ASSET_TAGS = (); }; };
+		DF1B2F6C1BAF031F0031FA2B /* CapitalizeStreetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */; settings = {ASSET_TAGS = (); }; };
+		DF1B2F6E1BAF0BC60031FA2B /* ValidateAddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5A4D3F1BA883FA007CD7D8 /* PHLLandIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D3E1BA883FA007CD7D8 /* PHLLandIClient.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5A4D431BA89554007CD7D8 /* CouncilmaticClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D421BA89554007CD7D8 /* CouncilmaticClient.swift */; settings = {ASSET_TAGS = (); }; };
@@ -53,6 +55,8 @@
 /* Begin PBXFileReference section */
 		DF1B2F281BAB60470031FA2B /* AddressMapSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressMapSwitch.swift; sourceTree = "<group>"; };
 		DF1B2F2C1BADB9640031FA2B /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapitalizeStreetName.swift; sourceTree = "<group>"; };
+		DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateAddressInput.swift; sourceTree = "<group>"; };
 		DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGRunKeeperSwitch.swift; sourceTree = "<group>"; };
 		DF5A4D3E1BA883FA007CD7D8 /* PHLLandIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHLLandIClient.swift; sourceTree = "<group>"; };
 		DF5A4D421BA89554007CD7D8 /* CouncilmaticClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouncilmaticClient.swift; sourceTree = "<group>"; };
@@ -108,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF1B2F6A1BAF02F00031FA2B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */,
+				DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		DF5A4D371BA75B23007CD7D8 /* Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +163,7 @@
 		DFC1D94D1BA6847F002482C4 /* PropPHL */ = {
 			isa = PBXGroup;
 			children = (
+				DF1B2F6A1BAF02F00031FA2B /* Helper */,
 				DFC1D97F1BA68492002482C4 /* Model */,
 				DFC1D9801BA6849F002482C4 /* View */,
 				DFC1D9811BA684AD002482C4 /* Controller */,
@@ -361,6 +375,8 @@
 				DF5A4D431BA89554007CD7D8 /* CouncilmaticClient.swift in Sources */,
 				DFC1D9911BA68C31002482C4 /* PropertyTableViewController.swift in Sources */,
 				DF80FBED1BAA0F0D00B6D2CE /* ColorsExtension.swift in Sources */,
+				DF1B2F6C1BAF031F0031FA2B /* CapitalizeStreetName.swift in Sources */,
+				DF1B2F6E1BAF0BC60031FA2B /* ValidateAddressInput.swift in Sources */,
 				DFC1D9831BA6850E002482C4 /* CoreDataStackManager.swift in Sources */,
 				DFC1D94F1BA6847F002482C4 /* AppDelegate.swift in Sources */,
 				DFC1D9571BA6847F002482C4 /* PropPHL.xcdatamodeld in Sources */,

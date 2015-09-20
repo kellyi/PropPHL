@@ -19,7 +19,7 @@ class Property {
     var salesPrice: NSNumber
     var assessment: NSNumber
     var taxes: NSNumber
-    //var pin: Pin
+    var pin: Pin
     
     // MARK: - Initializer
     
@@ -31,6 +31,7 @@ class Property {
         self.salesPrice = propDictionary["sales_price"] as! NSNumber
         self.assessment = propDictionary["assessment"] as! NSNumber
         self.taxes = propDictionary["taxes"] as! NSNumber
-        //self.pin = propDictionary["pin"] as! Pin
+        self.pin = propDictionary["pin"] as! Pin
+        self.fullAddress = self.fullAddress.capitalizeStreetName()
     }
 }

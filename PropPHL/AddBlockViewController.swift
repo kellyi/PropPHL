@@ -82,6 +82,11 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     func findBlockButtonSentFromPin() {
         if let loc = self.addBlockMapView.annotations.first {
+            if loc.subtitle! != "Philadelphia" {
+                showAlert("I've only got data for Philadelphia.")
+                findBlockButton.enabled = true
+                return
+            }
             getBlockFromPin(loc)
         } else {
             showAlert("I couldn't find a pin!")
@@ -96,11 +101,14 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         }
         if let blockAddress = streetBlockFromAddressString(userGivenAddress) {
             PHLOPAClient.sharedInstance().getPropertyJSONByBlockUsingCompletionHandler(blockAddress, skip: 0) { (success, errorString) in
+                /*
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.showAlert("Added \(blockAddress)!")
-                    self.findBlockButton.enabled = true
+                    show errorstring if it exists
                 })
+                */
             }
+            self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
+            self.findBlockButton.enabled = true
         } else {
             showAlert("I couldn't validate your address!")
             findBlockButton.enabled = true
@@ -111,11 +119,14 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if let address = pin.title {
             if let blockAddress = streetBlockFromAddressString(address!) {
                 PHLOPAClient.sharedInstance().getPropertyJSONByBlockUsingCompletionHandler(blockAddress, skip: 0) { (success, errorString) in
+                    /*
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.showAlert("Added \(blockAddress)!")
-                        self.findBlockButton.enabled = true
+                        show errorstring if it exists
                     })
+                    */
                 }
+                self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
+                self.findBlockButton.enabled = true
             } else {
                 showAlert("I couldn't validate your address.")
                 findBlockButton.enabled = true
@@ -139,43 +150,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         defaults.setValue(segmentIndex, forKey: "savedSegment")
     }
     
-    // MARK: - Helper Methods
-    
-    func centerMap() {
-        let latitude = 39.9500 as Double
-        let longitude = -75.1667 as Double
-        let meters = 10_000 as Double
-        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let region = MKCoordinateRegionMakeWithDistance(center, meters, meters)
-        let adjustedRegion = addBlockMapView.regionThatFits(region)
-        addBlockMapView.setRegion(adjustedRegion, animated: true)
-        reverseGeocode(CLLocation(latitude: center.latitude, longitude: center.longitude))
-    }
-    
-    func reverseGeocode(location: CLLocation) {
-        geocoder.reverseGeocodeLocation(location, completionHandler: {
-            (placemarks, error) -> Void in
-            if error != nil {
-                return
-            } else if placemarks?.count > 0 {
-                self.removeAllAnnotations()
-                let place = placemarks!.first as CLPlacemark!
-                if place.locality != "Philadelphia" {
-                    self.showAlert("That's not in Philadelphia!", actions: ["Ok"])
-                    return
-                }
-                let annotation = MKPointAnnotation()
-                let annotationLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                annotation.coordinate = annotationLocation
-                annotation.title = "\(place.subThoroughfare!) \(place.thoroughfare!)"
-                annotation.subtitle = "\(place.subLocality!)"
-                self.addBlockMapView.addAnnotation(annotation)
-                self.findLocationButton.enabled = true
-            }
-        })
-    }
-    
-    // MARK: - MapViewDelegate Methods
+    // MARK: - MapViewDelegate and CLLocationManagerDelegate Methods
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "pin"
@@ -198,7 +173,9 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.addBlockMapView.removeAnnotations(existingAnnotations)
     }
     
-    // MARK: - CLLocationManagerDelegate Methods
+    func mapViewDidFailLoadingMap(mapView: MKMapView, withError error: NSError) {
+        showAlert("I couldn't load the map.", actions: ["OK"], message: "Are you connected to a network?")
+    }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last as CLLocation!
@@ -207,8 +184,54 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         addBlockMapView.setRegion(adjustedRegion, animated: true)
         locationManager.stopUpdatingLocation()
         reverseGeocode(newLocation)
-        
     }
+    
+    func centerMap() {
+        let latitude = 39.9500 as Double
+        let longitude = -75.1667 as Double
+        let meters = 10_000 as Double
+        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let region = MKCoordinateRegionMakeWithDistance(center, meters, meters)
+        let adjustedRegion = addBlockMapView.regionThatFits(region)
+        addBlockMapView.setRegion(adjustedRegion, animated: true)
+        reverseGeocode(CLLocation(latitude: center.latitude, longitude: center.longitude))
+    }
+    
+    func reverseGeocode(location: CLLocation) {
+        geocoder.reverseGeocodeLocation(location, completionHandler: {
+            (placemarks, error) -> Void in
+            if error != nil {
+                return
+            } else if placemarks?.count > 0 {
+                self.removeAllAnnotations()
+                let place = placemarks!.first as CLPlacemark!
+                let annotation = MKPointAnnotation()
+                let annotationLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                annotation.coordinate = annotationLocation
+                annotation.title = "\(place.subThoroughfare!) \(place.thoroughfare!)"
+                annotation.subtitle = "\(place.locality!)"
+                self.addBlockMapView.addAnnotation(annotation)
+                self.findLocationButton.enabled = true
+            }
+        })
+    }
+    
+    // MARK: - Show Alerts
+
+    func showAlert(title: String, actions: [String] = ["Ok"], message: String = "") {
+        print("showing DOALert controller")
+        let alert = DOAlertController(title: title, message: message, preferredStyle: .Alert)
+        for actionTitle in actions {
+            let action = DOAlertAction(title: actionTitle, style: .Default, handler: nil)
+            alert.addAction(action)
+    
+        }
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
+}
+
+extension AddBlockViewController {
     
     // MARK: - Keyboard and TextField Methods
     
@@ -253,73 +276,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     func dismissKeyboard() {
         addressTextField.resignFirstResponder()
-    }
-    
-    // MARK: - Show Alerts
-
-    func showAlert(title: String, actions: [String] = ["Ok"], message: String = "") {
-        let alert = DOAlertController(title: title, message: message, preferredStyle: .Alert)
-        for actionTitle in actions {
-            let action = DOAlertAction(title: actionTitle, style: .Default, handler: nil)
-            alert.addAction(action)
-    
-        }
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    // MARK: - Address Input Validation
-    
-    func roundStringToHundreds(n: String) -> Int? {
-        func roundNToHundreds(n: Int) -> Int {
-            return n > 100 ? ((n / 100) * 100) : n
-        }
-        return Int(n) != nil ? roundNToHundreds(Int(n)!) : nil
-    }
-    
-    func getStreetNumberFromAddressString(s: String) -> String? {
-        if s.characters.count == 0 {
-            return nil
-        } else if Int(s) != nil {
-            return s
-        } else if s.characters.first == " " {
-            let newS = String(s.characters.dropFirst())
-            return getStreetNumberFromAddressString(newS)
-        } else if s.containsString("-") {
-            let newS = s.componentsSeparatedByString("-")[1]
-            return getStreetNumberFromAddressString(newS)
-        } else if s.containsString(" ") {
-            let newS = (s.componentsSeparatedByString(" ")[0])
-            return getStreetNumberFromAddressString(newS)
-        } else {
-            return nil
-        }
-    }
-    
-    func getStreetStringFromAddressString(s: String, flag: Bool = false) -> String? {
-        let c: [Character] = ["1","2","3","4","5","6","7","8","9","0","-"]
-        if s.characters.count == 0 {
-            return nil
-        } else if s.characters.first == " " {
-            let newS = String(s.characters.dropFirst())
-            return getStreetStringFromAddressString(newS, flag: true)
-        } else if c.contains(s.characters.first!) && flag == false {
-            let newS = String(s.characters.dropFirst())
-            return getStreetStringFromAddressString(newS)
-        } else {
-            return s
-        }
-    }
-    
-    func streetBlockFromAddressString(s: String) -> String? {
-        if let n = getStreetNumberFromAddressString(s) {
-            if let street = getStreetStringFromAddressString(s) {
-                return "\(roundStringToHundreds(n)!) \(street)"
-            } else {
-                return nil
-            }
-        } else {
-            return nil
-        }
     }
     
 }

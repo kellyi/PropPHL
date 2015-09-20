@@ -72,13 +72,15 @@ class PHLOPAClient: NSObject {
     
     func blockFromData(properties: [Property], streetAddress: String) -> Block? {
         let timeWhenAdded = NSDate()
-        //let pin = properties[0].pin as Pin
-        let initializerDictionary = [
+        var initializerDictionary = [
             "timeWhenAdded": timeWhenAdded as NSDate,
             "properties": properties as [Property],
             "streetAddress": streetAddress as String,
-            //"pin": pin as Pin
         ] as [String:AnyObject]
+        if (initializerDictionary["properties"] as! [Property]).count > 0 {
+            let pin = properties[0].pin as Pin
+            initializerDictionary["pin"] = pin
+        }
         return Block(blockDictionary: initializerDictionary)
     }
     
@@ -112,11 +114,11 @@ class PHLOPAClient: NSObject {
             "longitude": longitude,
             "streetAddress": propertyDictionary["full_address"] as! String
         ] as [String:AnyObject]
-        //let pin = Pin(pinDictionary: pinDictionary)
+        let pin = Pin(pinDictionary: pinDictionary)
         let initializerDictionary = [
             "property_id": propertyDictionary["property_id"] as! String,
             "full_address": propertyDictionary["full_address"] as! String,
-            //"pin": pin as Pin,
+            "pin": pin as Pin,
             "description": characteristics["description"] as! String,
             "sales_date": stringToDate(salesInfo["sales_date"] as! String) as NSDate,
             "sales_price": salesInfo["sales_price"] as! NSNumber,

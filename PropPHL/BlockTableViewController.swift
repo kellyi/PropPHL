@@ -35,7 +35,7 @@ class BlockTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("blockCell", forIndexPath: indexPath)
         let blockForIndexPath = PHLOPAClient.sharedInstance().savedBlocks[indexPath.row]
-        let title = blockForIndexPath.streetAddress.capitalizedString
+        let title = blockForIndexPath.streetAddress
         let formatter = NSDateFormatter()
         formatter.dateStyle = .LongStyle
         formatter.timeStyle = .ShortStyle
@@ -78,6 +78,7 @@ class BlockTableViewController: UITableViewController {
             let block = PHLOPAClient.sharedInstance().savedBlocks[indexPath!.row]
             propTableVC.properties = block.properties
             propTableVC.title = block.streetAddress
+            print(block.pin.latitude)
         }
     }
 }

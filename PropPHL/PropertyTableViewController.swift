@@ -25,7 +25,7 @@ class PropertyTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath)
         let property = properties[indexPath.row]
-        let title = property.fullAddress.capitalizedString
+        let title = property.fullAddress
         let detail = String(property.description)
         cell.textLabel?.text = title
         cell.detailTextLabel?.text = detail
@@ -41,8 +41,7 @@ class PropertyTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support editing the table view.
+
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
@@ -51,7 +50,6 @@ class PropertyTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
     /*
     // Override to support rearranging the table view.

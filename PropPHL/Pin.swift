@@ -15,6 +15,7 @@ class Pin: NSObject, MKAnnotation {
     var latitude: Double
     var longitude: Double
     var streetAddress: String
+    
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
@@ -23,10 +24,7 @@ class Pin: NSObject, MKAnnotation {
         self.latitude = pinDictionary["latitude"] as! Double
         self.longitude = pinDictionary["longitude"] as! Double
         self.streetAddress = pinDictionary["streetAddress"] as! String
-    }
-    
-    func removePinAnimation() {
-        ///
+        self.streetAddress = self.streetAddress.capitalizeStreetName()
     }
     
 }
