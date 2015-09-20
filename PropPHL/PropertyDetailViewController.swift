@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MapKit
 
-class PropertyDetailViewController: UIViewController {
+class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
 
     var selectedProperty: Property?
     
@@ -18,21 +19,43 @@ class PropertyDetailViewController: UIViewController {
     @IBOutlet weak var saleDateLabel: UILabel!
     @IBOutlet weak var salePriceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let currentProperty = selectedProperty!
         addressLabel.text = currentProperty.fullAddress
-        assessmentLabel.text = "\(currentProperty.assessment)"
-        taxesLabel.text = "\(currentProperty.taxes)"
-        salePriceLabel.text = "\(currentProperty.salesPrice)"
-        saleDateLabel.text = "\(currentProperty.salesDate)"
         descriptionLabel.text = currentProperty.description
-        print(currentProperty.pin.latitude)
+        
+        let currencyFormatter = NSNumberFormatter()
+        currencyFormatter.numberStyle = .CurrencyStyle
+        let formattedAssessment = currencyFormatter.stringFromNumber(currentProperty.assessment)
+        let formattedTaxes = currencyFormatter.stringFromNumber(currentProperty.taxes)
+        let formattedSalePrice = currencyFormatter.stringFromNumber(currentProperty.salesPrice)
+        assessmentLabel.text = formattedAssessment
+        taxesLabel.text = formattedTaxes
+        salePriceLabel.text = formattedSalePrice
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .LongStyle
+        let formattedDate = dateFormatter.stringFromDate(currentProperty.salesDate)
+        saleDateLabel.text = formattedDate
+        
+        let pinForCenter = currentProperty.pin
+        centerMap(pinForCenter)
+    }
+    
+    func centerMap(pinForCenter: Pin) {
+        let meters = 2_000 as Double
+        let center = pinForCenter.coordinate
+        let region = MKCoordinateRegionMakeWithDistance(center, meters, meters)
+        let adjustedRegion = mapView.regionThatFits(region)
+        mapView.setRegion(adjustedRegion, animated: true)
     }
 
 }

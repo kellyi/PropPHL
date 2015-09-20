@@ -218,8 +218,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     // MARK: - Show Alerts
 
-    func showAlert(title: String, actions: [String] = ["Ok"], message: String = "") {
-        print("showing DOALert controller")
+    func showAlert(title: String, actions: [String] = ["OK"], message: String = "") {
         let alert = DOAlertController(title: title, message: message, preferredStyle: .Alert)
         for actionTitle in actions {
             let action = DOAlertAction(title: actionTitle, style: .Default, handler: nil)

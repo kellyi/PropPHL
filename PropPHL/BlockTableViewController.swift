@@ -42,7 +42,7 @@ class BlockTableViewController: UITableViewController {
         let formattedDate = formatter.stringFromDate(blockForIndexPath.timeWhenAdded)
         cell.textLabel?.text = title
         cell.layer.cornerRadius = 5.0
-        cell.detailTextLabel?.text = "added \(formattedDate)"
+        cell.detailTextLabel?.text = "saved \(formattedDate)"
         return cell
     }
     
@@ -78,7 +78,6 @@ class BlockTableViewController: UITableViewController {
             let block = PHLOPAClient.sharedInstance().savedBlocks[indexPath!.row]
             propTableVC.properties = block.properties
             propTableVC.title = block.streetAddress
-            print(block.pin.latitude)
         }
     }
 }
