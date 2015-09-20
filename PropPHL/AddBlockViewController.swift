@@ -35,6 +35,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         appInfoButton.tintColor = .oceanColor()
         savedBlocksButton.tintColor = .oceanColor()
         self.title = "PropPHL"
+        centerMap()
         //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         //view.addGestureRecognizer(tap)
     }
@@ -45,7 +46,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             addressMapRKControl.setSelectedIndex(segmentValue as! Int, animated: false)
         }
         toggleAddressAndMap(addressMapRKControl.selectedIndex)
-        centerMap()
         subscribeToKeyboardNotifications()
     }
     
@@ -61,35 +61,32 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     @IBAction func findByLocationButtonPressed(sender: UIBarButtonItem) {
-        sender.enabled = false
+        findLocationButton.enabled = false
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        sender.enabled = true
     }
     
     @IBAction func findBlockButtonPressed(sender: UIButton) {
+        findBlockButton.enabled = false
         addressMapRKControl.selectedIndex == 1 ?
             findBlockButtonTypedAddress() :
             findBlockButtonSentFromPin()
     }
     
     func findBlockButtonTypedAddress() {
-        findBlockButton.enabled = false
         dismissKeyboard()
         getBlockFromAddressString()
-        findBlockButton.enabled = true
     }
     
     func findBlockButtonSentFromPin() {
-        findBlockButton.enabled = false
         if let loc = self.addBlockMapView.annotations.first {
             getBlockFromPin(loc)
         } else {
             showAlert("I couldn't find a pin!")
+            findBlockButton.enabled = true
         }
-        findBlockButton.enabled = true
     }
     
     func getBlockFromAddressString() {
@@ -99,10 +96,14 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         }
         if let blockAddress = streetBlockFromAddressString(userGivenAddress) {
             PHLOPAClient.sharedInstance().getPropertyJSONByBlockUsingCompletionHandler(blockAddress, skip: 0) { (success, errorString) in
-                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.showAlert("Added \(blockAddress)!")
+                    self.findBlockButton.enabled = true
+                })
             }
         } else {
             showAlert("I couldn't validate your address!")
+            findBlockButton.enabled = true
         }
     }
     
@@ -110,13 +111,18 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if let address = pin.title {
             if let blockAddress = streetBlockFromAddressString(address!) {
                 PHLOPAClient.sharedInstance().getPropertyJSONByBlockUsingCompletionHandler(blockAddress, skip: 0) { (success, errorString) in
-                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.showAlert("Added \(blockAddress)!")
+                        self.findBlockButton.enabled = true
+                    })
                 }
             } else {
                 showAlert("I couldn't validate your address.")
+                findBlockButton.enabled = true
             }
         } else {
             showAlert("I couldn't validate your address!")
+            findBlockButton.enabled = true
         }
     }
     
@@ -138,7 +144,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     func centerMap() {
         let latitude = 39.9500 as Double
         let longitude = -75.1667 as Double
-        let meters = 7_000 as Double
+        let meters = 10_000 as Double
         let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegionMakeWithDistance(center, meters, meters)
         let adjustedRegion = addBlockMapView.regionThatFits(region)
@@ -152,8 +158,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             if error != nil {
                 return
             } else if placemarks?.count > 0 {
-                let existingAnnotations = self.addBlockMapView.annotations
-                self.addBlockMapView.removeAnnotations(existingAnnotations)
+                self.removeAllAnnotations()
                 let place = placemarks!.first as CLPlacemark!
                 if place.locality != "Philadelphia" {
                     self.showAlert("That's not in Philadelphia!", actions: ["Ok"])
@@ -165,6 +170,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 annotation.title = "\(place.subThoroughfare!) \(place.thoroughfare!)"
                 annotation.subtitle = "\(place.subLocality!)"
                 self.addBlockMapView.addAnnotation(annotation)
+                self.findLocationButton.enabled = true
             }
         })
     }
@@ -176,14 +182,27 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
         pinView!.canShowCallout = true
+        let button : UIButton = UIButton(type: .DetailDisclosure) as UIButton
+        button.tintColor = .orangeColor()
+        button.addTarget(self, action: "removeAllAnnotations", forControlEvents: UIControlEvents.TouchUpInside)
+        pinView!.rightCalloutAccessoryView = button
         return pinView
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        removeAllAnnotations()
+    }
+    
+    func removeAllAnnotations() {
+        let existingAnnotations = self.addBlockMapView.annotations
+        self.addBlockMapView.removeAnnotations(existingAnnotations)
     }
     
     // MARK: - CLLocationManagerDelegate Methods
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last as CLLocation!
-        let viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 200, 200)
+        let viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1000, 1000)
         let adjustedRegion = addBlockMapView.regionThatFits(viewRegion)
         addBlockMapView.setRegion(adjustedRegion, animated: true)
         locationManager.stopUpdatingLocation()
@@ -245,7 +264,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             alert.addAction(action)
     
         }
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: - Address Input Validation
@@ -266,7 +285,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             let newS = String(s.characters.dropFirst())
             return getStreetNumberFromAddressString(newS)
         } else if s.containsString("-") {
-            let newS = s.componentsSeparatedByString("-")[0]
+            let newS = s.componentsSeparatedByString("-")[1]
             return getStreetNumberFromAddressString(newS)
         } else if s.containsString(" ") {
             let newS = (s.componentsSeparatedByString(" ")[0])

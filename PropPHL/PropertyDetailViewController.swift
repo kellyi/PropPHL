@@ -21,13 +21,12 @@ class PropertyDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Property Detail"
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let currentProperty = selectedProperty!
-        addressLabel.text = currentProperty.fullAddress
+        addressLabel.text = currentProperty.fullAddress.capitalizedString
         assessmentLabel.text = "\(currentProperty.assessment)"
         taxesLabel.text = "\(currentProperty.taxes)"
         salePriceLabel.text = "\(currentProperty.salesPrice)"

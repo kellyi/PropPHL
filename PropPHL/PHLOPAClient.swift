@@ -33,7 +33,6 @@ class PHLOPAClient: NSObject {
     // MARK: - Make API Call
     
     func getPropertyJSONByBlockUsingCompletionHandler(block: String, skip: Int, completionHandler: (success: Bool, errorString: String?) -> Void) {
-        print("called \(skip/30 + 1)x")
         if skip == 0 { savedProperties = [] }
         let escapedBlock = escapeURLSpaces(block)
         let fullURLString = "\(addressLink)block/\(escapedBlock)/\(formatParameter)\(skip)"

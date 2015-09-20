@@ -14,7 +14,6 @@ class PropertyTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Properties"
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,8 +25,8 @@ class PropertyTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath)
         let property = properties[indexPath.row]
-        let title = property.fullAddress
-        let detail = String(property.assessment)
+        let title = property.fullAddress.capitalizedString
+        let detail = String(property.description)
         cell.textLabel?.text = title
         cell.detailTextLabel?.text = detail
         return cell

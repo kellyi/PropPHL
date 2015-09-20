@@ -12,18 +12,22 @@ class BlockTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addBlock")
+        let appInfoButton = UIBarButtonItem(title: "Info", style: .Plain, target: self, action: "appInfoButtonPressed")
         self.navigationItem.leftBarButtonItem = addButton
-        self.title = "PropPHL"
+        self.navigationItem.rightBarButtonItem = appInfoButton
+        self.title = "Saved Blocks"
     }
     
     func addBlock() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func appInfoButtonPressed() {
+        print("appInfoButtonPressed")
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return PHLOPAClient.sharedInstance().savedBlocks.count
     }
 
@@ -31,21 +35,16 @@ class BlockTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("blockCell", forIndexPath: indexPath)
         let blockForIndexPath = PHLOPAClient.sharedInstance().savedBlocks[indexPath.row]
-        let title = blockForIndexPath.streetAddress
-        let detail = blockForIndexPath.timeWhenAdded
+        let title = blockForIndexPath.streetAddress.capitalizedString
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .LongStyle
+        formatter.timeStyle = .ShortStyle
+        let formattedDate = formatter.stringFromDate(blockForIndexPath.timeWhenAdded)
         cell.textLabel?.text = title
-        cell.detailTextLabel?.text = detail.description
+        cell.layer.cornerRadius = 5.0
+        cell.detailTextLabel?.text = "added \(formattedDate)"
         return cell
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
@@ -78,6 +77,7 @@ class BlockTableViewController: UITableViewController {
             let propTableVC = segue.destinationViewController as! PropertyTableViewController
             let block = PHLOPAClient.sharedInstance().savedBlocks[indexPath!.row]
             propTableVC.properties = block.properties
+            propTableVC.title = block.streetAddress
         }
     }
 }
