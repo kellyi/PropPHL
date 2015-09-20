@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class PHLOPAClient: NSObject {
    
@@ -21,6 +22,11 @@ class PHLOPAClient: NSObject {
     let formatParameter = "?format=json?skip="
     var session: NSURLSession
     var completionHandler: ((success: Bool, errorString: String?) -> Void)? = nil
+    
+    // NSMangedObjectContext singleton
+    lazy var sharedContext: NSManagedObjectContext = {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }()
     
     // MARK: - Initializer
     
@@ -72,16 +78,12 @@ class PHLOPAClient: NSObject {
     
     func blockFromData(properties: [Property], streetAddress: String) -> Block? {
         let timeWhenAdded = NSDate()
-        var initializerDictionary = [
+        let initializerDictionary = [
             "timeWhenAdded": timeWhenAdded as NSDate,
             "properties": properties as [Property],
             "streetAddress": streetAddress as String,
         ] as [String:AnyObject]
-        if (initializerDictionary["properties"] as! [Property]).count > 0 {
-            let pin = properties[0].pin as Pin
-            initializerDictionary["pin"] = pin
-        }
-        return Block(blockDictionary: initializerDictionary)
+        return Block(blockDictionary: initializerDictionary, context: sharedContext)
     }
     
     func pinFromDictionary(pinDictionary: NSDictionary) -> Pin? {
@@ -97,7 +99,7 @@ class PHLOPAClient: NSObject {
             "streetAddress": streetAddress
         ] as [String:AnyObject]
         print("set pin initializer dictionary")
-        return Pin(pinDictionary: initializerDictionary)
+        return Pin(pinDictionary: initializerDictionary, context: sharedContext)
     }
     
     // create a Property object from a dictionary
@@ -114,7 +116,7 @@ class PHLOPAClient: NSObject {
             "longitude": longitude,
             "streetAddress": propertyDictionary["full_address"] as! String
         ] as [String:AnyObject]
-        let pin = Pin(pinDictionary: pinDictionary)
+        let pin = Pin(pinDictionary: pinDictionary, context: sharedContext)
         let initializerDictionary = [
             "property_id": propertyDictionary["property_id"] as! String,
             "full_address": propertyDictionary["full_address"] as! String,
@@ -125,10 +127,10 @@ class PHLOPAClient: NSObject {
             "assessment": valHistory["market_value"] as! NSNumber,
             "taxes": valHistory["taxes"] as! NSNumber
         ]
-        return Property(propDictionary: initializerDictionary)
+        return Property(propDictionary: initializerDictionary, context: sharedContext)
     }
     
-    // parse the Date(...) string returned in JSON
+    // parse the Date(...) string returned in JSON from API
     func stringToDate(s: String) -> NSDate {
         let d = Double(s.componentsSeparatedByString("000-")[0].componentsSeparatedByString("(")[1])!
         return NSDate(timeIntervalSince1970: d)
@@ -137,12 +139,9 @@ class PHLOPAClient: NSObject {
     // MARK: - Make Singleton
     
     class func sharedInstance() -> PHLOPAClient {
-        
         struct Singleton {
             static var sharedInstance = PHLOPAClient()
         }
-        
         return Singleton.sharedInstance
-        
     }
 }

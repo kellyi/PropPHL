@@ -30,7 +30,7 @@ class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
         super.viewWillAppear(animated)
         let currentProperty = selectedProperty!
         addressLabel.text = currentProperty.fullAddress
-        descriptionLabel.text = currentProperty.description
+        descriptionLabel.text = currentProperty.opaDescription
         
         let currencyFormatter = NSNumberFormatter()
         currencyFormatter.numberStyle = .CurrencyStyle

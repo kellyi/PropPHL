@@ -7,31 +7,49 @@
 //
 
 import UIKit
+import CoreData
 
-class PropertyTableViewController: UITableViewController {
+class PropertyTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
-    var properties = [Property]()
+    var block: Block!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    // NSIndexPath arrays to store selected tableViewCells to remove
+    var selectedIndexes = [NSIndexPath]()
+    var insertedIndexPaths: [NSIndexPath]!
+    var deletedIndexPaths: [NSIndexPath]!
+    var updatedIndexPaths: [NSIndexPath]!
+    
+    // NSManagedObjectContext singleton
+    lazy var sharedContext: NSManagedObjectContext = {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }()
+    
+    // NSFetchedResultsController
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        let fetchRequest = NSFetchRequest(entityName: "Property")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "block == %@", self.block);
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+            managedObjectContext: self.sharedContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        return fetchedResultsController
+    }()
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return properties.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath)
         let property = properties[indexPath.row]
         let title = property.fullAddress
-        let detail = String(property.description)
+        let detail = String(property.opaDescription)
         cell.textLabel?.text = title
         cell.detailTextLabel?.text = detail
         return cell
     }
-
 
     /*
     // Override to support conditional editing of the table view.
@@ -40,7 +58,6 @@ class PropertyTableViewController: UITableViewController {
         return true
     }
     */
-
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
@@ -51,27 +68,31 @@ class PropertyTableViewController: UITableViewController {
         }    
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "propTableVCtoPropDetailVC" {
             let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell)
             let propDetailVC = segue.destinationViewController as! PropertyDetailViewController
             propDetailVC.selectedProperty = properties[indexPath!.row]
         }
+    }
+    
+    // MARK: - NSFetchedResultsControllerDelegate Methods
+    
+    // Satisfy the compiler that the NSFetchedResultsControllerDelegate's set up
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        
     }
 
 }

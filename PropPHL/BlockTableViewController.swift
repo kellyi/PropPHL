@@ -7,8 +7,31 @@
 //
 
 import UIKit
+import CoreData
 
-class BlockTableViewController: UITableViewController {
+class BlockTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+    
+    // NSIndexPath arrays to store selected tableViewCells to remove
+    var selectedIndexes = [NSIndexPath]()
+    var insertedIndexPaths: [NSIndexPath]!
+    var deletedIndexPaths: [NSIndexPath]!
+    var updatedIndexPaths: [NSIndexPath]!
+    
+    // NSManagedObjectContext
+    lazy var sharedContext: NSManagedObjectContext = {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }()
+    
+    // NSFetchedResultsController
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        let fetchRequest = NSFetchRequest(entityName: "Block")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeWhenAdded", ascending: true)]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+            managedObjectContext: self.sharedContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        return fetchedResultsController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,8 +99,26 @@ class BlockTableViewController: UITableViewController {
             let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell)
             let propTableVC = segue.destinationViewController as! PropertyTableViewController
             let block = PHLOPAClient.sharedInstance().savedBlocks[indexPath!.row]
-            propTableVC.properties = block.properties
             propTableVC.title = block.streetAddress
         }
+    }
+    
+    // MARK: - NSFetchedResultsControllerDelegate Methods
+    
+    // Satisfy the compiler that the NSFetchedResultsControllerDelegate's set up
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        
     }
 }

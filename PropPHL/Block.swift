@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import CoreData
 
-class Block {
+@objc(Block)
+class Block: NSManagedObject {
     
-    var timeWhenAdded: NSDate
-    var streetAddress: String
-    var properties: [Property]
-    var pin: Pin
+    @NSManaged var timeWhenAdded: NSDate
+    @NSManaged var streetAddress: String
+    @NSManaged var properties: [Property]
     
     var count: Int {
         return self.properties.count
@@ -34,12 +35,18 @@ class Block {
         }
     }
     
-    init(blockDictionary: [String:AnyObject]) {
-        self.timeWhenAdded = blockDictionary["timeWhenAdded"] as! NSDate
-        self.streetAddress = blockDictionary["streetAddress"] as! String
-        self.properties = blockDictionary["properties"] as! [Property]
-        self.pin = blockDictionary["pin"] as! Pin
-        self.streetAddress = self.streetAddress.capitalizeStreetName()
+    // MARK: - Initializers
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    init(blockDictionary: [String:AnyObject], context: NSManagedObjectContext) {
+        let entity = NSEntityDescription.entityForName("Pin", inManagedObjectContext: context)!
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        timeWhenAdded = blockDictionary["timeWhenAdded"] as! NSDate
+        streetAddress = blockDictionary["streetAddress"] as! String
+        properties = blockDictionary["properties"] as! [Property]
+        streetAddress = self.streetAddress.capitalizeStreetName()
     }
     
 }
