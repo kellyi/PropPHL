@@ -45,10 +45,8 @@ class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
         dateFormatter.dateStyle = .LongStyle
         let formattedDate = dateFormatter.stringFromDate(currentProperty.salesDate)
         saleDateLabel.text = formattedDate
-        
-        print(currentProperty.pin.coordinate)
         let center = currentProperty.pin.coordinate
-        let meters = 20_000 as Double
+        let meters = 100 as Double
         let region = MKCoordinateRegionMakeWithDistance(center, meters, meters)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)

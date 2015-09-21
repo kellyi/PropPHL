@@ -73,10 +73,10 @@ class PHLOPAClient: NSObject {
                     let dict = p as! NSDictionary
                     let property = self.propertyFromDictionary(dict)
                     property!.block = block
-                    print("\(property!.block) => \(property!.fullAddress)")
+                    print("\(property!.fullAddress)")
                     let propertyCoordinates = dict["geometry"] as! NSDictionary
-                    let propertyLatitude = propertyCoordinates["x"] as! Double
-                    let propertyLongitude = propertyCoordinates["y"] as! Double
+                    let propertyLatitude = propertyCoordinates["y"] as! Double
+                    let propertyLongitude = propertyCoordinates["x"] as! Double
                     let pinDictionary = ["latitude": propertyLatitude, "longitude": propertyLongitude]
                     let pin = self.pinFromDictionary(pinDictionary)
                     pin!.property = property!
@@ -108,36 +108,23 @@ class PHLOPAClient: NSObject {
     
     func pinFromDictionary(pinDictionary: NSDictionary) -> Pin? {
         let latitude = pinDictionary["latitude"] as! Double
-        print("latitude reached")
         let longitude = pinDictionary["longitude"] as! Double
-        print("longitude reached")
         let initializerDictionary = [
             "latitude": latitude,
             "longitude": longitude,
         ] as [String:AnyObject]
-        print("set pin initializer dictionary")
         return Pin(pinDictionary: initializerDictionary, context: sharedContext)
     }
     
     // create a Property object from a dictionary
     func propertyFromDictionary(propertyDictionary: NSDictionary) -> Property? {
-        let coordinates = propertyDictionary["geometry"] as! NSDictionary
-        let latitude = coordinates["x"] as! Double
-        let longitude = coordinates["y"] as! Double
         let salesInfo = propertyDictionary["sales_information"] as! NSDictionary
         let characteristics = propertyDictionary["characteristics"] as! NSDictionary
         let valDictionary = propertyDictionary["valuation_history"] as! NSArray
         let valHistory = valDictionary[0] as! NSDictionary
-        let pinDictionary = [
-            "latitude": latitude,
-            "longitude": longitude,
-            "streetAddress": propertyDictionary["full_address"] as! String
-        ] as [String:AnyObject]
-        let pin = Pin(pinDictionary: pinDictionary, context: sharedContext)
         let initializerDictionary = [
             "property_id": propertyDictionary["property_id"] as! String,
             "full_address": propertyDictionary["full_address"] as! String,
-            //"pin": pin as Pin,
             "description": characteristics["description"] as! String,
             "sales_date": stringToDate(salesInfo["sales_date"] as! String) as NSDate,
             "sales_price": salesInfo["sales_price"] as! NSNumber,
