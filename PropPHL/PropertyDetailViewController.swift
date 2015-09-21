@@ -46,16 +46,12 @@ class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
         let formattedDate = dateFormatter.stringFromDate(currentProperty.salesDate)
         saleDateLabel.text = formattedDate
         
-        let pinForCenter = currentProperty.pin
-        centerMap(pinForCenter)
-    }
-    
-    func centerMap(pinForCenter: Pin) {
-        let meters = 2_000 as Double
-        let center = pinForCenter.coordinate
+        print(currentProperty.pin.coordinate)
+        let center = currentProperty.pin.coordinate
+        let meters = 20_000 as Double
         let region = MKCoordinateRegionMakeWithDistance(center, meters, meters)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)
     }
-
+    
 }

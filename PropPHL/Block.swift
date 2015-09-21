@@ -41,11 +41,10 @@ class Block: NSManagedObject {
     }
     
     init(blockDictionary: [String:AnyObject], context: NSManagedObjectContext) {
-        let entity = NSEntityDescription.entityForName("Pin", inManagedObjectContext: context)!
+        let entity = NSEntityDescription.entityForName("Block", inManagedObjectContext: context)!
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         timeWhenAdded = blockDictionary["timeWhenAdded"] as! NSDate
         streetAddress = blockDictionary["streetAddress"] as! String
-        properties = blockDictionary["properties"] as! [Property]
         streetAddress = self.streetAddress.capitalizeStreetName()
     }
     

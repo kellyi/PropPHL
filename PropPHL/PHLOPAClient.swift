@@ -12,10 +12,6 @@ import CoreData
 class PHLOPAClient: NSObject {
    
     // API documentation: http://phlapi.com/opaapi.html
-   
-    var savedBlocks = [Block]()
-    var savedProperties = [Property]()
-    var total = 0
     
     // MARK: - Constants and Variables
     let addressLink = "https://api.phila.gov/opa/v1.1/"
@@ -38,9 +34,31 @@ class PHLOPAClient: NSObject {
     
     // MARK: - Make API Call
     
-    func getPropertyJSONByBlockUsingCompletionHandler(block: String, skip: Int, completionHandler: (success: Bool, errorString: String?) -> Void) {
-        if skip == 0 { savedProperties = [] }
-        let escapedBlock = escapeURLSpaces(block)
+    func getBlockJSONUsingCompletionHandler(blockAddress: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
+        let escapedBlock = escapeURLSpaces(blockAddress)
+        let fullURLString = "\(addressLink)block/\(escapedBlock)/\(formatParameter)0"
+        let apiURL = NSURL(string: fullURLString)
+        let request = NSMutableURLRequest(URL: apiURL!)
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            if error != nil {
+                completionHandler(success: false, errorString: "\(error)")
+            } else {
+                let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
+                let total = result["total"] as! Int
+                let blockDictionary = [
+                    "timeWhenAdded": NSDate(),
+                    "streetAddress": blockAddress
+                ]
+                let block = Block(blockDictionary: blockDictionary, context: self.sharedContext)
+                self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: 0, completionHandler: completionHandler)
+            }
+            completionHandler(success: true, errorString: nil)
+        }
+        task.resume()
+    }
+    
+    func getPropertyJSONByBlockUsingCompletionHandler(block: Block, total: Int, skip: Int, completionHandler: (success: Bool, errorString: String?) -> Void) {
+        let escapedBlock = escapeURLSpaces(block.streetAddress)
         let fullURLString = "\(addressLink)block/\(escapedBlock)/\(formatParameter)\(skip)"
         let apiURL = NSURL(string: fullURLString)
         let request = NSMutableURLRequest(URL: apiURL!)
@@ -49,20 +67,22 @@ class PHLOPAClient: NSObject {
                 completionHandler(success: false, errorString: "\(error)")
             } else {
                 let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
-                self.total = result["total"] as! Int
                 let newResult = result["data"] as! NSDictionary
                 let properties = newResult["properties"] as! NSArray
                 for p in properties {
                     let dict = p as! NSDictionary
                     let property = self.propertyFromDictionary(dict)
-                    self.savedProperties.append(property!)
+                    property!.block = block
+                    print("\(property!.block) => \(property!.fullAddress)")
+                    let propertyCoordinates = dict["geometry"] as! NSDictionary
+                    let propertyLatitude = propertyCoordinates["x"] as! Double
+                    let propertyLongitude = propertyCoordinates["y"] as! Double
+                    let pinDictionary = ["latitude": propertyLatitude, "longitude": propertyLongitude]
+                    let pin = self.pinFromDictionary(pinDictionary)
+                    pin!.property = property!
                 }
-                if self.savedProperties.count < self.total {
-                    self.getPropertyJSONByBlockUsingCompletionHandler(block, skip: skip+30, completionHandler: completionHandler)
-                } else {
-                    let blockToAppend = self.blockFromData(self.savedProperties, streetAddress: block)
-                    self.savedBlocks.append(blockToAppend!)
-                    self.savedProperties = []
+                if skip < total {
+                    self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: skip+30, completionHandler: completionHandler)
                 }
             }
             completionHandler(success: true, errorString: nil)
@@ -91,12 +111,9 @@ class PHLOPAClient: NSObject {
         print("latitude reached")
         let longitude = pinDictionary["longitude"] as! Double
         print("longitude reached")
-        let streetAddress = pinDictionary["streetAddress"] as! String
-        print("streetAddress reached")
         let initializerDictionary = [
             "latitude": latitude,
             "longitude": longitude,
-            "streetAddress": streetAddress
         ] as [String:AnyObject]
         print("set pin initializer dictionary")
         return Pin(pinDictionary: initializerDictionary, context: sharedContext)
@@ -120,7 +137,7 @@ class PHLOPAClient: NSObject {
         let initializerDictionary = [
             "property_id": propertyDictionary["property_id"] as! String,
             "full_address": propertyDictionary["full_address"] as! String,
-            "pin": pin as Pin,
+            //"pin": pin as Pin,
             "description": characteristics["description"] as! String,
             "sales_date": stringToDate(salesInfo["sales_date"] as! String) as NSDate,
             "sales_price": salesInfo["sales_price"] as! NSNumber,

@@ -36,14 +36,20 @@ class PropertyTableViewController: UITableViewController, NSFetchedResultsContro
         return fetchedResultsController
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        try! fetchedResultsController.performFetch()
+        fetchedResultsController.delegate = self
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return properties.count
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath)
-        let property = properties[indexPath.row]
+        let property = fetchedResultsController.objectAtIndexPath(indexPath) as! Property
         let title = property.fullAddress
         let detail = String(property.opaDescription)
         cell.textLabel?.text = title
@@ -60,39 +66,52 @@ class PropertyTableViewController: UITableViewController, NSFetchedResultsContro
     */
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        switch (editingStyle) {
+        case .Delete:
+            let property = fetchedResultsController.objectAtIndexPath(indexPath) as! Property
+            sharedContext.deleteObject(property)
+            CoreDataStackManager.sharedInstance().saveContext()
+        default:
+            break
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "propTableVCtoPropDetailVC" {
             let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell)
             let propDetailVC = segue.destinationViewController as! PropertyDetailViewController
-            propDetailVC.selectedProperty = properties[indexPath!.row]
+            propDetailVC.selectedProperty = fetchedResultsController.objectAtIndexPath(indexPath!) as? Property
         }
     }
     
     // MARK: - NSFetchedResultsControllerDelegate Methods
-    
-    // Satisfy the compiler that the NSFetchedResultsControllerDelegate's set up
+
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        
+        self.tableView.beginUpdates()
     }
     
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        
+        switch type {
+        case .Insert:
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Delete:
+            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        default:
+            return
+        }
     }
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        
+        switch type {
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        default:
+            return
+        }
     }
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        
+        self.tableView.endUpdates()
     }
 
 }

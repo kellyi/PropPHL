@@ -21,6 +21,7 @@ class Property: NSManagedObject {
     @NSManaged var salesPrice: NSNumber
     @NSManaged var assessment: NSNumber
     @NSManaged var taxes: NSNumber
+    @NSManaged var block: Block
     @NSManaged var pin: Pin
     
     // MARK: - Initializer
@@ -38,7 +39,6 @@ class Property: NSManagedObject {
         salesPrice = propDictionary["sales_price"] as! NSNumber
         assessment = propDictionary["assessment"] as! NSNumber
         taxes = propDictionary["taxes"] as! NSNumber
-        pin = propDictionary["pin"] as! Pin
         fullAddress = self.fullAddress.capitalizeStreetName()
     }
 }

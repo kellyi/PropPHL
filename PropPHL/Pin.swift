@@ -13,12 +13,12 @@ import CoreData
 @objc(Pin)
 class Pin: NSManagedObject, MKAnnotation {
     
-    @NSManaged var latitude: Double
-    @NSManaged var longitude: Double
-    @NSManaged var streetAddress: String
+    @NSManaged var latitude: NSNumber
+    @NSManaged var longitude: NSNumber
+    @NSManaged var property: Property
     
     var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        return CLLocationCoordinate2D(latitude: Double(latitude), longitude: Double(longitude))
     }
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -30,8 +30,6 @@ class Pin: NSManagedObject, MKAnnotation {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         latitude = pinDictionary["latitude"] as! Double
         longitude = pinDictionary["longitude"] as! Double
-        streetAddress = pinDictionary["streetAddress"] as! String
-        streetAddress = self.streetAddress.capitalizeStreetName()
     }
     
 }

@@ -100,15 +100,13 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             userGivenAddress = String(userGivenAddress.characters.dropFirst())
         }
         if let blockAddress = streetBlockFromAddressString(userGivenAddress) {
-            PHLOPAClient.sharedInstance().getPropertyJSONByBlockUsingCompletionHandler(blockAddress, skip: 0) { (success, errorString) in
-                /*
+            PHLOPAClient.sharedInstance().getBlockJSONUsingCompletionHandler(blockAddress) { (success, errorString) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    show errorstring if it exists
+                    CoreDataStackManager.sharedInstance().saveContext()
+                    self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
+                    self.findBlockButton.enabled = true
                 })
-                */
             }
-            self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
-            self.findBlockButton.enabled = true
         } else {
             showAlert("I couldn't validate your address!")
             findBlockButton.enabled = true
@@ -118,15 +116,13 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     func getBlockFromPin(pin: MKAnnotation) {
         if let address = pin.title {
             if let blockAddress = streetBlockFromAddressString(address!) {
-                PHLOPAClient.sharedInstance().getPropertyJSONByBlockUsingCompletionHandler(blockAddress, skip: 0) { (success, errorString) in
-                    /*
+                PHLOPAClient.sharedInstance().getBlockJSONUsingCompletionHandler(blockAddress) { (success, errorString) in
                     dispatch_async(dispatch_get_main_queue(), {
-                        show errorstring if it exists
+                        CoreDataStackManager.sharedInstance().saveContext()
+                        self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
+                        self.findBlockButton.enabled = true
                     })
-                    */
                 }
-                self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
-                self.findBlockButton.enabled = true
             } else {
                 showAlert("I couldn't validate your address.")
                 findBlockButton.enabled = true
