@@ -18,6 +18,7 @@
 		DF80FBED1BAA0F0D00B6D2CE /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEC1BAA0F0D00B6D2CE /* ColorsExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		DF80FBEF1BAA591500B6D2CE /* DOAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEE1BAA591500B6D2CE /* DOAlertController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFBBFDB51BAFB2DA00DB563A /* PhillyHoodsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBBFDB41BAFB2DA00DB563A /* PhillyHoodsClient.swift */; settings = {ASSET_TAGS = (); }; };
+		DFBBFDB71BB0FCC900DB563A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFC1D94F1BA6847F002482C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D94E1BA6847F002482C4 /* AppDelegate.swift */; };
 		DFC1D9511BA6847F002482C4 /* AddBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9501BA6847F002482C4 /* AddBlockViewController.swift */; };
 		DFC1D9541BA6847F002482C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFC1D9521BA6847F002482C4 /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 		DF80FBEC1BAA0F0D00B6D2CE /* ColorsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
 		DF80FBEE1BAA591500B6D2CE /* DOAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOAlertController.swift; sourceTree = "<group>"; };
 		DFBBFDB41BAFB2DA00DB563A /* PhillyHoodsClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhillyHoodsClient.swift; sourceTree = "<group>"; };
+		DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DFC1D94B1BA6847E002482C4 /* PropPHL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PropPHL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFC1D94E1BA6847F002482C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFC1D9501BA6847F002482C4 /* AddBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBlockViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				DF80FBE41BA9E47C00B6D2CE /* BlockDetailViewController.swift */,
 				DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */,
 				DFC1D9501BA6847F002482C4 /* AddBlockViewController.swift */,
+				DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				DF1B2F291BAB60470031FA2B /* AddressMapSwitch.swift in Sources */,
 				DFC1D9511BA6847F002482C4 /* AddBlockViewController.swift in Sources */,
 				DF80FBEB1BAA0E8100B6D2CE /* FindBlockButton.swift in Sources */,
+				DFBBFDB71BB0FCC900DB563A /* InfoViewController.swift in Sources */,
 				DFC1D98B1BA6890F002482C4 /* BlockTableViewController.swift in Sources */,
 				DFC1D9911BA68C31002482C4 /* PropertyTableViewController.swift in Sources */,
 				DF80FBED1BAA0F0D00B6D2CE /* ColorsExtension.swift in Sources */,

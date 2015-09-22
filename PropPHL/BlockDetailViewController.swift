@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import MapKit
 
-class BlockDetailViewController: UIViewController {
+class BlockDetailViewController: UIViewController, MKMapViewDelegate {
 
+    @IBOutlet weak var mapView:MKMapView!
+    
+    var block: Block!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
+        let blockCenter = pin.coordinate
+        let meters = 100 as Double
+        let region = MKCoordinateRegionMakeWithDistance(blockCenter, meters, meters)
+        let adjustedRegion = mapView.regionThatFits(region)
+        mapView.setRegion(adjustedRegion, animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }

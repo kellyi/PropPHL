@@ -45,12 +45,16 @@ class PHLOPAClient: NSObject {
             } else {
                 let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
                 let total = result["total"] as! Int
-                let blockDictionary = [
-                    "timeWhenAdded": NSDate(),
-                    "streetAddress": blockAddress
-                ]
-                let block = Block(blockDictionary: blockDictionary, context: self.sharedContext)
-                self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: 0, completionHandler: completionHandler)
+                if total == 0 {
+                    completionHandler(success: false, errorString: "No properties found for \(blockAddress)!")
+                } else {
+                    let blockDictionary = [
+                        "timeWhenAdded": NSDate(),
+                        "streetAddress": blockAddress
+                    ]
+                    let block = Block(blockDictionary: blockDictionary, context: self.sharedContext)
+                    self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: 0, completionHandler: completionHandler)
+                }
             }
             completionHandler(success: true, errorString: nil)
         }
@@ -73,7 +77,6 @@ class PHLOPAClient: NSObject {
                     let dict = p as! NSDictionary
                     let property = self.propertyFromDictionary(dict)
                     property!.block = block
-                    print("\(property!.fullAddress)")
                     let propertyCoordinates = dict["geometry"] as! NSDictionary
                     let propertyLatitude = propertyCoordinates["y"] as! Double
                     let propertyLongitude = propertyCoordinates["x"] as! Double

@@ -50,6 +50,15 @@ class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
         let region = MKCoordinateRegionMakeWithDistance(center, meters, meters)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)
+        mapView.addAnnotation(currentProperty.pin)
+    }
+
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseID = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
+        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+        pinView!.canShowCallout = false
+        return pinView
     }
     
 }

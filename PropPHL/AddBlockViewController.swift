@@ -26,6 +26,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     var locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
+    var alertDisplayed = false
     
     // MARK: - View Setup
     override func viewDidLoad() {
@@ -60,6 +61,11 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.presentViewController(blockTableVC, animated: true, completion: nil)
     }
     
+    @IBAction func appInfoButtonPressed(sender: UIBarButtonItem) {
+        let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
+        self.presentViewController(appInfoVC, animated: true, completion: nil)
+    }
+    
     @IBAction func findByLocationButtonPressed(sender: UIBarButtonItem) {
         findLocationButton.enabled = false
         locationManager.delegate = self
@@ -77,7 +83,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     func findBlockButtonTypedAddress() {
         dismissKeyboard()
-        getBlockFromAddressString()
+        getBlockFromAddress(addressTextField.text!)
     }
     
     func findBlockButtonSentFromPin() {
@@ -87,45 +93,31 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 findBlockButton.enabled = true
                 return
             }
-            getBlockFromPin(loc)
+            //getBlockFromPin(loc)
+            getBlockFromAddress(loc.title! as String!)
         } else {
             showAlert("I couldn't find a pin!")
             findBlockButton.enabled = true
         }
     }
     
-    func getBlockFromAddressString() {
-        var userGivenAddress = addressTextField.text!
+    func getBlockFromAddress(address: String) {
+        var userGivenAddress = address
         if userGivenAddress.characters.first == " " {
             userGivenAddress = String(userGivenAddress.characters.dropFirst())
         }
         if let blockAddress = streetBlockFromAddressString(userGivenAddress) {
             PHLOPAClient.sharedInstance().getBlockJSONUsingCompletionHandler(blockAddress) { (success, errorString) in
                 dispatch_async(dispatch_get_main_queue(), {
-                    CoreDataStackManager.sharedInstance().saveContext()
-                    self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
-                    self.findBlockButton.enabled = true
-                })
-            }
-        } else {
-            showAlert("I couldn't validate your address!")
-            findBlockButton.enabled = true
-        }
-    }
-    
-    func getBlockFromPin(pin: MKAnnotation) {
-        if let address = pin.title {
-            if let blockAddress = streetBlockFromAddressString(address!) {
-                PHLOPAClient.sharedInstance().getBlockJSONUsingCompletionHandler(blockAddress) { (success, errorString) in
-                    dispatch_async(dispatch_get_main_queue(), {
+                    if success {
                         CoreDataStackManager.sharedInstance().saveContext()
                         self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
                         self.findBlockButton.enabled = true
-                    })
-                }
-            } else {
-                showAlert("I couldn't validate your address.")
-                findBlockButton.enabled = true
+                    } else {
+                        self.showAlert("\(errorString!)")
+                        self.findBlockButton.enabled = true
+                    }
+                })
             }
         } else {
             showAlert("I couldn't validate your address!")
@@ -215,9 +207,16 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     // MARK: - Show Alerts
 
     func showAlert(title: String, actions: [String] = ["OK"], message: String = "") {
+        if alertDisplayed == true {
+            return
+        } else {
+            alertDisplayed = true
+        }
         let alert = DOAlertController(title: title, message: message, preferredStyle: .Alert)
         for actionTitle in actions {
-            let action = DOAlertAction(title: actionTitle, style: .Default, handler: nil)
+            let action = DOAlertAction(title: actionTitle, style: .Default) {(Void) in
+                self.alertDisplayed = false
+            }
             alert.addAction(action)
     
         }

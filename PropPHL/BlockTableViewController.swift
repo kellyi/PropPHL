@@ -39,7 +39,7 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
         let appInfoButton = UIBarButtonItem(title: "Info", style: .Plain, target: self, action: "appInfoButtonPressed")
         self.navigationItem.leftBarButtonItem = addButton
         self.navigationItem.rightBarButtonItem = appInfoButton
-        self.title = "Saved Blocks"
+        self.title = "Blocks"
         try! fetchedResultsController.performFetch()
         fetchedResultsController.delegate = self
     }
@@ -49,7 +49,8 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
     }
     
     func appInfoButtonPressed() {
-        print("appInfoButtonPressed")
+        let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
+        self.presentViewController(appInfoVC, animated: true, completion: nil)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,6 +91,12 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
             let block = fetchedResultsController.objectAtIndexPath(indexPath!)
             propTableVC.block = block as! Block
             propTableVC.title = block.streetAddress
+        } else if segue.identifier == "blockTableToDetailVC" {
+            let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell)
+            let blockDetailVC = segue.destinationViewController as! BlockDetailViewController
+            let block = fetchedResultsController.objectAtIndexPath(indexPath!)
+            blockDetailVC.block = block as! Block
+            blockDetailVC.title = block.streetAddress
         }
     }
     // MARK: - NSFetchedResultsControllerDelegate Methods
