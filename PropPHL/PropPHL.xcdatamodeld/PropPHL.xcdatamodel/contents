@@ -3,11 +3,13 @@
     <entity name="Block" representedClassName="Block" syncable="YES">
         <attribute name="streetAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeWhenAdded" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pin" inverseName="block" inverseEntity="Pin" syncable="YES"/>
         <relationship name="properties" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Property" inverseName="block" inverseEntity="Property" syncable="YES"/>
     </entity>
     <entity name="Pin" representedClassName="Pin" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="block" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Block" inverseName="pin" inverseEntity="Block" syncable="YES"/>
         <relationship name="property" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Property" inverseName="pin" inverseEntity="Property" syncable="YES"/>
     </entity>
     <entity name="Property" representedClassName="Property" syncable="YES">
@@ -22,8 +24,8 @@
         <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pin" inverseName="property" inverseEntity="Pin" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Block" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Pin" positionX="-36" positionY="9" width="128" height="90"/>
+        <element name="Block" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Pin" positionX="-36" positionY="9" width="128" height="105"/>
         <element name="Property" positionX="-54" positionY="-9" width="128" height="180"/>
     </elements>
 </model>

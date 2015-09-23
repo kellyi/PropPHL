@@ -18,8 +18,8 @@ class BlockDetailViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        let blockCenter = pin.coordinate
-        let meters = 100 as Double
+        let blockCenter = block.pin.coordinate
+        let meters = 250 as Double
         let region = MKCoordinateRegionMakeWithDistance(blockCenter, meters, meters)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)

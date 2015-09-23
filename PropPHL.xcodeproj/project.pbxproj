@@ -171,7 +171,6 @@
 				DF80FBF01BAA6CFB00B6D2CE /* Storyboards */,
 				DFC1D9581BA6847F002482C4 /* Assets.xcassets */,
 				DFC1D95D1BA6847F002482C4 /* Info.plist */,
-				DFC1D9551BA6847F002482C4 /* PropPHL.xcdatamodeld */,
 			);
 			path = PropPHL;
 			sourceTree = "<group>";
@@ -198,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				DFC1D9821BA6850E002482C4 /* CoreDataStackManager.swift */,
+				DFC1D9551BA6847F002482C4 /* PropPHL.xcdatamodeld */,
 				DFC1D9921BA694D2002482C4 /* Block.swift */,
 				DFC1D9881BA68896002482C4 /* Property.swift */,
 				DF1B2F2C1BADB9640031FA2B /* Pin.swift */,

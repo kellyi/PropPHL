@@ -15,6 +15,7 @@ class Block: NSManagedObject {
     @NSManaged var timeWhenAdded: NSDate
     @NSManaged var streetAddress: String
     @NSManaged var properties: [Property]
+    @NSManaged var pin: Pin
     
     var count: Int {
         return self.properties.count

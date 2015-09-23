@@ -19,24 +19,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="200 s 45th st" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dD3-sg-m3S">
-                                <rect key="frame" x="15" y="234" width="565" height="30"/>
+                                <rect key="frame" x="15" y="280" width="565" height="40"/>
                                 <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ZIV-ca-kjx"/>
+                                </constraints>
                                 <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Philadelphia, PA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6f-Mx-VBG">
-                                <rect key="frame" x="221" y="286" width="158" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <rect key="frame" x="193" y="351" width="214" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tNc-jh-nj7">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="OVM-Rt-VMe"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8S-Q7-Xrv" customClass="FindBlockButton" customModule="PropPHL" customModuleProvider="target">
+                                <rect key="frame" x="230" y="468" width="140" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7GU-cK-wNm"/>
+                                    <constraint firstAttribute="width" constant="140" id="Tzr-72-Vq0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Find Block">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="findBlockButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="owG-2E-xmS"/>
+                                </connections>
+                            </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mm-ox-nNn">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
@@ -60,21 +78,15 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8S-Q7-Xrv" customClass="FindBlockButton" customModule="PropPHL" customModuleProvider="target">
-                                <rect key="frame" x="230" y="468" width="140" height="44"/>
-                                <color key="backgroundColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pF6-uG-fRe">
+                                <rect key="frame" x="278" y="468" width="44" height="44"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="7GU-cK-wNm"/>
-                                    <constraint firstAttribute="width" constant="140" id="Tzr-72-Vq0"/>
+                                    <constraint firstAttribute="width" constant="44" id="ajR-bT-KiI"/>
+                                    <constraint firstAttribute="height" constant="44" id="pNF-iV-IfH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Find Block">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="findBlockButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="owG-2E-xmS"/>
-                                </connections>
-                            </button>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -82,15 +94,17 @@
                             <constraint firstItem="p6f-Mx-VBG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2U2-Qc-Ot2"/>
                             <constraint firstItem="3Mm-ox-nNn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="7sN-ye-Ais"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dD3-sg-m3S" secondAttribute="trailing" id="9JI-aw-07V"/>
+                            <constraint firstItem="p6f-Mx-VBG" firstAttribute="top" secondItem="dD3-sg-m3S" secondAttribute="bottom" constant="31" id="BBM-xa-h8q"/>
                             <constraint firstItem="3Mm-ox-nNn" firstAttribute="top" secondItem="A8S-Q7-Xrv" secondAttribute="bottom" constant="44" id="CRF-x8-PRA"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tNc-jh-nj7" secondAttribute="bottom" id="DdV-dq-NsH"/>
-                            <constraint firstItem="p6f-Mx-VBG" firstAttribute="top" secondItem="dD3-sg-m3S" secondAttribute="bottom" constant="22" id="IAf-df-vG4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tNc-jh-nj7" secondAttribute="bottom" constant="44" id="DdV-dq-NsH"/>
                             <constraint firstItem="tNc-jh-nj7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="K3s-dQ-4QL"/>
+                            <constraint firstItem="dD3-sg-m3S" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Nv2-kZ-Aee"/>
                             <constraint firstItem="tNc-jh-nj7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Pbc-Vy-8NH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3Mm-ox-nNn" secondAttribute="trailing" constant="-20" id="ay3-pK-GMO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tNc-jh-nj7" secondAttribute="trailing" constant="-20" id="cmb-0W-uBC"/>
                             <constraint firstItem="A8S-Q7-Xrv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cpb-mB-6Q3"/>
-                            <constraint firstItem="p6f-Mx-VBG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fHs-Pw-yUE"/>
+                            <constraint firstItem="pF6-uG-fRe" firstAttribute="centerX" secondItem="A8S-Q7-Xrv" secondAttribute="centerX" id="eVy-UZ-82o"/>
+                            <constraint firstItem="pF6-uG-fRe" firstAttribute="centerY" secondItem="A8S-Q7-Xrv" secondAttribute="centerY" id="sck-Pt-MFW"/>
                             <constraint firstItem="dD3-sg-m3S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-5" id="xB1-Vp-BMl"/>
                         </constraints>
                     </view>
@@ -115,6 +129,7 @@
                         <outlet property="findLocationButton" destination="hdz-Gw-7Fg" id="wY4-Qn-2Ci"/>
                         <outlet property="phillyLabel" destination="p6f-Mx-VBG" id="x8l-lW-eQd"/>
                         <outlet property="savedBlocksButton" destination="TWp-18-vHM" id="E97-2c-gsA"/>
+                        <outlet property="spinner" destination="pF6-uG-fRe" id="RdH-gd-rym"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,10 +181,10 @@
             </objects>
             <point key="canvasLocation" x="1218" y="1207"/>
         </scene>
-        <!--BlockDetailVC-->
+        <!--Block Detail View Controller-->
         <scene sceneID="WCz-vJ-2wc">
             <objects>
-                <viewController storyboardIdentifier="blockDetailVC" title="BlockDetailVC" id="QOl-dd-QO4" customClass="BlockDetailViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="blockDetailVC" id="QOl-dd-QO4" customClass="BlockDetailViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XF0-s1-LKo"/>
                         <viewControllerLayoutGuide type="bottom" id="qsr-hI-Uss"/>
@@ -178,7 +193,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" translatesAutoresizingMaskIntoConstraints="NO" id="zy7-jD-O3F">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zy7-jD-O3F">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <connections>
                                     <outlet property="delegate" destination="QOl-dd-QO4" id="Rf0-iV-JMB"/>

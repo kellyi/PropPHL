@@ -41,7 +41,7 @@ class PHLOPAClient: NSObject {
         let request = NSMutableURLRequest(URL: apiURL!)
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil {
-                completionHandler(success: false, errorString: "\(error)")
+                completionHandler(success: false, errorString: "Can't connect to the API.")
             } else {
                 let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
                 let total = result["total"] as! Int
@@ -53,10 +53,16 @@ class PHLOPAClient: NSObject {
                         "streetAddress": blockAddress
                     ]
                     let block = Block(blockDictionary: blockDictionary, context: self.sharedContext)
-                    self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: 0, completionHandler: completionHandler)
+                    self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: 0) { (success, errorString) in
+                        if success {
+                            completionHandler(success: true, errorString: nil)
+                        } else {
+                            completionHandler(success: false, errorString: errorString)
+                        }
+                    }
                 }
             }
-            completionHandler(success: true, errorString: nil)
+            
         }
         task.resume()
     }
@@ -68,11 +74,12 @@ class PHLOPAClient: NSObject {
         let request = NSMutableURLRequest(URL: apiURL!)
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil {
-                completionHandler(success: false, errorString: "\(error)")
+                completionHandler(success: false, errorString: "Can't connect to the API.")
             } else {
                 let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
                 let newResult = result["data"] as! NSDictionary
                 let properties = newResult["properties"] as! NSArray
+                var counter = 0
                 for p in properties {
                     let dict = p as! NSDictionary
                     let property = self.propertyFromDictionary(dict)
@@ -83,12 +90,15 @@ class PHLOPAClient: NSObject {
                     let pinDictionary = ["latitude": propertyLatitude, "longitude": propertyLongitude]
                     let pin = self.pinFromDictionary(pinDictionary)
                     pin!.property = property!
+                    if counter == 0 && skip == 0 { pin!.block = block }
+                    counter++
                 }
                 if skip < total {
                     self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: skip+30, completionHandler: completionHandler)
+                } else {
+                    completionHandler(success: true, errorString: nil)
                 }
             }
-            completionHandler(success: true, errorString: nil)
         }
         task.resume()
     }

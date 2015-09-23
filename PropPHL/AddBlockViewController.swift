@@ -23,6 +23,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBOutlet weak var phillyLabel: UILabel!
     @IBOutlet weak var addBlockMapView: MKMapView!
     @IBOutlet weak var appInfoButton: UIBarButtonItem!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
@@ -48,10 +49,19 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         }
         toggleAddressAndMap(addressMapRKControl.selectedIndex)
         subscribeToKeyboardNotifications()
+        spinner.hidden = true
+        spinner.stopAnimating()
     }
     
     override func viewWillDisappear(animated: Bool) {
         unsubscribeFromKeyboardNotifications()
+    }
+    
+    func makeButtonActiveAndRemoveSpinner() {
+        self.spinner.hidden = true
+        self.spinner.stopAnimating()
+        self.findBlockButton.enabled = true
+        self.findLocationButton.enabled = true
     }
     
     // MARK: - IBActions
@@ -76,6 +86,9 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     @IBAction func findBlockButtonPressed(sender: UIButton) {
         findBlockButton.enabled = false
+        findLocationButton.enabled = false
+        spinner.hidden = false
+        spinner.startAnimating()
         addressMapRKControl.selectedIndex == 1 ?
             findBlockButtonTypedAddress() :
             findBlockButtonSentFromPin()
@@ -93,7 +106,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 findBlockButton.enabled = true
                 return
             }
-            //getBlockFromPin(loc)
             getBlockFromAddress(loc.title! as String!)
         } else {
             showAlert("I couldn't find a pin!")
@@ -112,16 +124,16 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                     if success {
                         CoreDataStackManager.sharedInstance().saveContext()
                         self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
-                        self.findBlockButton.enabled = true
+                        self.makeButtonActiveAndRemoveSpinner()
                     } else {
                         self.showAlert("\(errorString!)")
-                        self.findBlockButton.enabled = true
+                        self.makeButtonActiveAndRemoveSpinner()
                     }
                 })
             }
         } else {
             showAlert("I couldn't validate your address!")
-            findBlockButton.enabled = true
+            makeButtonActiveAndRemoveSpinner()
         }
     }
     

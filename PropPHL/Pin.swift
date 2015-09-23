@@ -16,6 +16,7 @@ class Pin: NSManagedObject, MKAnnotation {
     @NSManaged var latitude: NSNumber
     @NSManaged var longitude: NSNumber
     @NSManaged var property: Property
+    @NSManaged var block: Block
     
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: Double(latitude), longitude: Double(longitude))
