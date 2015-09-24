@@ -15,48 +15,47 @@ class BlockDetailTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 1
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Block"
-        case 1:
-            return "Neighborhood"
-        case 2:
-            return "Median Assessment"
+            return "Block Details"
         default:
             return nil
         }
     }
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header = tableView.headerViewForSection(section)
-        header?.tintColor = .oceanColor()
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 4
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("blockDetailTableCell") as UITableViewCell!
         var label = ""
-        switch indexPath.section {
+        var detailLabel = ""
+        switch indexPath.row {
         case 0:
-            label = block.streetAddress
+            label = "Block Address"
+            detailLabel = block.streetAddress
         case 1:
-            label = "East Falls"
+            label = "Neighborhood"
+            detailLabel = "East Falls"
         case 2:
+            label = "Number of Properties"
+            detailLabel = "\(block.count)"
+        case 3:
             let currencyFormatter = NSNumberFormatter()
             currencyFormatter.numberStyle = .CurrencyStyle
             let formattedMedianAssessment = currencyFormatter.stringFromNumber(block.medianAsssessmentValue)!
-            label = formattedMedianAssessment
+            label = "Median Assessment Value"
+            detailLabel = formattedMedianAssessment
         default:
-            label = "This should never show up!"
+            print("fizzbuzz")
         }
         cell.textLabel?.text = label
+        cell.detailTextLabel?.text = detailLabel
         return cell
     }
 
