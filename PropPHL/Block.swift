@@ -16,23 +16,23 @@ class Block: NSManagedObject {
     @NSManaged var streetAddress: String
     @NSManaged var properties: [Property]
     @NSManaged var pin: Pin
+    @NSManaged var neighborhood: String?
     
     var count: Int {
         return self.properties.count
     }
     
     var medianAsssessmentValue: Int {
-        var arrayForMedian = [Int]()
-        for p in self.properties {
-            if Int(p.assessment) > 10 {
-                arrayForMedian.append(Int(p.assessment))
-            }
+        let prop = Array(self.properties as NSArray) as! [Property]
+        var arrayForAssessmentValues = [Int]()
+        for p in prop {
+            arrayForAssessmentValues.append(Int(p.assessment))
         }
-        if arrayForMedian.count == 0 {
+        if arrayForAssessmentValues.count == 0 {
             return 0
         } else {
-            let medianIndex = (arrayForMedian.count / 2)
-            return arrayForMedian.sort() { $0 < $1 }[medianIndex]
+            let medianIndex = (arrayForAssessmentValues.count / 2)
+            return arrayForAssessmentValues.sort() { $0 < $1 }[medianIndex]
         }
     }
     

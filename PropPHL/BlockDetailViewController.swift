@@ -12,6 +12,7 @@ import MapKit
 class BlockDetailViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView:MKMapView!
+    @IBOutlet weak var lowerView:UIView!
     
     var block: Block!
     
@@ -23,6 +24,21 @@ class BlockDetailViewController: UIViewController, MKMapViewDelegate {
         let region = MKCoordinateRegionMakeWithDistance(blockCenter, meters, meters)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if block.neighborhood == nil {
+            print("it's nil")
+        } else {
+            print(block.neighborhood)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "blockDetailContainerSegue" {
+            let detailTableVC = segue.destinationViewController as! BlockDetailTableViewController
+            detailTableVC.block = block
+        }
     }
 
 }

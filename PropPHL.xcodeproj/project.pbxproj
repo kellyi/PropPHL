@@ -33,6 +33,8 @@
 		DFC1D98B1BA6890F002482C4 /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D98A1BA6890F002482C4 /* BlockTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFC1D9911BA68C31002482C4 /* PropertyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9901BA68C31002482C4 /* PropertyTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFC1D9931BA694D2002482C4 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9921BA694D2002482C4 /* Block.swift */; settings = {ASSET_TAGS = (); }; };
+		DFD5B9FD1BB39F4000A04CDE /* PropertyDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD5B9FC1BB39F4000A04CDE /* PropertyDetailTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DFD8BF191BB34D9F008B7C9D /* BlockDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8BF181BB34D9F008B7C9D /* BlockDetailTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		DFC1D98A1BA6890F002482C4 /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
 		DFC1D9901BA68C31002482C4 /* PropertyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTableViewController.swift; sourceTree = "<group>"; };
 		DFC1D9921BA694D2002482C4 /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		DFD5B9FC1BB39F4000A04CDE /* PropertyDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyDetailTableViewController.swift; sourceTree = "<group>"; };
+		DFD8BF181BB34D9F008B7C9D /* BlockDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockDetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +230,8 @@
 				DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */,
 				DFC1D9501BA6847F002482C4 /* AddBlockViewController.swift */,
 				DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */,
+				DFD8BF181BB34D9F008B7C9D /* BlockDetailTableViewController.swift */,
+				DFD5B9FC1BB39F4000A04CDE /* PropertyDetailTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -365,9 +371,11 @@
 				DF1B2F2D1BADB9640031FA2B /* Pin.swift in Sources */,
 				DFC1D9931BA694D2002482C4 /* Block.swift in Sources */,
 				DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */,
+				DFD5B9FD1BB39F4000A04CDE /* PropertyDetailTableViewController.swift in Sources */,
 				DFC1D9871BA6887E002482C4 /* PHLOPAClient.swift in Sources */,
 				DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */,
 				DF1B2F291BAB60470031FA2B /* AddressMapSwitch.swift in Sources */,
+				DFD8BF191BB34D9F008B7C9D /* BlockDetailTableViewController.swift in Sources */,
 				DFC1D9511BA6847F002482C4 /* AddBlockViewController.swift in Sources */,
 				DF80FBEB1BAA0E8100B6D2CE /* FindBlockButton.swift in Sources */,
 				DFBBFDB71BB0FCC900DB563A /* InfoViewController.swift in Sources */,

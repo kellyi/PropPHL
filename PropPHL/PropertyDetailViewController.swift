@@ -11,46 +11,22 @@ import MapKit
 
 class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
 
-    var selectedProperty: Property?
-    
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var assessmentLabel: UILabel!
-    @IBOutlet weak var taxesLabel: UILabel!
-    @IBOutlet weak var saleDateLabel: UILabel!
-    @IBOutlet weak var salePriceLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    var selectedProperty: Property!
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let currentProperty = selectedProperty!
-        addressLabel.text = currentProperty.fullAddress
-        descriptionLabel.text = currentProperty.opaDescription
-        
-        let currencyFormatter = NSNumberFormatter()
-        currencyFormatter.numberStyle = .CurrencyStyle
-        let formattedAssessment = currencyFormatter.stringFromNumber(currentProperty.assessment)
-        let formattedTaxes = currencyFormatter.stringFromNumber(currentProperty.taxes)
-        let formattedSalePrice = currencyFormatter.stringFromNumber(currentProperty.salesPrice)
-        assessmentLabel.text = formattedAssessment
-        taxesLabel.text = formattedTaxes
-        salePriceLabel.text = formattedSalePrice
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        let formattedDate = dateFormatter.stringFromDate(currentProperty.salesDate)
-        saleDateLabel.text = formattedDate
-        let center = currentProperty.pin.coordinate
+        let center = selectedProperty.pin.coordinate
         let meters = 100 as Double
         let region = MKCoordinateRegionMakeWithDistance(center, meters, meters)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)
-        mapView.addAnnotation(currentProperty.pin)
+        mapView.addAnnotation(selectedProperty.pin)
     }
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -59,6 +35,13 @@ class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
         pinView!.canShowCallout = false
         return pinView
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "propertyDetailContainerSegue" {
+            let detailTableVC = segue.destinationViewController as! PropertyDetailTableViewController
+            detailTableVC.property = selectedProperty
+        }
     }
     
 }
