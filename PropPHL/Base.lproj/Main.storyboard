@@ -58,12 +58,6 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mm-ox-nNn">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Delete Pin" systemItem="stop" id="E44-kz-1s7">
-                                        <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="deletePinButtonPressed:" destination="BYZ-38-t0r" id="3aM-C0-7wg"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="otH-jZ-BSh"/>
                                     <barButtonItem style="plain" id="Man-MP-hlK">
                                         <view key="customView" contentMode="scaleToFill" id="aZW-bC-pnJ" customClass="AddressMapSwitch" customModule="PropPHL" customModuleProvider="target">
@@ -131,7 +125,6 @@
                         <outlet property="addressMapRKControl" destination="aZW-bC-pnJ" id="YHg-Xj-uus"/>
                         <outlet property="addressTextField" destination="dD3-sg-m3S" id="UT9-Kd-jwl"/>
                         <outlet property="appInfoButton" destination="SWw-Su-z3A" id="0Fp-G8-TSv"/>
-                        <outlet property="deletePinButton" destination="E44-kz-1s7" id="n4E-4L-90d"/>
                         <outlet property="findBlockButton" destination="A8S-Q7-Xrv" id="A6r-aP-Ehi"/>
                         <outlet property="findLocationButton" destination="hdz-Gw-7Fg" id="wY4-Qn-2Ci"/>
                         <outlet property="phillyLabel" destination="p6f-Mx-VBG" id="x8l-lW-eQd"/>

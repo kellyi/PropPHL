@@ -24,7 +24,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBOutlet weak var addBlockMapView: MKMapView!
     @IBOutlet weak var appInfoButton: UIBarButtonItem!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var deletePinButton: UIBarButtonItem!
     
     var locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
@@ -53,11 +52,13 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         toggleAddressAndMap(addressMapRKControl.selectedIndex)
         subscribeToKeyboardNotifications()
         let longPressGR = UILongPressGestureRecognizer(target: self, action: "annotate:")
-        longPressGR.minimumPressDuration = 0.5
+        longPressGR.minimumPressDuration = 1.0
         addBlockMapView.addGestureRecognizer(longPressGR)
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        dismissKeyboard()
         unsubscribeFromKeyboardNotifications()
     }
     
@@ -66,7 +67,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.spinner.hidden = false
         self.spinner.startAnimating()
         self.findBlockButton.enabled = false
-        self.deletePinButton.enabled = false
         self.findLocationButton.enabled = false
         self.savedBlocksButton.enabled = false
         self.appInfoButton.enabled = false
@@ -78,7 +78,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.spinner.hidden = true
         self.spinner.stopAnimating()
         self.findBlockButton.enabled = true
-        self.deletePinButton.enabled = true
         self.findLocationButton.enabled = true
         self.savedBlocksButton.enabled = true
         self.appInfoButton.enabled = true
@@ -120,7 +119,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if let loc = self.addBlockMapView.annotations.first {
             if loc.subtitle! != "Philadelphia" {
                 showAlert("I've only got data for Philadelphia.")
-                
             } else {
                 getBlockFromAddress(loc.title! as String!)
             }
@@ -160,7 +158,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         phillyLabel.hidden = segmentBool
         addressTextField.hidden = segmentBool
         findLocationButton.enabled = segmentBool
-        deletePinButton.enabled = segmentBool
         defaults.setValue(segmentIndex, forKey: "savedSegment")
     }
     
@@ -168,14 +165,14 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
-        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
-        pinView!.canShowCallout = true
-        return pinView
-    }
-    
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        removeAllAnnotations()
+        if let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID) {
+            return pinView
+        } else {
+            let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            pinView.canShowCallout = true
+            pinView.animatesDrop = true
+            return pinView
+        }
     }
     
     func removeAllAnnotations() {
@@ -184,7 +181,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     func mapViewDidFailLoadingMap(mapView: MKMapView, withError error: NSError) {
-        showAlert("I couldn't load the map.", actions: ["OK"], message: "Are you connected to a network?")
+        showAlert("I couldn't load the map.")
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -208,8 +205,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     func annotate(gestureRecognizer: UIGestureRecognizer) {
-        removeAllAnnotations()
-        if gestureRecognizer.state == UIGestureRecognizerState.Ended {
+        if gestureRecognizer.state == UIGestureRecognizerState.Began {
             let touchPoint = gestureRecognizer.locationInView(addBlockMapView)
             let newCoordinates = addBlockMapView.convertPoint(touchPoint, toCoordinateFromView: addBlockMapView)
             let location = CLLocation(latitude: newCoordinates.latitude, longitude: newCoordinates.longitude)
@@ -228,10 +224,15 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 let annotation = MKPointAnnotation()
                 let annotationLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 annotation.coordinate = annotationLocation
-                annotation.title = "\(place.subThoroughfare!) \(place.thoroughfare!)"
+                annotation.title = "no street address"
+                if let streetNumber = place.subThoroughfare {
+                    annotation.title = "\(streetNumber) \(place.thoroughfare!)"
+                }
                 annotation.subtitle = "\(place.locality!)"
                 self.addBlockMapView.addAnnotation(annotation)
-                self.findLocationButton.enabled = true
+                if self.findBlockButton.enabled == true {
+                    self.findLocationButton.enabled = true
+                }
             }
         })
     }
