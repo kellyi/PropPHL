@@ -209,10 +209,10 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     func annotate(gestureRecognizer: UIGestureRecognizer) {
         removeAllAnnotations()
-        if gestureRecognizer.state == UIGestureRecognizerState.Began {
+        if gestureRecognizer.state == UIGestureRecognizerState.Ended {
             let touchPoint = gestureRecognizer.locationInView(addBlockMapView)
             let newCoordinates = addBlockMapView.convertPoint(touchPoint, toCoordinateFromView: addBlockMapView)
-            let location = CLLocation(latitude: newCoordinates.latitude, longitude: newCoordinates.latitude)
+            let location = CLLocation(latitude: newCoordinates.latitude, longitude: newCoordinates.longitude)
             reverseGeocode(location)
         }
     }

@@ -14,7 +14,7 @@ extension AddBlockViewController {
     
     func roundStringToHundreds(n: String) -> Int? {
         func roundNToHundreds(n: Int) -> Int {
-            return n > 100 ? ((n / 100) * 100) : 1
+            return n >= 100 ? ((n / 100) * 100) : 1
         }
         return Int(n) != nil ? roundNToHundreds(Int(n)!) : nil
     }
