@@ -37,6 +37,8 @@ I don't love the interface or the user flow, but putting it together was a good 
 
 PropPHL includes data from two networked APIs: [the City of Philadelphia's Property Data API](http://phlapi.com/opaapi.html) and [Philly Hoods: a neighborhoods API for Philadelphia](http://phillyhoods.net/). The app makes an API call to get block-level data from the property data API, then unwraps the resulting JSON into a Block object and a set of affiliated Property and Pin objects. Once a Block object's created, the app makes another API call to the Philly Hoods API to find the name of the neighborhood the block is in.
 
+The Info screen, incidentally, shows this very README.md file in a UIWebView! (Formatted for mobile, naturally.)
+
 **Persistence**
 
 The app uses Core Data for persistence. The data model includes three entities: Block, Property, and Pin. Among these entities, there are multiple relationships:
