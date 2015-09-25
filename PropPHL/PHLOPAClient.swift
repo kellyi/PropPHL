@@ -84,7 +84,6 @@ class PHLOPAClient: NSObject {
                     let dict = p as! NSDictionary
                     let property = self.propertyFromDictionary(dict)
                     property!.block = block
-                    print(property!.fullAddress)
                     let propertyCoordinates = dict["geometry"] as! NSDictionary
                     var propertyLatitude = 0.0
                     var propertyLongitude = 0.0

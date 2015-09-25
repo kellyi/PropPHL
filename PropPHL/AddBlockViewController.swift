@@ -52,6 +52,9 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         makeButtonsActiveAndRemoveSpinner()
         toggleAddressAndMap(addressMapRKControl.selectedIndex)
         subscribeToKeyboardNotifications()
+        let longPressGR = UILongPressGestureRecognizer(target: self, action: "annotate:")
+        longPressGR.minimumPressDuration = 0.5
+        addBlockMapView.addGestureRecognizer(longPressGR)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -202,6 +205,16 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         let adjustedRegion = addBlockMapView.regionThatFits(region)
         addBlockMapView.setRegion(adjustedRegion, animated: true)
         reverseGeocode(CLLocation(latitude: center.latitude, longitude: center.longitude))
+    }
+    
+    func annotate(gestureRecognizer: UIGestureRecognizer) {
+        removeAllAnnotations()
+        if gestureRecognizer.state == UIGestureRecognizerState.Began {
+            let touchPoint = gestureRecognizer.locationInView(addBlockMapView)
+            let newCoordinates = addBlockMapView.convertPoint(touchPoint, toCoordinateFromView: addBlockMapView)
+            let location = CLLocation(latitude: newCoordinates.latitude, longitude: newCoordinates.latitude)
+            reverseGeocode(location)
+        }
     }
     
     func reverseGeocode(location: CLLocation) {

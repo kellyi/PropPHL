@@ -14,7 +14,7 @@ extension AddBlockViewController {
     
     func roundStringToHundreds(n: String) -> Int? {
         func roundNToHundreds(n: Int) -> Int {
-            return n > 100 ? ((n / 100) * 100) : n
+            return n > 100 ? ((n / 100) * 100) : 1
         }
         return Int(n) != nil ? roundNToHundreds(Int(n)!) : nil
     }
@@ -28,7 +28,7 @@ extension AddBlockViewController {
             let newS = String(s.characters.dropFirst())
             return getStreetNumberFromAddressString(newS)
         } else if s.containsString("-") {
-            let newS = s.componentsSeparatedByString("-")[1]
+            let newS = (s.componentsSeparatedByString("-")[1])
             return getStreetNumberFromAddressString(newS)
         } else if s.containsString(" ") {
             let newS = (s.componentsSeparatedByString(" ")[0])
