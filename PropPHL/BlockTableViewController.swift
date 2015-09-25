@@ -25,7 +25,7 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
     // NSFetchedResultsController
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: "Block")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeWhenAdded", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeWhenAdded", ascending: false)]
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
             managedObjectContext: self.sharedContext,
             sectionNameKeyPath: nil,

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 class PhillyHoodsClient: NSObject {
 
@@ -15,12 +14,7 @@ class PhillyHoodsClient: NSObject {
     
     let baseURL = "http://api.phillyhoods.net/v1/locations/"
     var session: NSURLSession
-    var completionHandler: ((success: Bool, errorString: String?) -> Void)? = nil
-    
-    // NSMangedObjectContext singleton
-    lazy var sharedContext: NSManagedObjectContext = {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
-    }()
+    var currentNeighborhoodName: String?
     
     override init() {
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -29,9 +23,24 @@ class PhillyHoodsClient: NSObject {
     }
     
     func getNeighborhoodNameUsingCompletionHandler(latitude: Double, longitude: Double, completionHandler: (success: Bool, errorString: String?) -> Void) {
-        
-        let fullURLString = "\(baseURL)/\(longitude)/\(latitude)"
-        
+        let fullURLString = "\(baseURL)\(latitude),\(longitude)"
+        let apiURL = NSURL(string: fullURLString)
+        let request = NSMutableURLRequest(URL: apiURL!)
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            if error != nil {
+                
+            } else {
+                let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
+                let results = result["results"] as! NSDictionary
+                let features = results["features"] as! NSArray
+                let featZero = features[0] as! NSDictionary
+                let prop = featZero["properties"] as! NSDictionary
+                let neighborhood = prop["name"] as! NSString
+                self.currentNeighborhoodName = neighborhood as String
+            }
+            completionHandler(success: true, errorString: nil)
+        }
+        task.resume()
     }
     
     // MARK: - Make Singleton

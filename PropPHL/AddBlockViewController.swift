@@ -24,6 +24,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBOutlet weak var addBlockMapView: MKMapView!
     @IBOutlet weak var appInfoButton: UIBarButtonItem!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var deletePinButton: UIBarButtonItem!
     
     var locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
@@ -37,6 +38,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         appInfoButton.tintColor = .oceanColor()
         savedBlocksButton.tintColor = .oceanColor()
         self.title = "PropPHL"
+        locationManager.delegate = self
         centerMap()
         //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         //view.addGestureRecognizer(tap)
@@ -47,33 +49,48 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if let segmentValue = defaults.valueForKey("savedSegment") {
             addressMapRKControl.setSelectedIndex(segmentValue as! Int, animated: false)
         }
+        makeButtonsActiveAndRemoveSpinner()
         toggleAddressAndMap(addressMapRKControl.selectedIndex)
         subscribeToKeyboardNotifications()
-        spinner.hidden = true
-        spinner.stopAnimating()
     }
     
     override func viewWillDisappear(animated: Bool) {
         unsubscribeFromKeyboardNotifications()
     }
     
-    func makeButtonActiveAndRemoveSpinner() {
+    func disableButtonsAndShowSpinner() {
+        // using self. here in case this is called from within a closure
+        self.spinner.hidden = false
+        self.spinner.startAnimating()
+        self.findBlockButton.enabled = false
+        self.deletePinButton.enabled = false
+        self.findLocationButton.enabled = false
+        self.savedBlocksButton.enabled = false
+        self.appInfoButton.enabled = false
+        self.addressMapRKControl.enabled = false
+    }
+    
+    func makeButtonsActiveAndRemoveSpinner() {
+        // using self. here in case this is called from within a closure
         self.spinner.hidden = true
         self.spinner.stopAnimating()
         self.findBlockButton.enabled = true
+        self.deletePinButton.enabled = true
         self.findLocationButton.enabled = true
+        self.savedBlocksButton.enabled = true
+        self.appInfoButton.enabled = true
+        self.addressMapRKControl.enabled = true
     }
     
     // MARK: - IBActions
 
-    @IBAction func savedBlocksButtonPressed(sender: UIBarButtonItem) {
-        let blockTableVC = self.storyboard?.instantiateViewControllerWithIdentifier("propPHLNavVC") as! UINavigationController!
-        self.presentViewController(blockTableVC, animated: true, completion: nil)
-    }
-    
     @IBAction func appInfoButtonPressed(sender: UIBarButtonItem) {
         let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
         self.presentViewController(appInfoVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func deletePinButtonPressed(sender: UIBarButtonItem) {
+        removeAllAnnotations()
     }
     
     @IBAction func findByLocationButtonPressed(sender: UIBarButtonItem) {
@@ -85,10 +102,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     @IBAction func findBlockButtonPressed(sender: UIButton) {
-        findBlockButton.enabled = false
-        findLocationButton.enabled = false
-        spinner.hidden = false
-        spinner.startAnimating()
+        disableButtonsAndShowSpinner()
         addressMapRKControl.selectedIndex == 1 ?
             findBlockButtonTypedAddress() :
             findBlockButtonSentFromPin()
@@ -103,13 +117,12 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         if let loc = self.addBlockMapView.annotations.first {
             if loc.subtitle! != "Philadelphia" {
                 showAlert("I've only got data for Philadelphia.")
-                findBlockButton.enabled = true
-                return
+                
+            } else {
+                getBlockFromAddress(loc.title! as String!)
             }
-            getBlockFromAddress(loc.title! as String!)
         } else {
-            showAlert("I couldn't find a pin!")
-            findBlockButton.enabled = true
+            showAlert("Couldn't find a pin!")
         }
     }
     
@@ -123,17 +136,14 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 dispatch_async(dispatch_get_main_queue(), {
                     if success {
                         CoreDataStackManager.sharedInstance().saveContext()
-                        self.showAlert("Added \(blockAddress.capitalizeStreetName())!")
-                        self.makeButtonActiveAndRemoveSpinner()
+                        self.showAlert("Saved \(blockAddress.capitalizeStreetName())!")
                     } else {
                         self.showAlert("\(errorString!)")
-                        self.makeButtonActiveAndRemoveSpinner()
                     }
                 })
             }
         } else {
-            showAlert("I couldn't validate your address!")
-            makeButtonActiveAndRemoveSpinner()
+            showAlert("Couldn't validate your address!")
         }
     }
     
@@ -147,6 +157,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         phillyLabel.hidden = segmentBool
         addressTextField.hidden = segmentBool
         findLocationButton.enabled = segmentBool
+        deletePinButton.enabled = segmentBool
         defaults.setValue(segmentIndex, forKey: "savedSegment")
     }
     
@@ -157,10 +168,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
         pinView!.canShowCallout = true
-        let button : UIButton = UIButton(type: .DetailDisclosure) as UIButton
-        button.tintColor = .orangeColor()
-        button.addTarget(self, action: "removeAllAnnotations", forControlEvents: UIControlEvents.TouchUpInside)
-        pinView!.rightCalloutAccessoryView = button
         return pinView
     }
     
@@ -220,6 +227,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
 
     func showAlert(title: String, actions: [String] = ["OK"], message: String = "") {
         if alertDisplayed == true {
+            makeButtonsActiveAndRemoveSpinner()
             return
         } else {
             alertDisplayed = true
@@ -232,6 +240,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             alert.addAction(action)
     
         }
+        makeButtonsActiveAndRemoveSpinner()
         presentViewController(alert, animated: true, completion: nil)
     }
 

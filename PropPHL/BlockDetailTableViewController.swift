@@ -41,7 +41,9 @@ class BlockDetailTableViewController: UITableViewController {
             detailLabel = block.streetAddress
         case 1:
             label = "Neighborhood"
-            detailLabel = "East Falls"
+            if block.neighborhood != nil {
+                detailLabel = block.neighborhood!
+            }
         case 2:
             label = "Number of Properties"
             detailLabel = "\(block.count)"

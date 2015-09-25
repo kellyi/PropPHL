@@ -74,7 +74,7 @@ class PHLOPAClient: NSObject {
         let request = NSMutableURLRequest(URL: apiURL!)
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil {
-                completionHandler(success: false, errorString: "Can't connect to the API.")
+                completionHandler(success: false, errorString: "Couldn't connect to the APIs.")
             } else {
                 let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
                 let newResult = result["data"] as! NSDictionary
@@ -84,9 +84,16 @@ class PHLOPAClient: NSObject {
                     let dict = p as! NSDictionary
                     let property = self.propertyFromDictionary(dict)
                     property!.block = block
+                    print(property!.fullAddress)
                     let propertyCoordinates = dict["geometry"] as! NSDictionary
-                    let propertyLatitude = propertyCoordinates["y"] as! Double
-                    let propertyLongitude = propertyCoordinates["x"] as! Double
+                    var propertyLatitude = 0.0
+                    var propertyLongitude = 0.0
+                    if let lat = propertyCoordinates["y"] as? Double {
+                        propertyLatitude = lat
+                    }
+                    if let lon = propertyCoordinates["x"] as? Double {
+                        propertyLongitude = lon
+                    }
                     let pinDictionary = ["latitude": propertyLatitude, "longitude": propertyLongitude]
                     let pin = self.pinFromDictionary(pinDictionary)
                     pin!.property = property!
@@ -96,6 +103,12 @@ class PHLOPAClient: NSObject {
                 if skip < total {
                     self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: skip+30, completionHandler: completionHandler)
                 } else {
+                    PhillyHoodsClient.sharedInstance().getNeighborhoodNameUsingCompletionHandler(block.pin.coordinate.latitude, longitude: block.pin.coordinate.longitude) { (success, errorString) in
+                        if let neighborhood = PhillyHoodsClient.sharedInstance().currentNeighborhoodName {
+                            block.neighborhood = neighborhood
+                            try! self.sharedContext.save()
+                        }
+                    }
                     completionHandler(success: true, errorString: nil)
                 }
             }

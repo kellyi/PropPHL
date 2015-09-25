@@ -24,14 +24,15 @@ class BlockDetailViewController: UIViewController, MKMapViewDelegate {
         let region = MKCoordinateRegionMakeWithDistance(blockCenter, meters, meters)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)
+        mapView.addAnnotation(block.pin)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        if block.neighborhood == nil {
-            print("it's nil")
-        } else {
-            print(block.neighborhood)
-        }
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseID = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
+        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+        pinView!.canShowCallout = false
+        return pinView
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

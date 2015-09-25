@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Add Block Controller-->
+        <!--Add Block View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="addBlockVC" title="Add Block Controller" id="BYZ-38-t0r" customClass="AddBlockViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addBlockVC" id="BYZ-38-t0r" customClass="AddBlockViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -58,6 +58,12 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mm-ox-nNn">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
+                                    <barButtonItem title="Delete Pin" systemItem="stop" id="E44-kz-1s7">
+                                        <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="deletePinButtonPressed:" destination="BYZ-38-t0r" id="3aM-C0-7wg"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="otH-jZ-BSh"/>
                                     <barButtonItem style="plain" id="Man-MP-hlK">
                                         <view key="customView" contentMode="scaleToFill" id="aZW-bC-pnJ" customClass="AddressMapSwitch" customModule="PropPHL" customModuleProvider="target">
@@ -125,6 +131,7 @@
                         <outlet property="addressMapRKControl" destination="aZW-bC-pnJ" id="YHg-Xj-uus"/>
                         <outlet property="addressTextField" destination="dD3-sg-m3S" id="UT9-Kd-jwl"/>
                         <outlet property="appInfoButton" destination="SWw-Su-z3A" id="0Fp-G8-TSv"/>
+                        <outlet property="deletePinButton" destination="E44-kz-1s7" id="n4E-4L-90d"/>
                         <outlet property="findBlockButton" destination="A8S-Q7-Xrv" id="A6r-aP-Ehi"/>
                         <outlet property="findLocationButton" destination="hdz-Gw-7Fg" id="wY4-Qn-2Ci"/>
                         <outlet property="phillyLabel" destination="p6f-Mx-VBG" id="x8l-lW-eQd"/>
@@ -151,7 +158,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fl2-cK-FNh">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" systemItem="stop" id="LG2-4W-hu6">
+                                    <barButtonItem title="Back" id="LG2-4W-hu6">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <action selector="dismissButtonPressed:" destination="WMF-Jc-wqx" id="Hqt-aD-ga4"/>
@@ -160,19 +167,11 @@
                                 </items>
                                 <color key="barTintColor" red="0.50196081399917603" green="0.25098040699958801" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MH-xz-YeC">
-                                <rect key="frame" x="580" y="567" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="fl2-cK-FNh" secondAttribute="trailing" constant="-20" id="1kt-C9-0Qc"/>
-                            <constraint firstItem="9MH-xz-YeC" firstAttribute="leading" secondItem="fl2-cK-FNh" secondAttribute="trailing" constant="-88" id="Cs8-F7-s3U"/>
                             <constraint firstItem="eke-ey-okt" firstAttribute="top" secondItem="fl2-cK-FNh" secondAttribute="bottom" id="DCb-gb-KdQ"/>
-                            <constraint firstItem="9MH-xz-YeC" firstAttribute="centerY" secondItem="fl2-cK-FNh" secondAttribute="centerY" id="Gpq-h1-wLR"/>
                             <constraint firstItem="fl2-cK-FNh" firstAttribute="leading" secondItem="56G-LT-h72" secondAttribute="leadingMargin" constant="-20" id="JPG-MY-SdP"/>
                         </constraints>
                     </view>
@@ -279,7 +278,7 @@
             <objects>
                 <tableViewController id="u9T-aD-WxK" customClass="PropertyDetailTableViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="H8i-G6-EuQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="293"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -335,10 +334,10 @@
             </objects>
             <point key="canvasLocation" x="2580" y="1833.5"/>
         </scene>
-        <!--Block Table VC-->
+        <!--Root View Controller-->
         <scene sceneID="egu-jm-Vut">
             <objects>
-                <tableViewController storyboardIdentifier="blockTableVC" title="Block Table VC" id="14f-Pb-lKz" customClass="BlockTableViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="blockTableVC" id="14f-Pb-lKz" customClass="BlockTableViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="GNY-Qk-ULg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -447,14 +446,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="satellite" translatesAutoresizingMaskIntoConstraints="NO" id="rn8-Cf-nh1">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="307"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" translatesAutoresizingMaskIntoConstraints="NO" id="rn8-Cf-nh1">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <connections>
                                     <outlet property="delegate" destination="kyf-AM-HKb" id="c7k-oz-l0y"/>
                                 </connections>
                             </mapView>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOy-Pu-ESK">
-                                <rect key="frame" x="0.0" y="307" width="600" height="293"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOy-Pu-ESK">
+                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                                 <connections>
                                     <segue destination="u9T-aD-WxK" kind="embed" identifier="propertyDetailContainerSegue" id="kbS-sn-eg9"/>
                                 </connections>
@@ -481,10 +480,10 @@
             </objects>
             <point key="canvasLocation" x="2580" y="1207"/>
         </scene>
-        <!--PropPHL NavigationVC-->
+        <!--Navigation Controller-->
         <scene sceneID="VBM-ll-D5r">
             <objects>
-                <navigationController storyboardIdentifier="propPHLNavVC" title="PropPHL NavigationVC" id="nc9-fA-gzV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="propPHLNavVC" id="nc9-fA-gzV" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="EEg-hj-1DO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
