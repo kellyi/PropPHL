@@ -11,8 +11,12 @@ import MapKit
 
 class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
 
+    // MARK: - Variables
+    
     var selectedProperty: Property!
     @IBOutlet weak var mapView: MKMapView!
+    
+    // MARK: - View Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,8 @@ class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
         mapView.addAnnotation(selectedProperty.pin)
     }
 
+    // MARK: - MKAnnotationView Setup
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "pin"
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
@@ -36,6 +42,8 @@ class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
         pinView!.canShowCallout = false
         return pinView
     }
+    
+    // MARK: - Segue to Pass Info to Embedded TableViewController
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "propertyDetailContainerSegue" {

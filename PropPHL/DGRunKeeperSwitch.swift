@@ -5,8 +5,10 @@
 //  Created by Danil Gontovnik on 9/3/15.
 //  Copyright © 2015 Danil Gontovnik. All rights reserved.
 //
+// NOTE: This is a custom UIControl subclass from here:
 // https://github.com/gontovnik/DGRunkeeperSwitch
 // https://github.com/gontovnik/DGRunkeeperSwitch/blob/master/LICENSE
+//
 
 import UIKit
 

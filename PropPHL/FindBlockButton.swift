@@ -10,6 +10,8 @@ import UIKit
 
 class FindBlockButton: UIButton {
     
+    // MARK: - Initializer
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.layer.cornerRadius = 20.0

@@ -11,10 +11,14 @@ import MapKit
 
 class BlockDetailViewController: UIViewController, MKMapViewDelegate {
 
+    // MARK: - Variables
+    
     @IBOutlet weak var mapView:MKMapView!
     @IBOutlet weak var lowerView:UIView!
     
     var block: Block!
+    
+    // MARK: - View Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +31,8 @@ class BlockDetailViewController: UIViewController, MKMapViewDelegate {
         mapView.addAnnotation(block.pin)
     }
     
+    // MARK: - MKAnnotationView Setup
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "pin"
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
@@ -34,6 +40,8 @@ class BlockDetailViewController: UIViewController, MKMapViewDelegate {
         pinView!.canShowCallout = false
         return pinView
     }
+    
+    // MARK: - Segue to Pass Info to Embedded TableViewController
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "blockDetailContainerSegue" {

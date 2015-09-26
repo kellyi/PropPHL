@@ -12,15 +12,21 @@ class PhillyHoodsClient: NSObject {
 
     // api reference: http://phillyhoods.net/
     
+    // MARK: - Constants and Variables
+    
     let baseURL = "http://api.phillyhoods.net/v1/locations/"
     var session: NSURLSession
     var currentNeighborhoodName: String?
+    
+    // MARK: - Initialize Session
     
     override init() {
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         session = NSURLSession(configuration: config)
         super.init()
     }
+    
+    // MARK: - Make API Call
     
     func getNeighborhoodNameUsingCompletionHandler(latitude: Double, longitude: Double, completionHandler: (success: Bool, errorString: String?) -> Void) {
         let fullURLString = "\(baseURL)\(latitude),\(longitude)"
@@ -31,12 +37,13 @@ class PhillyHoodsClient: NSObject {
                 
             } else {
                 let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
-                let results = result["results"] as! NSDictionary
-                let features = results["features"] as! NSArray
-                let featZero = features[0] as! NSDictionary
-                let prop = featZero["properties"] as! NSDictionary
-                let neighborhood = prop["name"] as! NSString
-                self.currentNeighborhoodName = neighborhood as String
+                if let results = result["results"] {
+                    let features = results["features"] as! NSArray
+                    let featZero = features[0] as! NSDictionary
+                    let prop = featZero["properties"] as! NSDictionary
+                    let neighborhood = prop["name"] as! NSString
+                    self.currentNeighborhoodName = neighborhood as String
+                }
             }
             completionHandler(success: true, errorString: nil)
         }

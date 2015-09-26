@@ -5,23 +5,23 @@
 //  Created by Kelly Innes on 9/23/15.
 //  Copyright © 2015 Kelly Innes. All rights reserved.
 //
+// NOTE: This is a TableViewController for a grouped table embedded on
+// the PropertyDetailViewController
 
 import UIKit
 
 class PropertyDetailTableViewController: UITableViewController {
 
+    // MARK: - Variables
+    
     var property: Property!
     
-    // MARK: - Table view data source
+    // MARK: - TableViewController Methods
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    /*
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Address, Description, & Info"
-    }
-    */
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }

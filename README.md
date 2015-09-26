@@ -13,9 +13,20 @@ On launching the app, you'll see a map, with a pin dropped on the 1500 block of 
 
 To find assessment data for the block and the properties on the block, tap the "Find Block" button. That will make the API calls, disabling the buttons and showing an activity indicator until it's complete. On completion -- or failure! -- a custom alertview will pop up to let you know that the app has "Saved 1500 Walnut St," that it "Couldn't connect to the APIs," or whatever other error message. If a block doesn't have any properties with assessment data, it'll show that error message, too.
 
-(Note: the app's currently not really great at validating addresses of the style "1500-1598 Walnut Street." It works best with address of the style "1550 Walnut Street," and using an address of the style "1500-1598..." will often fail to validate, find no properties, or find properties for the 1 block of whatever street. An alert will pop up to let you know what happened, and you can drop a pin nearby to find a simpler-to-parse address if you'd like to try again!)
+(Note: the app's currently not perfect at validating addresses of the style "1500-1598 Walnut Street." It works best with address of the style "1550 Walnut Street," but it will also occasionally work with "1500-1598" type addresses, too. Either way, an alert will appear to let you know what happened!)
 
 If you'd prefer to type an address, flip the slider on the toolbar from Map to Address and you'll be presented with a text field. Type it, tap "Find Block," and the app'll ask the APIs for data based on the block you've entered. Both the Address and the Map options accept street numbers and names of the style "1552 Walnut St." The app's got some validation logic to transform "1552" to "1500" for the API call, and it'll even try to capitalize the street name et cetera for a saved block properly.
+
+Here are a few addresses you could try:
+
+126 Elfreths Alley
+1020 Pattinson Ave
+900 S 47th St
+22 N 3rd Street
+8111 Germantown Avenue
+1245 E Passyunk Ave
+
+(The project also includes a few .gpx files to use to simulate locations in the iOS simulator, but [it looks like the ability to switch between them might currently be broken due to an Xcode bug](https://github.com/calabash/calabash-ios/issues/377#issuecomment-141967184).)
 
 Once you've saved a block or two, or three, you can see the saved blocks presented in a table by tapping the file folder on the left side of the navigation bar. Tap a cell to move ahead to a table of the block's properties; tap the detail accessory indicator to see detailed info about the block. Tapping a specific property's tableViewCell will show you a property detail screen. You can also opt to delete blocks or properties with the usual "slide to reveal the delete button" grammar of tableViewCells.
 
@@ -50,6 +61,8 @@ The app uses Core Data for persistence. The data model includes three entities: 
 - a Pin belongs either to one Block or to one Property
 
 Pin objects store coordinates and act like MKAnnotation objects. You can check out the Block, Property, and Pin files to see how they're put together as classes. The app uses NSFetchedResultsControllers to manage displaying data in its tables.
+
+The app also users NSUserDefaults to persist the state of the AddressMapSwitch.
 
 **One Last Note, Probably Unnecessary but**
 

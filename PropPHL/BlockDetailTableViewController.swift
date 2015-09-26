@@ -5,14 +5,18 @@
 //  Created by Kelly Innes on 9/23/15.
 //  Copyright © 2015 Kelly Innes. All rights reserved.
 //
+// NOTE: This is a TableViewController for a grouped table embedded on
+// the BlockDetailViewController
 
 import UIKit
 
 class BlockDetailTableViewController: UITableViewController {
 
+    // MARK: - Variables
+    
     var block: Block!
     
-    // MARK: - Table view data source
+    // MARK: - TableViewController Methods
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

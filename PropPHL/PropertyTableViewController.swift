@@ -11,6 +11,8 @@ import CoreData
 
 class PropertyTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
+    // MARK: - Variables
+    
     var block: Block!
     
     // NSIndexPath arrays to store selected tableViewCells to remove
@@ -36,11 +38,15 @@ class PropertyTableViewController: UITableViewController, NSFetchedResultsContro
         return fetchedResultsController
     }()
     
+    // MARK: - View Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         try! fetchedResultsController.performFetch()
         fetchedResultsController.delegate = self
     }
+    
+    // MARK: - TableViewController Methods
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
@@ -68,6 +74,8 @@ class PropertyTableViewController: UITableViewController, NSFetchedResultsContro
         }
     }
 
+    // MARK: - Prep for Segue to PropertyDetailViewController
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "propTableVCtoPropDetailVC" {
             let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell)

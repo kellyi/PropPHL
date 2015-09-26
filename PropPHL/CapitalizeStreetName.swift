@@ -10,6 +10,7 @@ import Foundation
 
 extension String {
     
+    // A helper method to try to capitalize street names appropriately
     func capitalizeStreetName() -> String {
         var result = [Character]()
         let downcased = self.lowercaseString

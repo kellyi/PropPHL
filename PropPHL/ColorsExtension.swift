@@ -10,6 +10,8 @@ import UIKit
 
 extension UIColor {
     
+    // MARK: - Add New Colors to UIColor
+    
     class func oceanColor() -> UIColor {
         return UIColor(red:0/255, green:64/255, blue:128/255, alpha:1.0)
     }

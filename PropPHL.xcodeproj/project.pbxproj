@@ -55,6 +55,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF0190EC1BB61EBF00B742CF /* ElfrethsAlley.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ElfrethsAlley.gpx; sourceTree = "<group>"; };
+		DF0190EE1BB6239500B742CF /* Stadiums.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Stadiums.gpx; sourceTree = "<group>"; };
+		DF0190EF1BB6241300B742CF /* ItalianMarket.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ItalianMarket.gpx; sourceTree = "<group>"; };
+		DF0190F01BB6248700B742CF /* Parkway.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Parkway.gpx; sourceTree = "<group>"; };
+		DF0190F11BB624ED00B742CF /* Penn.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Penn.gpx; sourceTree = "<group>"; };
+		DF0190F21BB6254300B742CF /* Manayunk.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Manayunk.gpx; sourceTree = "<group>"; };
 		DF1B2F281BAB60470031FA2B /* AddressMapSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressMapSwitch.swift; sourceTree = "<group>"; };
 		DF1B2F2C1BADB9640031FA2B /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapitalizeStreetName.swift; sourceTree = "<group>"; };
@@ -116,6 +122,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF0190ED1BB61F2000B742CF /* GPX Files */ = {
+			isa = PBXGroup;
+			children = (
+				DF0190EC1BB61EBF00B742CF /* ElfrethsAlley.gpx */,
+				DF0190EE1BB6239500B742CF /* Stadiums.gpx */,
+				DF0190EF1BB6241300B742CF /* ItalianMarket.gpx */,
+				DF0190F01BB6248700B742CF /* Parkway.gpx */,
+				DF0190F11BB624ED00B742CF /* Penn.gpx */,
+				DF0190F21BB6254300B742CF /* Manayunk.gpx */,
+			);
+			name = "GPX Files";
+			sourceTree = "<group>";
+		};
 		DF1B2F6A1BAF02F00031FA2B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +194,7 @@
 				DF80FBF01BAA6CFB00B6D2CE /* Storyboards */,
 				DFC1D9581BA6847F002482C4 /* Assets.xcassets */,
 				DFC1D95D1BA6847F002482C4 /* Info.plist */,
+				DF0190ED1BB61F2000B742CF /* GPX Files */,
 			);
 			path = PropPHL;
 			sourceTree = "<group>";

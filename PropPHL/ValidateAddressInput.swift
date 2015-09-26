@@ -12,6 +12,7 @@ extension AddBlockViewController {
     
     // MARK: - Address Input Validation
     
+    // Function to take a string like "1234" and round it to 1200
     func roundStringToHundreds(n: String) -> Int? {
         func roundNToHundreds(n: Int) -> Int {
             return n >= 100 ? ((n / 100) * 100) : 1
@@ -19,6 +20,7 @@ extension AddBlockViewController {
         return Int(n) != nil ? roundNToHundreds(Int(n)!) : nil
     }
     
+    // Function to grab the street number from an address
     func getStreetNumberFromAddressString(s: String) -> String? {
         if s.characters.count == 0 {
             return nil
@@ -38,6 +40,7 @@ extension AddBlockViewController {
         }
     }
     
+    // Function to grab just the street name from an adddress
     func getStreetStringFromAddressString(s: String, flag: Bool = false) -> String? {
         let c: [Character] = ["1","2","3","4","5","6","7","8","9","0","-"]
         if s.characters.count == 0 {
@@ -53,6 +56,7 @@ extension AddBlockViewController {
         }
     }
     
+    // Function to turn "1234 Market Street" into "1200 Market Street"
     func streetBlockFromAddressString(s: String) -> String? {
         if let n = getStreetNumberFromAddressString(s) {
             if let street = getStreetStringFromAddressString(s) {
@@ -63,6 +67,20 @@ extension AddBlockViewController {
         } else {
             return nil
         }
+    }
+    
+    // Function to grab the fist number from a string like "123-199"
+    func getFirstNumber(n: String) -> String {
+        let digits = ["1","2","3","4","5","6","7","8","9","0"]
+        var result = [Character]()
+        for d in n.characters {
+            if digits.contains(String(d)) {
+                result.append(d)
+            } else {
+                break
+            }
+        }
+        return String(result)
     }
     
 }

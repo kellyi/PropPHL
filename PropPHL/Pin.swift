@@ -13,15 +13,18 @@ import CoreData
 @objc(Pin)
 class Pin: NSManagedObject, MKAnnotation {
     
+    // MARK: - Variables
     @NSManaged var latitude: NSNumber
     @NSManaged var longitude: NSNumber
     @NSManaged var property: Property
     @NSManaged var block: Block
     
+    // required for MKAnnotation
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: Double(latitude), longitude: Double(longitude))
     }
     
+    // MARK: - Initializers
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }

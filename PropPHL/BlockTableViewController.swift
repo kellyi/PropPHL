@@ -11,6 +11,8 @@ import CoreData
 
 class BlockTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    // MARK: - Variables
+    
     // NSIndexPath arrays to store selected tableViewCells to remove
     var selectedIndexes = [NSIndexPath]()
     var insertedIndexPaths: [NSIndexPath]!
@@ -33,6 +35,8 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
         return fetchedResultsController
     }()
     
+    // MARK: - View Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addBlock")
@@ -44,6 +48,8 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
         fetchedResultsController.delegate = self
     }
     
+    // MARK: - Navigation Bar Button Actions
+    
     func addBlock() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -53,11 +59,12 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
         self.presentViewController(appInfoVC, animated: true, completion: nil)
     }
     
+    // MARK: - TableViewController Methods
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects
     }
-
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("blockCell", forIndexPath: indexPath)
@@ -83,6 +90,8 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
             break
         }
     }
+    
+    // MARK: - Prep for Segue to Block Detail View or Property Table View
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "blockTableVCtoPropTableVC" {

@@ -39,8 +39,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.title = "PropPHL"
         locationManager.delegate = self
         centerMap()
-        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        //view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -84,15 +82,11 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.addressMapRKControl.enabled = true
     }
     
-    // MARK: - IBActions
+    // MARK: - IBActions & Related Methods
 
     @IBAction func appInfoButtonPressed(sender: UIBarButtonItem) {
         let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
         self.presentViewController(appInfoVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func deletePinButtonPressed(sender: UIBarButtonItem) {
-        removeAllAnnotations()
     }
     
     @IBAction func findByLocationButtonPressed(sender: UIBarButtonItem) {
@@ -110,11 +104,14 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             findBlockButtonSentFromPin()
     }
     
+    // Routed from findBlockButtonPressed(_:); preps to call another method
     func findBlockButtonTypedAddress() {
         dismissKeyboard()
+        disableButtonsAndShowSpinner()
         getBlockFromAddress(addressTextField.text!)
     }
     
+    // Routed from findBlockButtonPressed(_:); preps to call another method
     func findBlockButtonSentFromPin() {
         if let loc = self.addBlockMapView.annotations.first {
             if loc.subtitle! != "Philadelphia" {
@@ -127,6 +124,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         }
     }
     
+    // Uses address string to make API calls
     func getBlockFromAddress(address: String) {
         var userGivenAddress = address
         if userGivenAddress.characters.first == " " {
@@ -152,6 +150,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         toggleAddressAndMap(sender.selectedIndex)
     }
     
+    // Changes views depending on the state of the AddessMapSwitch
     func toggleAddressAndMap(segmentIndex: Int) {
         let segmentBool = segmentIndex == 0 ? true : false
         addBlockMapView.hidden = !segmentBool
@@ -184,6 +183,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         showAlert("I couldn't load the map.")
     }
     
+    // Find new pin if user asks to detect her location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last as CLLocation!
         let viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1000, 1000)
@@ -193,6 +193,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         reverseGeocode(newLocation)
     }
     
+    // Center the map on Center City, Philadelphia
     func centerMap() {
         let latitude = 39.9500 as Double
         let longitude = -75.1667 as Double
@@ -204,6 +205,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         reverseGeocode(CLLocation(latitude: center.latitude, longitude: center.longitude))
     }
     
+    // Create pin annotation from LongPress (1.0+ seconds)
     func annotate(gestureRecognizer: UIGestureRecognizer) {
         if gestureRecognizer.state == UIGestureRecognizerState.Began {
             let touchPoint = gestureRecognizer.locationInView(addBlockMapView)
@@ -213,6 +215,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         }
     }
     
+    // Geocode a point on the map, and give its pin a street address and city name
     func reverseGeocode(location: CLLocation) {
         geocoder.reverseGeocodeLocation(location, completionHandler: {
             (placemarks, error) -> Void in
@@ -226,7 +229,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 annotation.coordinate = annotationLocation
                 annotation.title = "no street address"
                 if let streetNumber = place.subThoroughfare {
-                    annotation.title = "\(streetNumber) \(place.thoroughfare!)"
+                    annotation.title = "\(self.getFirstNumber(streetNumber)) \(place.thoroughfare!)"
                 }
                 annotation.subtitle = "\(place.locality!)"
                 self.addBlockMapView.addAnnotation(annotation)
@@ -239,6 +242,8 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     // MARK: - Show Alerts
 
+    // Generic method to show an alert
+    // Will NOT show a new alert if an existing alert's already shown
     func showAlert(title: String, actions: [String] = ["OK"], message: String = "") {
         if alertDisplayed == true {
             makeButtonsActiveAndRemoveSpinner()
@@ -274,7 +279,7 @@ extension AddBlockViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    // move view up by specified value on receiving notification
+    // Move view up by specified value on receiving notification
     func keyboardWillShow(notification: NSNotification) {
         appInfoButton.enabled = false
         appInfoButton.tintColor = .clearColor()
@@ -283,7 +288,7 @@ extension AddBlockViewController {
         self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
-    // move view down by specified value on receiving notification
+    // Move view down by specified value on receiving notification
     func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y += getKeyboardHeight(notification)
         appInfoButton.enabled = true

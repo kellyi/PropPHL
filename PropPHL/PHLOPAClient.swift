@@ -34,6 +34,7 @@ class PHLOPAClient: NSObject {
     
     // MARK: - Make API Call
     
+    // API call to create Block object
     func getBlockJSONUsingCompletionHandler(blockAddress: String, completionHandler: (success: Bool, errorString: String?) -> Void) {
         let escapedBlock = escapeURLSpaces(blockAddress)
         let fullURLString = "\(addressLink)block/\(escapedBlock)/\(formatParameter)0"
@@ -67,6 +68,9 @@ class PHLOPAClient: NSObject {
         task.resume()
     }
     
+    // API call to create Property objects
+    // called from block API call & recursively calls itself until it
+    // has gone through every page of property data for the specific block
     func getPropertyJSONByBlockUsingCompletionHandler(block: Block, total: Int, skip: Int, completionHandler: (success: Bool, errorString: String?) -> Void) {
         let escapedBlock = escapeURLSpaces(block.streetAddress)
         let fullURLString = "\(addressLink)block/\(escapedBlock)/\(formatParameter)\(skip)"
@@ -117,10 +121,12 @@ class PHLOPAClient: NSObject {
     
     // MARK: - Convenience Methods
     
+    // Replace spaces for URL
     func escapeURLSpaces(toEscape: String) -> String {
         return toEscape.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: [], range: nil)
     }
     
+    // Create a Block object from a dictionary of Properties and a street address
     func blockFromData(properties: [Property], streetAddress: String) -> Block? {
         let timeWhenAdded = NSDate()
         let initializerDictionary = [
@@ -131,6 +137,7 @@ class PHLOPAClient: NSObject {
         return Block(blockDictionary: initializerDictionary, context: sharedContext)
     }
     
+    // Create a Pin object from a dictionary
     func pinFromDictionary(pinDictionary: NSDictionary) -> Pin? {
         let latitude = pinDictionary["latitude"] as! Double
         let longitude = pinDictionary["longitude"] as! Double
@@ -141,7 +148,7 @@ class PHLOPAClient: NSObject {
         return Pin(pinDictionary: initializerDictionary, context: sharedContext)
     }
     
-    // create a Property object from a dictionary
+    // Create a Property object from a dictionary
     func propertyFromDictionary(propertyDictionary: NSDictionary) -> Property? {
         let salesInfo = propertyDictionary["sales_information"] as! NSDictionary
         let characteristics = propertyDictionary["characteristics"] as! NSDictionary
@@ -159,7 +166,7 @@ class PHLOPAClient: NSObject {
         return Property(propDictionary: initializerDictionary, context: sharedContext)
     }
     
-    // parse the Date(...) string returned in JSON from API
+    // Parse the Date(...) string returned in JSON from PHL OPA API
     func stringToDate(s: String) -> NSDate {
         let d = Double(s.componentsSeparatedByString("000-")[0].componentsSeparatedByString("(")[1])!
         return NSDate(timeIntervalSince1970: d)

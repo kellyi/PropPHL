@@ -12,16 +12,19 @@ import CoreData
 @objc(Block)
 class Block: NSManagedObject {
     
+    // MARK: - Variables
     @NSManaged var timeWhenAdded: NSDate
     @NSManaged var streetAddress: String
     @NSManaged var properties: [Property]
     @NSManaged var pin: Pin
     @NSManaged var neighborhood: String?
     
+    // Compute property count
     var count: Int {
         return self.properties.count
     }
     
+    // Compute the median assessment value of all properties on a block
     var medianAsssessmentValue: Int {
         let prop = Array(self.properties as NSArray) as! [Property]
         var arrayForAssessmentValues = [Int]()

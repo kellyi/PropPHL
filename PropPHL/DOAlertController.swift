@@ -8,6 +8,8 @@
 //  This software is released under the MIT License.
 //  http://opensource.org/licenses/mit-license.php
 //
+// NOTE: This is a custom view class available here:
+// https://github.com/okmr-d/DOAlertController
 
 import UIKit
 
