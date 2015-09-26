@@ -64,6 +64,10 @@ Pin objects store coordinates and act like MKAnnotation objects. You can check o
 
 The app also users NSUserDefaults to persist the state of the AddressMapSwitch.
 
-**One Last Note, Probably Unnecessary but**
+**One Additional Note, Probably Unnecessary but**
 
-I am not affiliated with the Philadelphia Office of Property Assessment or employed by the City of Philadelphia.
+I am not affiliated with the Philadelphia Office of Property Assessment or the City of Philadelphia.
+
+**Finally**
+
+I derived the app icon from [this image from Openclipart](https://openclipart.org/detail/179251/brown-house).
