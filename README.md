@@ -19,12 +19,12 @@ If you'd prefer to type an address, flip the slider on the toolbar from Map to A
 
 Here are a few addresses you could try:
 
-126 Elfreths Alley
-1020 Pattinson Ave
-900 S 47th St
-22 N 3rd Street
-8111 Germantown Avenue
-1245 E Passyunk Ave
+- 126 Elfreths Alley
+- 1020 Pattinson Ave
+- 900 S 47th St
+- 22 N 3rd Street
+- 8111 Germantown Avenue
+- 1245 E Passyunk Ave
 
 (The project also includes a few .gpx files to use to simulate locations in the iOS simulator, but [it looks like the ability to switch between them might currently be broken due to an Xcode bug](https://github.com/calabash/calabash-ios/issues/377#issuecomment-141967184).)
 
