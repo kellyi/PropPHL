@@ -71,3 +71,34 @@ I am not affiliated with the Philadelphia Office of Property Assessment or the C
 **Finally**
 
 I derived the app icon from [this image from Openclipart](https://openclipart.org/detail/179251/brown-house).
+
+**Screenshots**
+
+*Find by Map Location*
+
+mapentry.png
+
+*Find by Address Text*
+
+textentry.png
+
+*Block Saved*
+
+alertpopup.png
+
+*Block Table*
+
+blocktable.png
+
+*Block Detail*
+
+blockdetail.png
+
+*Property Table*
+
+propertytable.png
+
+*Property Detail*
+
+propertdetail.png
+
