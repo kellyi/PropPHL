@@ -76,29 +76,29 @@ I derived the app icon from [this image from Openclipart](https://openclipart.or
 
 *Find by Map Location*
 
-mapentry.png
+![mapentry](https://github.com/kellyi/PropPHL/blob/master/screenshots/mapentry.png)
 
 *Find by Address Text*
 
-textentry.png
+![textentry](https://github.com/kellyi/PropPHL/blob/master/screenshots/textentry.png)
 
 *Block Saved*
 
-alertpopup.png
+![alert](https://github.com/kellyi/PropPHL/blob/master/screenshots/alertpopup.png)
 
 *Block Table*
 
-blocktable.png
+![blocktable](https://github.com/kellyi/PropPHL/blob/master/screenshots/blocktable.png)
 
 *Block Detail*
 
-blockdetail.png
+![blockdetail](https://github.com/kellyi/PropPHL/blob/master/screenshots/blockdetail.png)
 
 *Property Table*
 
-propertytable.png
+![propertytable](https://github.com/kellyi/PropPHL/blob/master/screenshots/propertytable.png)
 
 *Property Detail*
 
-propertdetail.png
+![propertydetail](https://github.com/kellyi/PropPHL/blob/master/screenshots/propertydetail.png)
 
