@@ -74,31 +74,31 @@ I derived the app icon from [this image from Openclipart](https://openclipart.or
 
 **Screenshots**
 
-*Find by Map Location*
+*Finding a block on the map using a dropped pin or location services*
 
 ![mapentry](https://github.com/kellyi/PropPHL/blob/master/screenshots/mapentry.png)
 
-*Find by Address Text*
+*Finding a block by entering an address*
 
 ![textentry](https://github.com/kellyi/PropPHL/blob/master/screenshots/textentry.png)
 
-*Block Saved*
+*Alert popup*
 
 ![alert](https://github.com/kellyi/PropPHL/blob/master/screenshots/alertpopup.png)
 
-*Block Table*
+*Table view of saved blocks*
 
 ![blocktable](https://github.com/kellyi/PropPHL/blob/master/screenshots/blocktable.png)
 
-*Block Detail*
+*Block detail view*
 
 ![blockdetail](https://github.com/kellyi/PropPHL/blob/master/screenshots/blockdetail.png)
 
-*Property Table*
+*Table view of saved properties*
 
 ![propertytable](https://github.com/kellyi/PropPHL/blob/master/screenshots/propertytable.png)
 
-*Property Detail*
+*Property detail view*
 
 ![propertydetail](https://github.com/kellyi/PropPHL/blob/master/screenshots/propertydetail.png)
 
