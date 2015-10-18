@@ -20,7 +20,7 @@ If you'd prefer to type an address, flip the slider on the toolbar from Map to A
 Here are a few addresses you could try:
 
 - 126 Elfreths Alley
-- 1020 Pattinson Ave
+- 1020 Pattison Ave
 - 900 S 47th St
 - 22 N 3rd Street
 - 8111 Germantown Avenue

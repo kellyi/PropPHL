@@ -37,10 +37,13 @@ class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID)
-        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
-        pinView!.canShowCallout = false
-        return pinView
+        if let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseID) {
+            return pinView
+        } else {
+            let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            pinView.canShowCallout = false
+            return pinView
+        }
     }
     
     // MARK: - Segue to Pass Info to Embedded TableViewController
