@@ -1,6 +1,8 @@
 PropPHL
 =======
 
+[![Build Status](https://travis-ci.org/kellyi/PropPHL.svg?branch=master)](https://travis-ci.org/kellyi/PropPHL)
+
 PropPHL is an iPhone client for the [City of Philadelphia's Property Data API](http://phlapi.com/opaapi.html). It's the fifth app project for Udacity's [iOS Developer Nanodegree](https://www.udacity.com/course/ios-developer-nanodegree--nd003).
 
 The app enables users to search block-level property-value assessment data from the Philadelphia Office of Property Assessment API. Users can search by an address string, by dropping a pin on a map, or by having the app detect their current location using Core Location services. Once the block data's found from the API, the block's saved along with the specific properties on the block using Core Data. 
