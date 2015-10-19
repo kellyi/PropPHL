@@ -106,12 +106,13 @@ class PHLOPAClient: NSObject {
                 if skip < total {
                     self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: skip+30, completionHandler: completionHandler)
                 } else {
-                    PhillyHoodsClient.sharedInstance().getNeighborhoodNameUsingCompletionHandler(block.pin.coordinate.latitude, longitude: block.pin.coordinate.longitude) { (success, errorString) in
+                    PhillyHoodsClient.sharedInstance().getNeighborhoodNameUsingCompletionHandler(Double(block.pin.latitude), longitude: Double(block.pin.longitude)) { (success, errorString) in
                         if let neighborhood = PhillyHoodsClient.sharedInstance().currentNeighborhoodName {
                             block.neighborhood = neighborhood
-                            try! self.sharedContext.save()
                         }
+                        //try! self.sharedContext.save()
                     }
+                    //try! self.sharedContext.save()
                     completionHandler(success: true, errorString: nil)
                 }
             }

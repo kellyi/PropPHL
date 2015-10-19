@@ -23,12 +23,15 @@ class BlockDetailViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        let blockCenter = block.pin.coordinate
+        let blockCenter = CLLocationCoordinate2DMake(Double(block.pin.latitude), Double(block.pin.longitude))
         let meters = 250 as Double
         let region = MKCoordinateRegionMakeWithDistance(blockCenter, meters, meters)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)
-        mapView.addAnnotation(block.pin)
+        let annotation = MKPointAnnotation()
+        let annotationLocation = blockCenter
+        annotation.coordinate = annotationLocation
+        mapView.addAnnotation(annotation)
     }
     
     // MARK: - MKAnnotationView Setup

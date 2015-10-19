@@ -25,14 +25,14 @@ class BlockDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Block Details"
+            return block.streetAddress
         default:
             return nil
         }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -41,21 +41,18 @@ class BlockDetailTableViewController: UITableViewController {
         var detailLabel = ""
         switch indexPath.row {
         case 0:
-            label = "Block Address"
-            detailLabel = block.streetAddress
-        case 1:
             label = "Neighborhood"
             if block.neighborhood != nil {
                 detailLabel = block.neighborhood!
             }
-        case 2:
+        case 1:
             label = "Number of Properties"
             detailLabel = "\(block.count)"
-        case 3:
+        case 2:
             let currencyFormatter = NSNumberFormatter()
             currencyFormatter.numberStyle = .CurrencyStyle
             let formattedMedianAssessment = currencyFormatter.stringFromNumber(block.medianAsssessmentValue)!
-            label = "Median Assessment Value"
+            label = "Median Value"
             detailLabel = formattedMedianAssessment
         default:
             print("fizzbuzz")

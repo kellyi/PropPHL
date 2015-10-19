@@ -23,7 +23,16 @@ class PropertyDetailTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 4
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return property.fullAddress
+        default:
+            return nil
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -33,26 +42,20 @@ class PropertyDetailTableViewController: UITableViewController {
         let currencyFormatter = NSNumberFormatter()
         currencyFormatter.numberStyle = .CurrencyStyle
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
+        dateFormatter.dateStyle = .ShortStyle
         switch indexPath.row {
         case 0:
             cellIdentifier = "basicCell"
-            label = property.fullAddress
-        case 1:
-            cellIdentifier = "basicCell"
             label = property.opaDescription
-        case 2:
-            label = "Assessment"
+        case 1:
+            label = "Assessed Value"
             detailLabel = currencyFormatter.stringFromNumber(property.assessment)!
-        case 3:
+        case 2:
             label = "Taxes"
             detailLabel = currencyFormatter.stringFromNumber(property.taxes)!
-        case 4:
-            label = "Last Sale Date"
-            detailLabel = dateFormatter.stringFromDate(property.salesDate)
-        case 5:
-            label = "Last Sale Price"
-            detailLabel = currencyFormatter.stringFromNumber(property.salesPrice)!
+        case 3:
+            label = "Last Sale"
+            detailLabel = currencyFormatter.stringFromNumber(property.salesPrice)! + " on " + dateFormatter.stringFromDate(property.salesDate)
         default:
             print("fizzbuzz")
         }

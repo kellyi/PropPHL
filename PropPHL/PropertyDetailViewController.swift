@@ -25,12 +25,15 @@ class PropertyDetailViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let center = selectedProperty.pin.coordinate
+        let center = CLLocationCoordinate2DMake(Double(selectedProperty.pin.latitude), Double(selectedProperty.pin.longitude))
         let meters = 100 as Double
         let region = MKCoordinateRegionMakeWithDistance(center, meters, meters)
         let adjustedRegion = mapView.regionThatFits(region)
         mapView.setRegion(adjustedRegion, animated: true)
-        mapView.addAnnotation(selectedProperty.pin)
+        let annotation = MKPointAnnotation()
+        let annotationLocation = center
+        annotation.coordinate = annotationLocation
+        mapView.addAnnotation(annotation)
     }
 
     // MARK: - MKAnnotationView Setup
