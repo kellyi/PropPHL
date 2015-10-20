@@ -60,6 +60,10 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         unsubscribeFromKeyboardNotifications()
     }
     
+    func showBlockTableViewControllerWithSegue() {
+        performSegueWithIdentifier("segueToBlockTableVC", sender: self)
+    }
+    
     func disableButtonsAndShowSpinner() {
         // using self. here in case this is called from within a closure
         self.spinner.hidden = false
@@ -135,7 +139,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 dispatch_async(dispatch_get_main_queue(), {
                     if success {
                         CoreDataStackManager.sharedInstance().saveContext()
-                        self.showAlert("Saved \(blockAddress.capitalizeStreetName())!")
+                        self.showAlert("Saved \(blockAddress.capitalizeStreetName())!", actions: ["Go"])
                     } else {
                         self.showAlert("\(errorString!)")
                     }
@@ -244,7 +248,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
 
     // Generic method to show an alert
     // Will NOT show a new alert if an existing alert's already shown
-    func showAlert(title: String, actions: [String] = ["OK"], message: String = "") {
+    func showAlert(title: String, actions: [String] = ["Ok"], message: String = "") {
         if alertDisplayed == true {
             makeButtonsActiveAndRemoveSpinner()
             return
@@ -253,11 +257,18 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         }
         let alert = DOAlertController(title: title, message: message, preferredStyle: .Alert)
         for actionTitle in actions {
-            let action = DOAlertAction(title: actionTitle, style: .Default) {(Void) in
-                self.alertDisplayed = false
+            var action: DOAlertAction
+            if actionTitle == "Go" {
+                action = DOAlertAction(title: actionTitle, style: .Default) { (Void) in
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.showBlockTableViewControllerWithSegue()
+                }
+            } else {
+                action = DOAlertAction(title: actionTitle, style: .Default) { (Void) in
+                }
             }
+            self.alertDisplayed = false
             alert.addAction(action)
-    
         }
         makeButtonsActiveAndRemoveSpinner()
         presentViewController(alert, animated: true, completion: nil)

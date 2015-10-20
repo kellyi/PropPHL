@@ -119,7 +119,7 @@
                     <navigationItem key="navigationItem" id="4OG-Ef-GKQ">
                         <barButtonItem key="leftBarButtonItem" systemItem="organize" id="TWp-18-vHM">
                             <connections>
-                                <segue destination="nc9-fA-gzV" kind="presentation" modalTransitionStyle="crossDissolve" id="Aon-Yc-7RQ"/>
+                                <segue destination="nc9-fA-gzV" kind="presentation" identifier="segueToBlockTableVC" modalTransitionStyle="crossDissolve" id="Aon-Yc-7RQ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Info" id="SWw-Su-z3A">
