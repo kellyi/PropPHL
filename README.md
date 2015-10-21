@@ -70,6 +70,10 @@ The app also users NSUserDefaults to persist the state of the AddressMapSwitch.
 
 I am not affiliated with the Philadelphia Office of Property Assessment or the City of Philadelphia.
 
+Here's the required attribution from [PHL API](http://phlapi.com/license.html):
+
+"This product uses a City of Philadelphia Data API but is not endorsed or certified by the City of Philadelphia".
+
 **Finally**
 
 I derived the app icon from [this image from Openclipart](https://openclipart.org/detail/179251/brown-house).
