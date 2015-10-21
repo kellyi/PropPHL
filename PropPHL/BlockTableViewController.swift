@@ -40,7 +40,7 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addBlock")
-        let appInfoButton = UIBarButtonItem(title: "Info", style: .Plain, target: self, action: "appInfoButtonPressed")
+        let appInfoButton = UIBarButtonItem(title: "About", style: .Plain, target: self, action: "appInfoButtonPressed")
         self.navigationItem.leftBarButtonItem = addButton
         self.navigationItem.rightBarButtonItem = appInfoButton
         self.title = "Blocks"
@@ -71,7 +71,7 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
         let blockForIndexPath = fetchedResultsController.objectAtIndexPath(indexPath) as! Block
         let title = blockForIndexPath.streetAddress
         let formatter = NSDateFormatter()
-        formatter.dateStyle = .LongStyle
+        formatter.dateStyle = .ShortStyle
         formatter.timeStyle = .ShortStyle
         let formattedDate = formatter.stringFromDate(blockForIndexPath.timeWhenAdded)
         cell.textLabel?.text = title

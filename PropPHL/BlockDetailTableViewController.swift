@@ -52,7 +52,7 @@ class BlockDetailTableViewController: UITableViewController {
             let currencyFormatter = NSNumberFormatter()
             currencyFormatter.numberStyle = .CurrencyStyle
             let formattedMedianAssessment = currencyFormatter.stringFromNumber(block.medianAsssessmentValue)!
-            label = "Median Value"
+            label = "Median Assessment"
             detailLabel = formattedMedianAssessment
         default:
             print("fizzbuzz")

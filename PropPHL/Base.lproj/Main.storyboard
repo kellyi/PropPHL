@@ -30,7 +30,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Philadelphia, PA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6f-Mx-VBG">
-                                <rect key="frame" x="193" y="351" width="214" height="36"/>
+                                <rect key="frame" x="193" y="350" width="214" height="36"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,6 +63,12 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <animations/>
                                 <items>
+                                    <barButtonItem title="Help" style="plain" id="zHh-kh-ynA">
+                                        <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="helpButtonPressed:" destination="BYZ-38-t0r" id="9zi-2m-hV8"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="otH-jZ-BSh"/>
                                     <barButtonItem style="plain" id="Man-MP-hlK">
                                         <view key="customView" contentMode="scaleToFill" id="aZW-bC-pnJ" customClass="AddressMapSwitch" customModule="PropPHL" customModuleProvider="target">
@@ -102,7 +108,7 @@
                             <constraint firstItem="p6f-Mx-VBG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2U2-Qc-Ot2"/>
                             <constraint firstItem="3Mm-ox-nNn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="7sN-ye-Ais"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dD3-sg-m3S" secondAttribute="trailing" id="9JI-aw-07V"/>
-                            <constraint firstItem="p6f-Mx-VBG" firstAttribute="top" secondItem="dD3-sg-m3S" secondAttribute="bottom" constant="31" id="BBM-xa-h8q"/>
+                            <constraint firstItem="p6f-Mx-VBG" firstAttribute="top" secondItem="dD3-sg-m3S" secondAttribute="bottom" constant="30" id="BBM-xa-h8q"/>
                             <constraint firstItem="3Mm-ox-nNn" firstAttribute="top" secondItem="A8S-Q7-Xrv" secondAttribute="bottom" constant="44" id="CRF-x8-PRA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tNc-jh-nj7" secondAttribute="bottom" constant="44" id="DdV-dq-NsH"/>
                             <constraint firstItem="tNc-jh-nj7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="K3s-dQ-4QL"/>
@@ -122,7 +128,7 @@
                                 <segue destination="nc9-fA-gzV" kind="presentation" identifier="segueToBlockTableVC" modalTransitionStyle="crossDissolve" id="Aon-Yc-7RQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Info" id="SWw-Su-z3A">
+                        <barButtonItem key="rightBarButtonItem" title="About" id="SWw-Su-z3A">
                             <connections>
                                 <action selector="appInfoButtonPressed:" destination="BYZ-38-t0r" id="kPI-97-uB4"/>
                             </connections>
@@ -135,6 +141,7 @@
                         <outlet property="appInfoButton" destination="SWw-Su-z3A" id="0Fp-G8-TSv"/>
                         <outlet property="findBlockButton" destination="A8S-Q7-Xrv" id="A6r-aP-Ehi"/>
                         <outlet property="findLocationButton" destination="hdz-Gw-7Fg" id="wY4-Qn-2Ci"/>
+                        <outlet property="helpButton" destination="zHh-kh-ynA" id="Mdd-yr-iSB"/>
                         <outlet property="phillyLabel" destination="p6f-Mx-VBG" id="x8l-lW-eQd"/>
                         <outlet property="savedBlocksButton" destination="TWp-18-vHM" id="E97-2c-gsA"/>
                         <outlet property="spinner" destination="pF6-uG-fRe" id="RdH-gd-rym"/>
@@ -497,7 +504,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn8-Cf-nh1">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn8-Cf-nh1">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <animations/>
                                 <connections>

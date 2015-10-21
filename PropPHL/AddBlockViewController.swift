@@ -24,6 +24,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBOutlet weak var addBlockMapView: MKMapView!
     @IBOutlet weak var appInfoButton: UIBarButtonItem!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var helpButton: UIBarButtonItem!
     
     var locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
@@ -60,10 +61,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         unsubscribeFromKeyboardNotifications()
     }
     
-    func showBlockTableViewControllerWithSegue() {
-        performSegueWithIdentifier("segueToBlockTableVC", sender: self)
-    }
-    
     func disableButtonsAndShowSpinner() {
         // using self. here in case this is called from within a closure
         self.spinner.hidden = false
@@ -73,6 +70,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.savedBlocksButton.enabled = false
         self.appInfoButton.enabled = false
         self.addressMapRKControl.enabled = false
+        self.helpButton.enabled = false
     }
     
     func makeButtonsActiveAndRemoveSpinner() {
@@ -84,6 +82,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.savedBlocksButton.enabled = true
         self.appInfoButton.enabled = true
         self.addressMapRKControl.enabled = true
+        self.helpButton.enabled = true
     }
     
     // MARK: - IBActions & Related Methods
@@ -91,6 +90,10 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBAction func appInfoButtonPressed(sender: UIBarButtonItem) {
         let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
         self.presentViewController(appInfoVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func helpButtonPressed(sender: UIBarButtonItem) {
+        addressMapRKControl.selectedIndex == 0 ? showAlert("Press on the map to drop a new pin!") : showAlert("Type an address into the search bar!")
     }
     
     @IBAction func findByLocationButtonPressed(sender: UIBarButtonItem) {
@@ -261,7 +264,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             if actionTitle == "Go" {
                 action = DOAlertAction(title: actionTitle, style: .Default) { (Void) in
                         self.dismissViewControllerAnimated(true, completion: nil)
-                        self.showBlockTableViewControllerWithSegue()
+                        self.performSegueWithIdentifier("segueToBlockTableVC", sender: self)
                 }
             } else {
                 action = DOAlertAction(title: actionTitle, style: .Default) { (Void) in
@@ -296,11 +299,13 @@ extension AddBlockViewController {
         appInfoButton.tintColor = .clearColor()
         savedBlocksButton.enabled = false
         savedBlocksButton.tintColor = .clearColor()
+        self.navigationController?.navigationBar.hidden = true
         self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
     // Move view down by specified value on receiving notification
     func keyboardWillHide(notification: NSNotification) {
+        self.navigationController?.navigationBar.hidden = false
         self.view.frame.origin.y += getKeyboardHeight(notification)
         appInfoButton.enabled = true
         appInfoButton.tintColor = .oceanColor()
