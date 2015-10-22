@@ -11,6 +11,7 @@
 		DF1B2F2D1BADB9640031FA2B /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F2C1BADB9640031FA2B /* Pin.swift */; settings = {ASSET_TAGS = (); }; };
 		DF1B2F6C1BAF031F0031FA2B /* CapitalizeStreetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */; settings = {ASSET_TAGS = (); }; };
 		DF1B2F6E1BAF0BC60031FA2B /* ValidateAddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */; settings = {ASSET_TAGS = (); }; };
+		DF4BAD041BD88B1E0032A62E /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BAD031BD88B1E0032A62E /* AboutViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */; settings = {ASSET_TAGS = (); }; };
 		DF80FBE51BA9E47C00B6D2CE /* BlockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE41BA9E47C00B6D2CE /* BlockDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -65,6 +66,7 @@
 		DF1B2F2C1BADB9640031FA2B /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapitalizeStreetName.swift; sourceTree = "<group>"; };
 		DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateAddressInput.swift; sourceTree = "<group>"; };
+		DF4BAD031BD88B1E0032A62E /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGRunKeeperSwitch.swift; sourceTree = "<group>"; };
 		DF80FBE41BA9E47C00B6D2CE /* BlockDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockDetailViewController.swift; sourceTree = "<group>"; };
 		DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */,
 				DFD8BF181BB34D9F008B7C9D /* BlockDetailTableViewController.swift */,
 				DFD5B9FC1BB39F4000A04CDE /* PropertyDetailTableViewController.swift */,
+				DF4BAD031BD88B1E0032A62E /* AboutViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				DFC1D9931BA694D2002482C4 /* Block.swift in Sources */,
 				DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */,
 				DFD5B9FD1BB39F4000A04CDE /* PropertyDetailTableViewController.swift in Sources */,
+				DF4BAD041BD88B1E0032A62E /* AboutViewController.swift in Sources */,
 				DFC1D9871BA6887E002482C4 /* PHLOPAClient.swift in Sources */,
 				DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */,
 				DF1B2F291BAB60470031FA2B /* AddressMapSwitch.swift in Sources */,

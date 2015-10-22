@@ -88,8 +88,9 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     // MARK: - IBActions & Related Methods
 
     @IBAction func appInfoButtonPressed(sender: UIBarButtonItem) {
-        let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
-        self.presentViewController(appInfoVC, animated: true, completion: nil)
+        let aboutVC = self.storyboard?.instantiateViewControllerWithIdentifier("aboutViewController") as! AboutViewController!
+        //let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
+        self.presentViewController(aboutVC, animated: true, completion: nil)
     }
     
     @IBAction func helpButtonPressed(sender: UIBarButtonItem) {
