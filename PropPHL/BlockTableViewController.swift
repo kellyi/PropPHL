@@ -55,8 +55,8 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
     }
     
     func appInfoButtonPressed() {
-        let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
-        self.presentViewController(appInfoVC, animated: true, completion: nil)
+        let aboutVC = self.storyboard?.instantiateViewControllerWithIdentifier("aboutViewController") as! AboutViewController!
+        self.presentViewController(aboutVC, animated: true, completion: nil)
     }
     
     // MARK: - TableViewController Methods

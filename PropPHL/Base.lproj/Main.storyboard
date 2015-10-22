@@ -170,11 +170,11 @@
                                     <constraint firstAttribute="height" constant="64" id="SPH-N3-F7C"/>
                                 </constraints>
                                 <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="About PropPHL" id="f5p-Ei-ezY">
-                                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="XOL-XK-8LV">
+                                        <barButtonItem key="rightBarButtonItem" title="Dismiss" id="XOL-XK-8LV">
                                             <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="dismissAboutView:" destination="gSJ-ex-LK5" id="IAX-gx-yux"/>
@@ -184,20 +184,21 @@
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="PropPHL is an iOS client for a City of Philadelphia Office of Property Assessment API." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02G-fd-8bT">
-                                <rect key="frame" x="28" y="64" width="544" height="536"/>
+                                <rect key="frame" x="28" y="72" width="544" height="520"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Ja3-FC-tRv" secondAttribute="trailing" constant="-20" id="Hu4-ht-4dc"/>
-                            <constraint firstItem="02G-fd-8bT" firstAttribute="top" secondItem="Ja3-FC-tRv" secondAttribute="bottom" id="Mwr-gg-tne"/>
+                            <constraint firstItem="02G-fd-8bT" firstAttribute="top" secondItem="Ja3-FC-tRv" secondAttribute="bottom" constant="8" id="Mwr-gg-tne"/>
                             <constraint firstItem="Ja3-FC-tRv" firstAttribute="top" secondItem="SFd-ol-Ep0" secondAttribute="topMargin" id="Qlf-5W-Jwa"/>
                             <constraint firstItem="Ja3-FC-tRv" firstAttribute="leading" secondItem="SFd-ol-Ep0" secondAttribute="leadingMargin" constant="-20" id="vn0-Ut-ieT"/>
-                            <constraint firstItem="ZYG-b2-YT6" firstAttribute="top" secondItem="02G-fd-8bT" secondAttribute="bottom" id="vzL-YJ-MX7"/>
+                            <constraint firstItem="ZYG-b2-YT6" firstAttribute="top" secondItem="02G-fd-8bT" secondAttribute="bottom" constant="8" id="vzL-YJ-MX7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="02G-fd-8bT" secondAttribute="trailing" constant="8" id="wOP-0n-hR9"/>
                             <constraint firstItem="02G-fd-8bT" firstAttribute="leading" secondItem="SFd-ol-Ep0" secondAttribute="leadingMargin" constant="8" id="wY4-iV-y04"/>
                         </constraints>

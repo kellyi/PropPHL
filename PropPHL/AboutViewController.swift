@@ -14,7 +14,12 @@ class AboutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        aboutVCTextView.text = "PropPHL is an iOS client for a City of Philadelphia Office of Property Assessment API.\n\nAPI License and Terms:\nI am not affiliated with the Office of Property Assessment or the City of Philadelphia. The API is used under the license available at http://phlapi.com.\n\nPer the API license:\n\"This product uses a City of Philadelphia Data API but is not endorsed or certified by the City of Philadelphia.\""
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        aboutVCTextView.text = "PropPHL is an iOS client for a City of Philadelphia Office of Property Assessment API.\n\nAPI License and Terms:\nI am not affiliated with the Office of Property Assessment or the City of Philadelphia. The API is used under the license available at http://phlapi.com\n\nPer the API license:\n\"This product uses a City of Philadelphia Data API but is not endorsed or certified by the City of Philadelphia.\""
+        aboutVCTextView.font = UIFont.systemFontOfSize(20.0)
     }
 
     @IBAction func dismissAboutView(sender: UIBarButtonItem) {
