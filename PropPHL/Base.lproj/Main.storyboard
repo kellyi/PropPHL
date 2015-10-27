@@ -184,9 +184,9 @@
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="PropPHL is an iOS client for a City of Philadelphia Office of Property Assessment API." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02G-fd-8bT">
-                                <rect key="frame" x="28" y="72" width="544" height="520"/>
+                                <rect key="frame" x="13" y="64" width="575" height="528"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
@@ -195,12 +195,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Ja3-FC-tRv" secondAttribute="trailing" constant="-20" id="Hu4-ht-4dc"/>
-                            <constraint firstItem="02G-fd-8bT" firstAttribute="top" secondItem="Ja3-FC-tRv" secondAttribute="bottom" constant="8" id="Mwr-gg-tne"/>
+                            <constraint firstItem="02G-fd-8bT" firstAttribute="top" secondItem="Ja3-FC-tRv" secondAttribute="bottom" id="Mwr-gg-tne"/>
                             <constraint firstItem="Ja3-FC-tRv" firstAttribute="top" secondItem="SFd-ol-Ep0" secondAttribute="topMargin" id="Qlf-5W-Jwa"/>
                             <constraint firstItem="Ja3-FC-tRv" firstAttribute="leading" secondItem="SFd-ol-Ep0" secondAttribute="leadingMargin" constant="-20" id="vn0-Ut-ieT"/>
                             <constraint firstItem="ZYG-b2-YT6" firstAttribute="top" secondItem="02G-fd-8bT" secondAttribute="bottom" constant="8" id="vzL-YJ-MX7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="02G-fd-8bT" secondAttribute="trailing" constant="8" id="wOP-0n-hR9"/>
-                            <constraint firstItem="02G-fd-8bT" firstAttribute="leading" secondItem="SFd-ol-Ep0" secondAttribute="leadingMargin" constant="8" id="wY4-iV-y04"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="02G-fd-8bT" secondAttribute="trailing" constant="-8" id="wOP-0n-hR9"/>
+                            <constraint firstItem="02G-fd-8bT" firstAttribute="leading" secondItem="SFd-ol-Ep0" secondAttribute="leadingMargin" constant="-7" id="wY4-iV-y04"/>
                         </constraints>
                     </view>
                     <connections>

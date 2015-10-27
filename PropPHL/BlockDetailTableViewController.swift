@@ -32,7 +32,7 @@ class BlockDetailTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -40,15 +40,17 @@ class BlockDetailTableViewController: UITableViewController {
         var label = ""
         var detailLabel = ""
         switch indexPath.row {
+            /*
         case 0:
             label = "Neighborhood"
             if block.neighborhood != nil {
                 detailLabel = block.neighborhood!
             }
-        case 1:
+        */
+        case 0:
             label = "Number of Properties"
             detailLabel = "\(block.count)"
-        case 2:
+        case 1:
             let currencyFormatter = NSNumberFormatter()
             currencyFormatter.numberStyle = .CurrencyStyle
             let formattedMedianAssessment = currencyFormatter.stringFromNumber(block.medianAsssessmentValue)!
