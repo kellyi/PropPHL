@@ -21,7 +21,7 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
     
     // NSManagedObjectContext
     lazy var sharedContext: NSManagedObjectContext = {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
+        return CoreDataStackManager.sharedInstance.managedObjectContext
     }()
     
     // NSFetchedResultsController
@@ -85,7 +85,7 @@ class BlockTableViewController: UITableViewController, NSFetchedResultsControlle
         case .Delete:
             let block = fetchedResultsController.objectAtIndexPath(indexPath) as! Block
             sharedContext.deleteObject(block)
-            CoreDataStackManager.sharedInstance().saveContext()
+            CoreDataStackManager.sharedInstance.saveContext()
         default:
             break
         }

@@ -13,6 +13,10 @@ class PHLOPAClient: NSObject {
    
     // API documentation: http://phlapi.com/opaapi.html
     
+    // MARK: - Make Singleton
+    
+    static let sharedInstance = PHLOPAClient()
+    
     // MARK: - Constants and Variables
     let addressLink = "https://api.phila.gov/opa/v1.1/"
     let formatParameter = "?format=json?skip="
@@ -21,7 +25,7 @@ class PHLOPAClient: NSObject {
     
     // NSMangedObjectContext singleton
     lazy var sharedContext: NSManagedObjectContext = {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
+        return CoreDataStackManager.sharedInstance.managedObjectContext
     }()
     
     // MARK: - Initializer
@@ -106,15 +110,18 @@ class PHLOPAClient: NSObject {
                 if skip < total {
                     self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: skip+30, completionHandler: completionHandler)
                 } else {
-                    /* temporarily disabled
-                    PhillyHoodsClient.sharedInstance().getNeighborhoodNameUsingCompletionHandler(Double(block.pin.latitude), longitude: Double(block.pin.longitude)) { (success, errorString) in
-                        if let neighborhood = PhillyHoodsClient.sharedInstance().currentNeighborhoodName {
+                    PhillyHoodsClient.sharedInstance.getNeighborhoodNameUsingCompletionHandler(Double(block.pin.latitude), longitude: Double(block.pin.longitude)) { (success, errorString) in
+                        if let neighborhood = PhillyHoodsClient.sharedInstance.currentNeighborhoodName {
                             block.neighborhood = neighborhood
                         }
-                        //try! self.sharedContext.save()
                     }
-                    */
-                    //try! self.sharedContext.save()
+                    
+                    do {
+                        try self.sharedContext.save()
+                    } catch let error as NSError {
+                        print(error.localizedDescription)
+                    }
+                    
                     completionHandler(success: true, errorString: nil)
                 }
             }
@@ -175,12 +182,4 @@ class PHLOPAClient: NSObject {
         return NSDate(timeIntervalSince1970: d)
     }
     
-    // MARK: - Make Singleton
-    
-    class func sharedInstance() -> PHLOPAClient {
-        struct Singleton {
-            static var sharedInstance = PHLOPAClient()
-        }
-        return Singleton.sharedInstance
-    }
 }

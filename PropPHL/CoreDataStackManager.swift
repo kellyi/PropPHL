@@ -15,12 +15,7 @@ class CoreDataStackManager {
     
     // MARK: - Make Singleton
     
-    class func sharedInstance() -> CoreDataStackManager {
-        struct Static {
-            static let instance = CoreDataStackManager()
-        }
-        return Static.instance
-    }
+    static let sharedInstance = CoreDataStackManager()
     
     // MARK: - Core Data stack
     

@@ -12,6 +12,10 @@ class PhillyHoodsClient: NSObject {
 
     // api reference: http://phillyhoods.net/
     
+    // MARK: - Make Singleton
+    
+    static let sharedInstance = PhillyHoodsClient()
+    
     // MARK: - Constants and Variables
     
     let baseURL = "http://api.phillyhoods.net/v1/locations/"
@@ -50,12 +54,4 @@ class PhillyHoodsClient: NSObject {
         task.resume()
     }
     
-    // MARK: - Make Singleton
-    
-    class func sharedInstance() -> PhillyHoodsClient {
-        struct Singleton {
-            static var sharedInstance = PhillyHoodsClient()
-        }
-        return Singleton.sharedInstance
-    }
 }

@@ -23,7 +23,7 @@ class PropertyTableViewController: UITableViewController, NSFetchedResultsContro
     
     // NSManagedObjectContext singleton
     lazy var sharedContext: NSManagedObjectContext = {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
+        return CoreDataStackManager.sharedInstance.managedObjectContext
     }()
     
     // NSFetchedResultsController
@@ -68,7 +68,7 @@ class PropertyTableViewController: UITableViewController, NSFetchedResultsContro
         case .Delete:
             let property = fetchedResultsController.objectAtIndexPath(indexPath) as! Property
             sharedContext.deleteObject(property)
-            CoreDataStackManager.sharedInstance().saveContext()
+            CoreDataStackManager.sharedInstance.saveContext()
         default:
             break
         }

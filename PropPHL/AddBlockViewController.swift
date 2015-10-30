@@ -139,10 +139,10 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             userGivenAddress = String(userGivenAddress.characters.dropFirst())
         }
         if let blockAddress = streetBlockFromAddressString(userGivenAddress) {
-            PHLOPAClient.sharedInstance().getBlockJSONUsingCompletionHandler(blockAddress) { (success, errorString) in
+            PHLOPAClient.sharedInstance.getBlockJSONUsingCompletionHandler(blockAddress) { (success, errorString) in
                 dispatch_async(dispatch_get_main_queue(), {
                     if success {
-                        CoreDataStackManager.sharedInstance().saveContext()
+                        CoreDataStackManager.sharedInstance.saveContext()
                         self.showAlert("Saved \(blockAddress.capitalizeStreetName())!", actions: ["Go"])
                     } else {
                         self.showAlert("\(errorString!)")
