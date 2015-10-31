@@ -38,15 +38,19 @@ class PhillyHoodsClient: NSObject {
         let request = NSMutableURLRequest(URL: apiURL!)
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil {
-                
+                completionHandler(success: false, errorString: "Couldn't connect to the APIs.")
             } else {
-                let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
-                if let results = result["results"] {
-                    let features = results["features"] as! NSArray
-                    let featZero = features[0] as! NSDictionary
-                    let prop = featZero["properties"] as! NSDictionary
-                    let neighborhood = prop["name"] as! NSString
-                    self.currentNeighborhoodName = neighborhood as String
+                do {
+                    let result = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                    if let results = result["results"] as! NSDictionary! {
+                        let features = results["features"] as! NSArray
+                        let featZero = features[0] as! NSDictionary
+                        let prop = featZero["properties"] as! NSDictionary
+                        let neighborhood = prop["name"] as! NSString
+                        self.currentNeighborhoodName = neighborhood as String
+                    }
+                } catch {
+                    completionHandler(success: false, errorString: "Error parsing API data.")
                 }
             }
             completionHandler(success: true, errorString: nil)

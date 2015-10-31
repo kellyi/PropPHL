@@ -18,13 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
-        
-    }
-
     func applicationDidEnterBackground(application: UIApplication) {
         // if textfield's showing a keyboard, dismiss the keyboard and end editing on moving into background
         self.window?.endEditing(true)
+        CoreDataStackManager.sharedInstance.saveContext()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -36,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        
+        CoreDataStackManager.sharedInstance.saveContext()
     }
 
 }

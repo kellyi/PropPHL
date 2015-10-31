@@ -63,7 +63,7 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <animations/>
                                 <items>
-                                    <barButtonItem title="Help" style="plain" id="zHh-kh-ynA">
+                                    <barButtonItem style="plain" id="zHh-kh-ynA">
                                         <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="helpButtonPressed:" destination="BYZ-38-t0r" id="9zi-2m-hV8"/>
@@ -151,66 +151,6 @@
             </objects>
             <point key="canvasLocation" x="1895" y="-265"/>
         </scene>
-        <!--About View Controller-->
-        <scene sceneID="YqQ-UV-iMv">
-            <objects>
-                <viewController storyboardIdentifier="aboutViewController" id="gSJ-ex-LK5" customClass="AboutViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="K9L-KX-rek"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZYG-b2-YT6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SFd-ol-Ep0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ja3-FC-tRv">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="SPH-N3-F7C"/>
-                                </constraints>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="About PropPHL" id="f5p-Ei-ezY">
-                                        <barButtonItem key="rightBarButtonItem" title="Dismiss" id="XOL-XK-8LV">
-                                            <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="dismissAboutView:" destination="gSJ-ex-LK5" id="IAX-gx-yux"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="PropPHL is an iOS client for a City of Philadelphia Office of Property Assessment API." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02G-fd-8bT">
-                                <rect key="frame" x="13" y="64" width="575" height="528"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ja3-FC-tRv" secondAttribute="trailing" constant="-20" id="Hu4-ht-4dc"/>
-                            <constraint firstItem="02G-fd-8bT" firstAttribute="top" secondItem="Ja3-FC-tRv" secondAttribute="bottom" id="Mwr-gg-tne"/>
-                            <constraint firstItem="Ja3-FC-tRv" firstAttribute="top" secondItem="SFd-ol-Ep0" secondAttribute="topMargin" id="Qlf-5W-Jwa"/>
-                            <constraint firstItem="Ja3-FC-tRv" firstAttribute="leading" secondItem="SFd-ol-Ep0" secondAttribute="leadingMargin" constant="-20" id="vn0-Ut-ieT"/>
-                            <constraint firstItem="ZYG-b2-YT6" firstAttribute="top" secondItem="02G-fd-8bT" secondAttribute="bottom" constant="8" id="vzL-YJ-MX7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="02G-fd-8bT" secondAttribute="trailing" constant="-8" id="wOP-0n-hR9"/>
-                            <constraint firstItem="02G-fd-8bT" firstAttribute="leading" secondItem="SFd-ol-Ep0" secondAttribute="leadingMargin" constant="-7" id="wY4-iV-y04"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="aboutVCTextView" destination="02G-fd-8bT" id="O9o-MA-nEw"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nAh-eg-JgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2590" y="-262"/>
-        </scene>
         <!--Info View Controller-->
         <scene sceneID="955-VU-g8G">
             <objects>
@@ -239,9 +179,9 @@
                                     <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="PropPHL Info" id="xbM-ME-LOF">
+                                    <navigationItem title="Info" id="xbM-ME-LOF">
                                         <barButtonItem key="leftBarButtonItem" title="Dismiss" id="D6o-nO-NkK">
-                                            <color key="tintColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="dismissButtonPressed:" destination="WMF-Jc-wqx" id="IZw-q9-W4n"/>
                                             </connections>

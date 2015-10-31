@@ -11,7 +11,6 @@
 		DF1B2F2D1BADB9640031FA2B /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F2C1BADB9640031FA2B /* Pin.swift */; settings = {ASSET_TAGS = (); }; };
 		DF1B2F6C1BAF031F0031FA2B /* CapitalizeStreetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */; settings = {ASSET_TAGS = (); }; };
 		DF1B2F6E1BAF0BC60031FA2B /* ValidateAddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */; settings = {ASSET_TAGS = (); }; };
-		DF4BAD041BD88B1E0032A62E /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4BAD031BD88B1E0032A62E /* AboutViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */; settings = {ASSET_TAGS = (); }; };
 		DF80FBE51BA9E47C00B6D2CE /* BlockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE41BA9E47C00B6D2CE /* BlockDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -20,6 +19,7 @@
 		DF80FBEF1BAA591500B6D2CE /* DOAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEE1BAA591500B6D2CE /* DOAlertController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFBBFDB51BAFB2DA00DB563A /* PhillyHoodsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBBFDB41BAFB2DA00DB563A /* PhillyHoodsClient.swift */; settings = {ASSET_TAGS = (); }; };
 		DFBBFDB71BB0FCC900DB563A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DFBD9EE71BE469E7005845D5 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = DFBD9EE61BE469E7005845D5 /* about.html */; settings = {ASSET_TAGS = (); }; };
 		DFC1D94F1BA6847F002482C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D94E1BA6847F002482C4 /* AppDelegate.swift */; };
 		DFC1D9511BA6847F002482C4 /* AddBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9501BA6847F002482C4 /* AddBlockViewController.swift */; };
 		DFC1D9541BA6847F002482C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFC1D9521BA6847F002482C4 /* Main.storyboard */; };
@@ -66,7 +66,6 @@
 		DF1B2F2C1BADB9640031FA2B /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapitalizeStreetName.swift; sourceTree = "<group>"; };
 		DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateAddressInput.swift; sourceTree = "<group>"; };
-		DF4BAD031BD88B1E0032A62E /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGRunKeeperSwitch.swift; sourceTree = "<group>"; };
 		DF80FBE41BA9E47C00B6D2CE /* BlockDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockDetailViewController.swift; sourceTree = "<group>"; };
 		DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +74,7 @@
 		DF80FBEE1BAA591500B6D2CE /* DOAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOAlertController.swift; sourceTree = "<group>"; };
 		DFBBFDB41BAFB2DA00DB563A /* PhillyHoodsClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhillyHoodsClient.swift; sourceTree = "<group>"; };
 		DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		DFBD9EE61BE469E7005845D5 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		DFC1D94B1BA6847E002482C4 /* PropPHL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PropPHL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFC1D94E1BA6847F002482C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFC1D9501BA6847F002482C4 /* AddBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBlockViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +193,7 @@
 				DFC1D9811BA684AD002482C4 /* Controller */,
 				DF5A4D371BA75B23007CD7D8 /* Client */,
 				DFC1D94E1BA6847F002482C4 /* AppDelegate.swift */,
+				DFBD9EE61BE469E7005845D5 /* about.html */,
 				DF80FBF01BAA6CFB00B6D2CE /* Storyboards */,
 				DFC1D9581BA6847F002482C4 /* Assets.xcassets */,
 				DFC1D95D1BA6847F002482C4 /* Info.plist */,
@@ -254,7 +255,6 @@
 				DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */,
 				DFD8BF181BB34D9F008B7C9D /* BlockDetailTableViewController.swift */,
 				DFD5B9FC1BB39F4000A04CDE /* PropertyDetailTableViewController.swift */,
-				DF4BAD031BD88B1E0032A62E /* AboutViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -362,6 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFBD9EE71BE469E7005845D5 /* about.html in Resources */,
 				DFC1D95C1BA6847F002482C4 /* LaunchScreen.storyboard in Resources */,
 				DFC1D9591BA6847F002482C4 /* Assets.xcassets in Resources */,
 				DFC1D9541BA6847F002482C4 /* Main.storyboard in Resources */,
@@ -395,7 +396,6 @@
 				DFC1D9931BA694D2002482C4 /* Block.swift in Sources */,
 				DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */,
 				DFD5B9FD1BB39F4000A04CDE /* PropertyDetailTableViewController.swift in Sources */,
-				DF4BAD041BD88B1E0032A62E /* AboutViewController.swift in Sources */,
 				DFC1D9871BA6887E002482C4 /* PHLOPAClient.swift in Sources */,
 				DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */,
 				DF1B2F291BAB60470031FA2B /* AddressMapSwitch.swift in Sources */,

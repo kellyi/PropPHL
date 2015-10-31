@@ -51,7 +51,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         toggleAddressAndMap(addressMapRKControl.selectedIndex)
         subscribeToKeyboardNotifications()
         let longPressGR = UILongPressGestureRecognizer(target: self, action: "annotate:")
-        longPressGR.minimumPressDuration = 1.0
+        longPressGR.minimumPressDuration = 0.5
         addBlockMapView.addGestureRecognizer(longPressGR)
     }
     
@@ -88,13 +88,8 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     // MARK: - IBActions & Related Methods
 
     @IBAction func appInfoButtonPressed(sender: UIBarButtonItem) {
-        let aboutVC = self.storyboard?.instantiateViewControllerWithIdentifier("aboutViewController") as! AboutViewController!
-        //let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
-        self.presentViewController(aboutVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func helpButtonPressed(sender: UIBarButtonItem) {
-        addressMapRKControl.selectedIndex == 0 ? showAlert("Press on the map to drop a new pin!") : showAlert("Type an address into the search bar!")
+        let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
+        self.presentViewController(appInfoVC, animated: true, completion: nil)
     }
     
     @IBAction func findByLocationButtonPressed(sender: UIBarButtonItem) {
@@ -264,6 +259,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             var action: DOAlertAction
             if actionTitle == "Go" {
                 action = DOAlertAction(title: actionTitle, style: .Default) { (Void) in
+                        CoreDataStackManager.sharedInstance.saveContext()
                         self.dismissViewControllerAnimated(true, completion: nil)
                         self.performSegueWithIdentifier("segueToBlockTableVC", sender: self)
                 }
