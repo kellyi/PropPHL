@@ -17,14 +17,12 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     @IBOutlet weak var addressMapRKControl: AddressMapSwitch!
     @IBOutlet weak var findBlockButton: FindBlockButton!
-    @IBOutlet weak var findLocationButton: UIBarButtonItem!
     @IBOutlet weak var savedBlocksButton: UIBarButtonItem!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var phillyLabel: UILabel!
     @IBOutlet weak var addBlockMapView: MKMapView!
     @IBOutlet weak var appInfoButton: UIBarButtonItem!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var helpButton: UIBarButtonItem!
     
     var locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
@@ -66,11 +64,9 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.spinner.hidden = false
         self.spinner.startAnimating()
         self.findBlockButton.enabled = false
-        self.findLocationButton.enabled = false
         self.savedBlocksButton.enabled = false
         self.appInfoButton.enabled = false
         self.addressMapRKControl.enabled = false
-        self.helpButton.enabled = false
     }
     
     func makeButtonsActiveAndRemoveSpinner() {
@@ -78,11 +74,9 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         self.spinner.hidden = true
         self.spinner.stopAnimating()
         self.findBlockButton.enabled = true
-        self.findLocationButton.enabled = true
         self.savedBlocksButton.enabled = true
         self.appInfoButton.enabled = true
         self.addressMapRKControl.enabled = true
-        self.helpButton.enabled = true
     }
     
     // MARK: - IBActions & Related Methods
@@ -90,14 +84,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     @IBAction func appInfoButtonPressed(sender: UIBarButtonItem) {
         let appInfoVC = self.storyboard?.instantiateViewControllerWithIdentifier("infoVC") as! InfoViewController!
         self.presentViewController(appInfoVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func findByLocationButtonPressed(sender: UIBarButtonItem) {
-        findLocationButton.enabled = false
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
     }
     
     @IBAction func findBlockButtonPressed(sender: UIButton) {
@@ -116,14 +102,17 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     
     // Routed from findBlockButtonPressed(_:); preps to call another method
     func findBlockButtonSentFromPin() {
+        addBlockMapView.userInteractionEnabled = false
         if let loc = self.addBlockMapView.annotations.first {
             if loc.subtitle! != "Philadelphia" {
+                addBlockMapView.userInteractionEnabled = true
                 showAlert("I've only got data for Philadelphia.")
             } else {
                 getBlockFromAddress(loc.title! as String!)
             }
         } else {
-            showAlert("Couldn't find a pin!")
+            addBlockMapView.userInteractionEnabled = true
+            showAlert("I couldn't find a pin.")
         }
     }
     
@@ -138,14 +127,17 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 dispatch_async(dispatch_get_main_queue(), {
                     if success {
                         CoreDataStackManager.sharedInstance.saveContext()
-                        self.showAlert("Saved \(blockAddress.capitalizeStreetName())!", actions: ["Go"])
+                        self.addBlockMapView.userInteractionEnabled = true
+                        self.showAlert("I found \(blockAddress.capitalizeStreetName())!", actions: ["Go"])
                     } else {
+                        self.addBlockMapView.userInteractionEnabled = true
                         self.showAlert("\(errorString!)")
                     }
                 })
             }
         } else {
-            showAlert("Couldn't validate your address!")
+            addBlockMapView.userInteractionEnabled = true
+            showAlert("I couldn't validate your address.")
         }
     }
     
@@ -159,7 +151,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         addBlockMapView.hidden = !segmentBool
         phillyLabel.hidden = segmentBool
         addressTextField.hidden = segmentBool
-        findLocationButton.enabled = segmentBool
         defaults.setValue(segmentIndex, forKey: "savedSegment")
     }
     
@@ -186,6 +177,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         showAlert("I couldn't load the map.")
     }
     
+    /* cut location services functionality
     // Find new pin if user asks to detect her location
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last as CLLocation!
@@ -195,6 +187,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         locationManager.stopUpdatingLocation()
         reverseGeocode(newLocation)
     }
+    */
     
     // Center the map on Center City, Philadelphia
     func centerMap() {
@@ -236,9 +229,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 }
                 annotation.subtitle = "\(place.locality!)"
                 self.addBlockMapView.addAnnotation(annotation)
-                if self.findBlockButton.enabled == true {
-                    self.findLocationButton.enabled = true
-                }
             }
         })
     }
