@@ -32,7 +32,6 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     override func viewDidLoad() {
         super.viewDidLoad()
         addressTextField.delegate = self
-        addressTextField.backgroundColor = .silverColor()
         appInfoButton.tintColor = .oceanColor()
         savedBlocksButton.tintColor = .oceanColor()
         self.title = "ValPHL"
