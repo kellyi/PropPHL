@@ -75,7 +75,7 @@
 		DFBBFDB41BAFB2DA00DB563A /* PhillyHoodsClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhillyHoodsClient.swift; sourceTree = "<group>"; };
 		DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DFBD9EE61BE469E7005845D5 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
-		DFC1D94B1BA6847E002482C4 /* PropPHL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PropPHL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFC1D94B1BA6847E002482C4 /* ValPHL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ValPHL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFC1D94E1BA6847F002482C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFC1D9501BA6847F002482C4 /* AddBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBlockViewController.swift; sourceTree = "<group>"; };
 		DFC1D9531BA6847F002482C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -83,10 +83,10 @@
 		DFC1D9581BA6847F002482C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFC1D95B1BA6847F002482C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFC1D95D1BA6847F002482C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DFC1D9621BA6847F002482C4 /* PropPHLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PropPHLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFC1D9621BA6847F002482C4 /* ValPHL.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ValPHL.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFC1D9661BA6847F002482C4 /* PropPHLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropPHLTests.swift; sourceTree = "<group>"; };
 		DFC1D9681BA6847F002482C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DFC1D96D1BA6847F002482C4 /* PropPHLUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PropPHLUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFC1D96D1BA6847F002482C4 /* ValPHL.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ValPHL.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFC1D9711BA6847F002482C4 /* PropPHLUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropPHLUITests.swift; sourceTree = "<group>"; };
 		DFC1D9731BA6847F002482C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFC1D9821BA6850E002482C4 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		DFC1D9421BA6847E002482C4 = {
 			isa = PBXGroup;
 			children = (
-				DFC1D94D1BA6847F002482C4 /* PropPHL */,
+				DFC1D94D1BA6847F002482C4 /* ValPHL */,
 				DFC1D9651BA6847F002482C4 /* PropPHLTests */,
 				DFC1D9701BA6847F002482C4 /* PropPHLUITests */,
 				DFC1D94C1BA6847E002482C4 /* Products */,
@@ -177,14 +177,14 @@
 		DFC1D94C1BA6847E002482C4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DFC1D94B1BA6847E002482C4 /* PropPHL.app */,
-				DFC1D9621BA6847F002482C4 /* PropPHLTests.xctest */,
-				DFC1D96D1BA6847F002482C4 /* PropPHLUITests.xctest */,
+				DFC1D94B1BA6847E002482C4 /* ValPHL.app */,
+				DFC1D9621BA6847F002482C4 /* ValPHL.xctest */,
+				DFC1D96D1BA6847F002482C4 /* ValPHL.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DFC1D94D1BA6847F002482C4 /* PropPHL */ = {
+		DFC1D94D1BA6847F002482C4 /* ValPHL */ = {
 			isa = PBXGroup;
 			children = (
 				DF1B2F6A1BAF02F00031FA2B /* Helper */,
@@ -199,6 +199,7 @@
 				DFC1D95D1BA6847F002482C4 /* Info.plist */,
 				DF0190ED1BB61F2000B742CF /* GPX Files */,
 			);
+			name = ValPHL;
 			path = PropPHL;
 			sourceTree = "<group>";
 		};
@@ -262,9 +263,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DFC1D94A1BA6847E002482C4 /* PropPHL */ = {
+		DFC1D94A1BA6847E002482C4 /* ValPHL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DFC1D9761BA6847F002482C4 /* Build configuration list for PBXNativeTarget "PropPHL" */;
+			buildConfigurationList = DFC1D9761BA6847F002482C4 /* Build configuration list for PBXNativeTarget "ValPHL" */;
 			buildPhases = (
 				DFC1D9471BA6847E002482C4 /* Sources */,
 				DFC1D9481BA6847E002482C4 /* Frameworks */,
@@ -274,14 +275,14 @@
 			);
 			dependencies = (
 			);
-			name = PropPHL;
+			name = ValPHL;
 			productName = PropPHL;
-			productReference = DFC1D94B1BA6847E002482C4 /* PropPHL.app */;
+			productReference = DFC1D94B1BA6847E002482C4 /* ValPHL.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DFC1D9611BA6847F002482C4 /* PropPHLTests */ = {
+		DFC1D9611BA6847F002482C4 /* ValPHLTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DFC1D9791BA6847F002482C4 /* Build configuration list for PBXNativeTarget "PropPHLTests" */;
+			buildConfigurationList = DFC1D9791BA6847F002482C4 /* Build configuration list for PBXNativeTarget "ValPHLTests" */;
 			buildPhases = (
 				DFC1D95E1BA6847F002482C4 /* Sources */,
 				DFC1D95F1BA6847F002482C4 /* Frameworks */,
@@ -292,14 +293,14 @@
 			dependencies = (
 				DFC1D9641BA6847F002482C4 /* PBXTargetDependency */,
 			);
-			name = PropPHLTests;
+			name = ValPHLTests;
 			productName = PropPHLTests;
-			productReference = DFC1D9621BA6847F002482C4 /* PropPHLTests.xctest */;
+			productReference = DFC1D9621BA6847F002482C4 /* ValPHL.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DFC1D96C1BA6847F002482C4 /* PropPHLUITests */ = {
+		DFC1D96C1BA6847F002482C4 /* ValPHLUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DFC1D97C1BA6847F002482C4 /* Build configuration list for PBXNativeTarget "PropPHLUITests" */;
+			buildConfigurationList = DFC1D97C1BA6847F002482C4 /* Build configuration list for PBXNativeTarget "ValPHLUITests" */;
 			buildPhases = (
 				DFC1D9691BA6847F002482C4 /* Sources */,
 				DFC1D96A1BA6847F002482C4 /* Frameworks */,
@@ -310,9 +311,9 @@
 			dependencies = (
 				DFC1D96F1BA6847F002482C4 /* PBXTargetDependency */,
 			);
-			name = PropPHLUITests;
+			name = ValPHLUITests;
 			productName = PropPHLUITests;
-			productReference = DFC1D96D1BA6847F002482C4 /* PropPHLUITests.xctest */;
+			productReference = DFC1D96D1BA6847F002482C4 /* ValPHL.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -337,7 +338,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DFC1D9461BA6847E002482C4 /* Build configuration list for PBXProject "PropPHL" */;
+			buildConfigurationList = DFC1D9461BA6847E002482C4 /* Build configuration list for PBXProject "ValPHL" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -350,9 +351,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DFC1D94A1BA6847E002482C4 /* PropPHL */,
-				DFC1D9611BA6847F002482C4 /* PropPHLTests */,
-				DFC1D96C1BA6847F002482C4 /* PropPHLUITests */,
+				DFC1D94A1BA6847E002482C4 /* ValPHL */,
+				DFC1D9611BA6847F002482C4 /* ValPHLTests */,
+				DFC1D96C1BA6847F002482C4 /* ValPHLUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -437,12 +438,12 @@
 /* Begin PBXTargetDependency section */
 		DFC1D9641BA6847F002482C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DFC1D94A1BA6847E002482C4 /* PropPHL */;
+			target = DFC1D94A1BA6847E002482C4 /* ValPHL */;
 			targetProxy = DFC1D9631BA6847F002482C4 /* PBXContainerItemProxy */;
 		};
 		DFC1D96F1BA6847F002482C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DFC1D94A1BA6847E002482C4 /* PropPHL */;
+			target = DFC1D94A1BA6847E002482C4 /* ValPHL */;
 			targetProxy = DFC1D96E1BA6847F002482C4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -553,10 +554,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PropPHL/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.PropPHL;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.ValPHL;
+				PRODUCT_NAME = ValPHL;
 			};
 			name = Debug;
 		};
@@ -565,10 +566,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PropPHL/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.PropPHL;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.ValPHL;
+				PRODUCT_NAME = ValPHL;
 			};
 			name = Release;
 		};
@@ -579,8 +580,8 @@
 				INFOPLIST_FILE = PropPHLTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.PropPHLTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PropPHL.app/PropPHL";
+				PRODUCT_NAME = ValPHL;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ValPHL.app/ValPHL";
 			};
 			name = Debug;
 		};
@@ -591,8 +592,8 @@
 				INFOPLIST_FILE = PropPHLTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.PropPHLTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PropPHL.app/PropPHL";
+				PRODUCT_NAME = ValPHL;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ValPHL.app/ValPHL";
 			};
 			name = Release;
 		};
@@ -602,7 +603,7 @@
 				INFOPLIST_FILE = PropPHLUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.PropPHLUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ValPHL;
 				TEST_TARGET_NAME = PropPHL;
 				USES_XCTRUNNER = YES;
 			};
@@ -614,7 +615,7 @@
 				INFOPLIST_FILE = PropPHLUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.PropPHLUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ValPHL;
 				TEST_TARGET_NAME = PropPHL;
 				USES_XCTRUNNER = YES;
 			};
@@ -623,7 +624,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DFC1D9461BA6847E002482C4 /* Build configuration list for PBXProject "PropPHL" */ = {
+		DFC1D9461BA6847E002482C4 /* Build configuration list for PBXProject "ValPHL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DFC1D9741BA6847F002482C4 /* Debug */,
@@ -632,7 +633,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DFC1D9761BA6847F002482C4 /* Build configuration list for PBXNativeTarget "PropPHL" */ = {
+		DFC1D9761BA6847F002482C4 /* Build configuration list for PBXNativeTarget "ValPHL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DFC1D9771BA6847F002482C4 /* Debug */,
@@ -641,7 +642,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DFC1D9791BA6847F002482C4 /* Build configuration list for PBXNativeTarget "PropPHLTests" */ = {
+		DFC1D9791BA6847F002482C4 /* Build configuration list for PBXNativeTarget "ValPHLTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DFC1D97A1BA6847F002482C4 /* Debug */,
@@ -650,7 +651,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DFC1D97C1BA6847F002482C4 /* Build configuration list for PBXNativeTarget "PropPHLUITests" */ = {
+		DFC1D97C1BA6847F002482C4 /* Build configuration list for PBXNativeTarget "ValPHLUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DFC1D97D1BA6847F002482C4 /* Debug */,

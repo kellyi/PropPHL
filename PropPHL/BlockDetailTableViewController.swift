@@ -25,7 +25,7 @@ class BlockDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return block.streetAddress
+            return "Block: \(block.streetAddress)"
         default:
             return nil
         }

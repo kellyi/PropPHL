@@ -29,7 +29,7 @@ class PropertyDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return property.fullAddress
+            return "Property: \(property.fullAddress)"
         default:
             return nil
         }

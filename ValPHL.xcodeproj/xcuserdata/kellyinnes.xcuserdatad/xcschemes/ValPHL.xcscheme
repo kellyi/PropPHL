@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DFC1D94A1BA6847E002482C4"
-               BuildableName = "PropPHL.app"
-               BlueprintName = "PropPHL"
-               ReferencedContainer = "container:PropPHL.xcodeproj">
+               BuildableName = "ValPHL.app"
+               BlueprintName = "ValPHL"
+               ReferencedContainer = "container:ValPHL.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DFC1D9611BA6847F002482C4"
-               BuildableName = "PropPHLTests.xctest"
-               BlueprintName = "PropPHLTests"
-               ReferencedContainer = "container:PropPHL.xcodeproj">
+               BuildableName = "ValPHL.xctest"
+               BlueprintName = "ValPHLTests"
+               ReferencedContainer = "container:ValPHL.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DFC1D96C1BA6847F002482C4"
-               BuildableName = "PropPHLUITests.xctest"
-               BlueprintName = "PropPHLUITests"
-               ReferencedContainer = "container:PropPHL.xcodeproj">
+               BuildableName = "ValPHL.xctest"
+               BlueprintName = "ValPHLUITests"
+               ReferencedContainer = "container:ValPHL.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DFC1D94A1BA6847E002482C4"
-            BuildableName = "PropPHL.app"
-            BlueprintName = "PropPHL"
-            ReferencedContainer = "container:PropPHL.xcodeproj">
+            BuildableName = "ValPHL.app"
+            BlueprintName = "ValPHL"
+            ReferencedContainer = "container:ValPHL.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DFC1D94A1BA6847E002482C4"
-            BuildableName = "PropPHL.app"
-            BlueprintName = "PropPHL"
-            ReferencedContainer = "container:PropPHL.xcodeproj">
+            BuildableName = "ValPHL.app"
+            BlueprintName = "ValPHL"
+            ReferencedContainer = "container:ValPHL.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DFC1D94A1BA6847E002482C4"
-            BuildableName = "PropPHL.app"
-            BlueprintName = "PropPHL"
-            ReferencedContainer = "container:PropPHL.xcodeproj">
+            BuildableName = "ValPHL.app"
+            BlueprintName = "ValPHL"
+            ReferencedContainer = "container:ValPHL.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

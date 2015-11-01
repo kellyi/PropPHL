@@ -9,7 +9,7 @@
         <!--Add Block View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="addBlockVC" id="BYZ-38-t0r" customClass="AddBlockViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addBlockVC" id="BYZ-38-t0r" customClass="AddBlockViewController" customModule="ValPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -43,7 +43,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="OVM-Rt-VMe"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8S-Q7-Xrv" customClass="FindBlockButton" customModule="PropPHL" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8S-Q7-Xrv" customClass="FindBlockButton" customModule="ValPHL" customModuleProvider="target">
                                 <rect key="frame" x="230" y="468" width="140" height="44"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
@@ -65,7 +65,7 @@
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="otH-jZ-BSh"/>
                                     <barButtonItem style="plain" id="Man-MP-hlK">
-                                        <view key="customView" contentMode="scaleToFill" id="aZW-bC-pnJ" customClass="AddressMapSwitch" customModule="PropPHL" customModuleProvider="target">
+                                        <view key="customView" contentMode="scaleToFill" id="aZW-bC-pnJ" customClass="AddressMapSwitch" customModule="ValPHL" customModuleProvider="target">
                                             <rect key="frame" x="217" y="6" width="166" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
@@ -140,7 +140,7 @@
         <!--Info View Controller-->
         <scene sceneID="955-VU-g8G">
             <objects>
-                <viewController storyboardIdentifier="infoVC" id="WMF-Jc-wqx" customClass="InfoViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="infoVC" id="WMF-Jc-wqx" customClass="InfoViewController" customModule="ValPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zop-hX-1kk"/>
                         <viewControllerLayoutGuide type="bottom" id="eke-ey-okt"/>
@@ -201,7 +201,7 @@
         <!--Block Detail View Controller-->
         <scene sceneID="WCz-vJ-2wc">
             <objects>
-                <viewController storyboardIdentifier="blockDetailVC" id="QOl-dd-QO4" customClass="BlockDetailViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="blockDetailVC" id="QOl-dd-QO4" customClass="BlockDetailViewController" customModule="ValPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XF0-s1-LKo"/>
                         <viewControllerLayoutGuide type="bottom" id="qsr-hI-Uss"/>
@@ -251,7 +251,7 @@
         <!--Block Detail Table View Controller-->
         <scene sceneID="TkK-lu-3Oq">
             <objects>
-                <tableViewController id="7Vb-XA-cCd" customClass="BlockDetailTableViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="7Vb-XA-cCd" customClass="BlockDetailTableViewController" customModule="ValPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="755-Uk-aF1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -303,7 +303,7 @@
         <!--Property Detail Table View Controller-->
         <scene sceneID="HPX-ca-inV">
             <objects>
-                <tableViewController id="u9T-aD-WxK" customClass="PropertyDetailTableViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="u9T-aD-WxK" customClass="PropertyDetailTableViewController" customModule="ValPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="10" id="H8i-G6-EuQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -372,7 +372,7 @@
         <!--Root View Controller-->
         <scene sceneID="egu-jm-Vut">
             <objects>
-                <tableViewController storyboardIdentifier="blockTableVC" id="14f-Pb-lKz" customClass="BlockTableViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="blockTableVC" id="14f-Pb-lKz" customClass="BlockTableViewController" customModule="ValPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="GNY-Qk-ULg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -429,7 +429,7 @@
         <!--Property Table View Controller-->
         <scene sceneID="Hhs-Jq-DN1">
             <objects>
-                <tableViewController storyboardIdentifier="propertyTableVC" id="GQq-XA-Rrc" customClass="PropertyTableViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="propertyTableVC" id="GQq-XA-Rrc" customClass="PropertyTableViewController" customModule="ValPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="6O8-AM-Sbc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -482,7 +482,7 @@
         <!--Property Detail View Controller-->
         <scene sceneID="JMV-dF-npo">
             <objects>
-                <viewController id="kyf-AM-HKb" customClass="PropertyDetailViewController" customModule="PropPHL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kyf-AM-HKb" customClass="PropertyDetailViewController" customModule="ValPHL" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ywo-1Z-Okg"/>
                         <viewControllerLayoutGuide type="bottom" id="crB-eB-OEn"/>

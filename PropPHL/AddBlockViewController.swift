@@ -35,7 +35,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         addressTextField.backgroundColor = .silverColor()
         appInfoButton.tintColor = .oceanColor()
         savedBlocksButton.tintColor = .oceanColor()
-        self.title = "PropPHL"
+        self.title = "ValPHL"
         locationManager.delegate = self
         centerMap()
     }
