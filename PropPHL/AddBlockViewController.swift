@@ -111,7 +111,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             }
         } else {
             addBlockMapView.userInteractionEnabled = true
-            showAlert("I couldn't find a pin.")
+            showAlert("Couldn't find a pin.")
         }
     }
     
@@ -127,7 +127,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                     if success {
                         CoreDataStackManager.sharedInstance.saveContext()
                         self.addBlockMapView.userInteractionEnabled = true
-                        self.showAlert("I found \(blockAddress.capitalizeStreetName())!", actions: ["Go"])
+                        self.showAlert("Found \(blockAddress.capitalizeStreetName())!", actions: ["Go"])
                     } else {
                         self.addBlockMapView.userInteractionEnabled = true
                         self.showAlert("\(errorString!)")
@@ -136,7 +136,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
             }
         } else {
             addBlockMapView.userInteractionEnabled = true
-            showAlert("I couldn't validate your address.")
+            showAlert("Couldn't validate your address.")
         }
     }
     
@@ -173,20 +173,8 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     }
     
     func mapViewDidFailLoadingMap(mapView: MKMapView, withError error: NSError) {
-        showAlert("I couldn't load the map.")
+        showAlert("Couldn't load the map.")
     }
-    
-    /* cut location services functionality
-    // Find new pin if user asks to detect her location
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let newLocation = locations.last as CLLocation!
-        let viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1000, 1000)
-        let adjustedRegion = addBlockMapView.regionThatFits(viewRegion)
-        addBlockMapView.setRegion(adjustedRegion, animated: true)
-        locationManager.stopUpdatingLocation()
-        reverseGeocode(newLocation)
-    }
-    */
     
     // Center the map on Center City, Philadelphia
     func centerMap() {
@@ -224,7 +212,8 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 annotation.coordinate = annotationLocation
                 annotation.title = "no street address"
                 if let streetNumber = place.subThoroughfare {
-                    annotation.title = "\(self.getFirstNumber(streetNumber)) \(place.thoroughfare!)"
+                    let streetAddress = "\(self.getFirstNumber(streetNumber)) \(place.thoroughfare!)"
+                    annotation.title = "\(streetAddress)"
                 }
                 annotation.subtitle = "\(place.locality!)"
                 self.addBlockMapView.addAnnotation(annotation)
@@ -243,18 +232,17 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         } else {
             alertDisplayed = true
         }
-        let alert = DOAlertController(title: title, message: message, preferredStyle: .Alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         for actionTitle in actions {
-            var action: DOAlertAction
+            let action: UIAlertAction
             if actionTitle == "Go" {
-                action = DOAlertAction(title: actionTitle, style: .Default) { (Void) in
-                        CoreDataStackManager.sharedInstance.saveContext()
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                        self.performSegueWithIdentifier("segueToBlockTableVC", sender: self)
+                action = UIAlertAction(title: actionTitle, style: .Default) {
+                    (Void) in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.performSegueWithIdentifier("segueToBlockTableVC", sender: self)
                 }
             } else {
-                action = DOAlertAction(title: actionTitle, style: .Default) { (Void) in
-                }
+                action = UIAlertAction(title: actionTitle, style: .Default, handler: nil)
             }
             self.alertDisplayed = false
             alert.addAction(action)

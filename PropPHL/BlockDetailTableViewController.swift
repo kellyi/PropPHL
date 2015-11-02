@@ -32,28 +32,31 @@ class BlockDetailTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("blockDetailTableCell") as UITableViewCell!
         var label = ""
         var detailLabel = ""
+        let currencyFormatter = NSNumberFormatter()
+        currencyFormatter.numberStyle = .CurrencyStyle
         switch indexPath.row {
         case 0:
-            label = "Neighborhood"
-            if block.neighborhood != nil {
-                detailLabel = block.neighborhood!
-            }
-        case 1:
             label = "Number of Properties"
             detailLabel = "\(block.count)"
-        case 2:
-            let currencyFormatter = NSNumberFormatter()
-            currencyFormatter.numberStyle = .CurrencyStyle
+        case 1:
             let formattedMedianAssessment = currencyFormatter.stringFromNumber(block.medianAsssessmentValue)!
             label = "Median Assessment"
             detailLabel = formattedMedianAssessment
+        case 2:
+            let formattedLowestAssessment = currencyFormatter.stringFromNumber(block.lowestAssessmentValue)!
+            label = "Low Assessment"
+            detailLabel = formattedLowestAssessment
+        case 3:
+            let formattedHighestAssessment = currencyFormatter.stringFromNumber(block.highestAssessmentValue)!
+            label = "High Assessment"
+            detailLabel = formattedHighestAssessment
         default:
             print("fizzbuzz")
         }

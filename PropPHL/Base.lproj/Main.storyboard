@@ -211,7 +211,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zy7-jD-O3F">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="236"/>
                                 <animations/>
                                 <connections>
                                     <outlet property="delegate" destination="QOl-dd-QO4" id="Rf0-iV-JMB"/>
@@ -230,8 +230,8 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Xrm-hN-cdQ" secondAttribute="trailing" constant="-20" id="4E7-8W-icm"/>
                             <constraint firstItem="Xrm-hN-cdQ" firstAttribute="top" secondItem="zy7-jD-O3F" secondAttribute="bottom" id="Cqo-sX-akO"/>
-                            <constraint firstItem="zy7-jD-O3F" firstAttribute="top" secondItem="RpI-wM-bfj" secondAttribute="topMargin" id="NI8-pD-Bxh"/>
-                            <constraint firstItem="Xrm-hN-cdQ" firstAttribute="height" secondItem="zy7-jD-O3F" secondAttribute="height" id="Nb5-Mn-e1j"/>
+                            <constraint firstItem="zy7-jD-O3F" firstAttribute="top" secondItem="RpI-wM-bfj" secondAttribute="topMargin" constant="64" id="NI8-pD-Bxh"/>
+                            <constraint firstItem="Xrm-hN-cdQ" firstAttribute="height" secondItem="zy7-jD-O3F" secondAttribute="height" constant="64" id="Nb5-Mn-e1j"/>
                             <constraint firstItem="zy7-jD-O3F" firstAttribute="leading" secondItem="RpI-wM-bfj" secondAttribute="leadingMargin" constant="-20" id="aKW-fT-2h4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zy7-jD-O3F" secondAttribute="trailing" constant="-20" id="cUs-ZP-I10"/>
                             <constraint firstItem="qsr-hI-Uss" firstAttribute="top" secondItem="Xrm-hN-cdQ" secondAttribute="bottom" id="qMp-OW-T6W"/>
@@ -492,7 +492,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rn8-Cf-nh1">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="236"/>
                                 <animations/>
                                 <connections>
                                     <outlet property="delegate" destination="kyf-AM-HKb" id="c7k-oz-l0y"/>
@@ -516,8 +516,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="pOy-Pu-ESK" secondAttribute="trailing" constant="-20" id="YZD-7X-9FA"/>
                             <constraint firstItem="crB-eB-OEn" firstAttribute="top" secondItem="pOy-Pu-ESK" secondAttribute="bottom" id="k7K-Nd-Ob0"/>
                             <constraint firstItem="pOy-Pu-ESK" firstAttribute="top" secondItem="rn8-Cf-nh1" secondAttribute="bottom" id="qTL-5F-Upt"/>
-                            <constraint firstItem="rn8-Cf-nh1" firstAttribute="top" secondItem="Hlx-Up-zoD" secondAttribute="topMargin" id="sP8-cA-INk"/>
-                            <constraint firstItem="rn8-Cf-nh1" firstAttribute="height" secondItem="pOy-Pu-ESK" secondAttribute="height" id="vUl-mR-ceW"/>
+                            <constraint firstItem="rn8-Cf-nh1" firstAttribute="top" secondItem="Hlx-Up-zoD" secondAttribute="topMargin" constant="64" id="sP8-cA-INk"/>
+                            <constraint firstItem="rn8-Cf-nh1" firstAttribute="height" secondItem="pOy-Pu-ESK" secondAttribute="height" constant="-64" id="vUl-mR-ceW"/>
                         </constraints>
                     </view>
                     <connections>

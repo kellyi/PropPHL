@@ -16,8 +16,6 @@
 		DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DF80FBEB1BAA0E8100B6D2CE /* FindBlockButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEA1BAA0E8100B6D2CE /* FindBlockButton.swift */; settings = {ASSET_TAGS = (); }; };
 		DF80FBED1BAA0F0D00B6D2CE /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEC1BAA0F0D00B6D2CE /* ColorsExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		DF80FBEF1BAA591500B6D2CE /* DOAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEE1BAA591500B6D2CE /* DOAlertController.swift */; settings = {ASSET_TAGS = (); }; };
-		DFBBFDB51BAFB2DA00DB563A /* PhillyHoodsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBBFDB41BAFB2DA00DB563A /* PhillyHoodsClient.swift */; settings = {ASSET_TAGS = (); }; };
 		DFBBFDB71BB0FCC900DB563A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DFBD9EE71BE469E7005845D5 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = DFBD9EE61BE469E7005845D5 /* about.html */; settings = {ASSET_TAGS = (); }; };
 		DFC1D94F1BA6847F002482C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D94E1BA6847F002482C4 /* AppDelegate.swift */; };
@@ -71,8 +69,6 @@
 		DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewController.swift; sourceTree = "<group>"; };
 		DF80FBEA1BAA0E8100B6D2CE /* FindBlockButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindBlockButton.swift; sourceTree = "<group>"; };
 		DF80FBEC1BAA0F0D00B6D2CE /* ColorsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
-		DF80FBEE1BAA591500B6D2CE /* DOAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOAlertController.swift; sourceTree = "<group>"; };
-		DFBBFDB41BAFB2DA00DB563A /* PhillyHoodsClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhillyHoodsClient.swift; sourceTree = "<group>"; };
 		DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DFBD9EE61BE469E7005845D5 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		DFC1D94B1BA6847E002482C4 /* ValPHL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ValPHL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				DFC1D9861BA6887E002482C4 /* PHLOPAClient.swift */,
-				DFBBFDB41BAFB2DA00DB563A /* PhillyHoodsClient.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -239,7 +234,6 @@
 				DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */,
 				DF80FBEA1BAA0E8100B6D2CE /* FindBlockButton.swift */,
 				DF80FBEC1BAA0F0D00B6D2CE /* ColorsExtension.swift */,
-				DF80FBEE1BAA591500B6D2CE /* DOAlertController.swift */,
 				DF1B2F281BAB60470031FA2B /* AddressMapSwitch.swift */,
 			);
 			name = View;
@@ -392,7 +386,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFC1D9891BA68896002482C4 /* Property.swift in Sources */,
-				DF80FBEF1BAA591500B6D2CE /* DOAlertController.swift in Sources */,
 				DF1B2F2D1BADB9640031FA2B /* Pin.swift in Sources */,
 				DFC1D9931BA694D2002482C4 /* Block.swift in Sources */,
 				DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */,
@@ -410,7 +403,6 @@
 				DF1B2F6C1BAF031F0031FA2B /* CapitalizeStreetName.swift in Sources */,
 				DF1B2F6E1BAF0BC60031FA2B /* ValidateAddressInput.swift in Sources */,
 				DFC1D9831BA6850E002482C4 /* CoreDataStackManager.swift in Sources */,
-				DFBBFDB51BAFB2DA00DB563A /* PhillyHoodsClient.swift in Sources */,
 				DFC1D94F1BA6847F002482C4 /* AppDelegate.swift in Sources */,
 				DFC1D9571BA6847F002482C4 /* PropPHL.xcdatamodeld in Sources */,
 				DF80FBE51BA9E47C00B6D2CE /* BlockDetailViewController.swift in Sources */,
@@ -558,6 +550,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.ValPHL;
 				PRODUCT_NAME = ValPHL;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -570,6 +563,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kellyinnes.ValPHL;
 				PRODUCT_NAME = ValPHL;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

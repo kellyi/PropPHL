@@ -5,6 +5,8 @@ PropPHL
 
 PropPHL is an iPhone client for the [City of Philadelphia's Property Data API](http://phlapi.com/opaapi.html). It's the fifth app project for Udacity's [iOS Developer Nanodegree](https://www.udacity.com/course/ios-developer-nanodegree--nd003).
 
+*November 2, 2015 note: I'm currently polishing app, and the process has involved cutting dependencies on the PhillyHoods.net API and the third-party DOAlertController class and removing the capability for the app to find the user's current location.*
+
 The app enables users to search block-level property-value assessment data from the Philadelphia Office of Property Assessment API. Users can search by an address string, by dropping a pin on a map, or by having the app detect their current location using Core Location services. Once the block data's found from the API, the block's saved along with the specific properties on the block using Core Data. 
 
 Users can browse through saved blocks presented in a table, browse through particular properties on a block in another table, and see detailed information for both blocks and properties. For blocks, this info includes the number of properties on the block, the median assessment value of those properties, the name of the neighborhood the block's in, and a map with a pin designating the block's location; for properties, the map and pin are joined by info like the assessed property value, assessed property taxes, the date and price of the last sale, and an occasionally cryptic but frequently evocative-at-least shorthand description apparently stored with the other data.

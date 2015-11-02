@@ -23,7 +23,7 @@ class InfoViewController: UIViewController, UIWebViewDelegate {
             let htmlString = try NSString(contentsOfFile: htmlFile!, encoding: NSUTF8StringEncoding) as String
             webView.loadHTMLString(htmlString, baseURL: nil)
         } catch {
-            let alert = DOAlertController(title: "An error occurred.", message: nil, preferredStyle: .Alert)
+            let alert = UIAlertController(title: "An error occurred.", message: nil, preferredStyle: .Alert)
             presentViewController(alert, animated: true, completion: nil)
         }
         
