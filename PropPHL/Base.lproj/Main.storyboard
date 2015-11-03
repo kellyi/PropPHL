@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hk3-8W-c7p">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Hk3-8W-c7p">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -17,8 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcb-X2-89J">
+                                <rect key="frame" x="300" y="300" width="0.0" height="0.0"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="900 S 47th St" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dD3-sg-m3S">
-                                <rect key="frame" x="15" y="280" width="565" height="40"/>
+                                <rect key="frame" x="15" y="317" width="565" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -28,22 +35,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="done"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Philadelphia, PA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6f-Mx-VBG">
-                                <rect key="frame" x="193" y="350" width="214" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Philadelphia, PA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6f-Mx-VBG">
+                                <rect key="frame" x="194" y="377" width="214" height="36"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tNc-jh-nj7">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="OVM-Rt-VMe"/>
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8S-Q7-Xrv" customClass="FindBlockButton" customModule="ValPHL" customModuleProvider="target">
-                                <rect key="frame" x="230" y="468" width="140" height="44"/>
+                                <rect key="frame" x="230" y="536" width="140" height="44"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -58,28 +65,8 @@
                                     <action selector="findBlockButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="owG-2E-xmS"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mm-ox-nNn">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <animations/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="otH-jZ-BSh"/>
-                                    <barButtonItem style="plain" id="Man-MP-hlK">
-                                        <view key="customView" contentMode="scaleToFill" id="aZW-bC-pnJ" customClass="AddressMapSwitch" customModule="ValPHL" customModuleProvider="target">
-                                            <rect key="frame" x="217" y="6" width="166" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <animations/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="addressMapRKControlValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="kuC-71-rtE"/>
-                                            </connections>
-                                        </view>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jHO-8V-CJ5"/>
-                                </items>
-                                <color key="barTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                            </toolbar>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pF6-uG-fRe">
-                                <rect key="frame" x="278" y="468" width="44" height="44"/>
+                                <rect key="frame" x="278" y="536" width="44" height="44"/>
                                 <animations/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -88,24 +75,38 @@
                                 </constraints>
                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i49-zX-Pyp" customClass="AddressMapSwitch" customModule="ValPHL" customModuleProvider="target">
+                                <rect key="frame" x="217" y="84" width="166" height="33"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="166" id="7Xx-4l-uD5"/>
+                                    <constraint firstAttribute="height" constant="33" id="VLj-0Y-T1C"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="addressMapRKControlValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ikb-Ml-dYY"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Mm-ox-nNn" secondAttribute="bottom" id="0iG-UN-kJC"/>
-                            <constraint firstItem="p6f-Mx-VBG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2U2-Qc-Ot2"/>
-                            <constraint firstItem="3Mm-ox-nNn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="7sN-ye-Ais"/>
+                            <constraint firstItem="p6f-Mx-VBG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.5" id="2U2-Qc-Ot2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dD3-sg-m3S" secondAttribute="trailing" id="9JI-aw-07V"/>
-                            <constraint firstItem="p6f-Mx-VBG" firstAttribute="top" secondItem="dD3-sg-m3S" secondAttribute="bottom" constant="30" id="BBM-xa-h8q"/>
-                            <constraint firstItem="3Mm-ox-nNn" firstAttribute="top" secondItem="A8S-Q7-Xrv" secondAttribute="bottom" constant="44" id="CRF-x8-PRA"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tNc-jh-nj7" secondAttribute="bottom" constant="44" id="DdV-dq-NsH"/>
+                            <constraint firstItem="p6f-Mx-VBG" firstAttribute="top" secondItem="dD3-sg-m3S" secondAttribute="bottom" constant="20" id="DBN-P2-AXM"/>
+                            <constraint firstItem="A8S-Q7-Xrv" firstAttribute="top" secondItem="tNc-jh-nj7" secondAttribute="bottom" constant="-64" id="JqC-Wb-vW5"/>
                             <constraint firstItem="tNc-jh-nj7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="K3s-dQ-4QL"/>
-                            <constraint firstItem="dD3-sg-m3S" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Nv2-kZ-Aee"/>
                             <constraint firstItem="tNc-jh-nj7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Pbc-Vy-8NH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="3Mm-ox-nNn" secondAttribute="trailing" constant="-20" id="ay3-pK-GMO"/>
+                            <constraint firstItem="pF6-uG-fRe" firstAttribute="top" secondItem="tNc-jh-nj7" secondAttribute="bottom" constant="-64" id="Q4n-VM-g8E"/>
+                            <constraint firstItem="lcb-X2-89J" firstAttribute="centerY" secondItem="tNc-jh-nj7" secondAttribute="centerY" id="QGj-j3-TQM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tNc-jh-nj7" secondAttribute="bottom" id="RvH-FU-G86"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tNc-jh-nj7" secondAttribute="trailing" constant="-20" id="cmb-0W-uBC"/>
                             <constraint firstItem="A8S-Q7-Xrv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cpb-mB-6Q3"/>
+                            <constraint firstItem="lcb-X2-89J" firstAttribute="centerX" secondItem="tNc-jh-nj7" secondAttribute="centerX" id="eE7-pU-jB6"/>
                             <constraint firstItem="pF6-uG-fRe" firstAttribute="centerX" secondItem="A8S-Q7-Xrv" secondAttribute="centerX" id="eVy-UZ-82o"/>
+                            <constraint firstItem="dD3-sg-m3S" firstAttribute="top" secondItem="lcb-X2-89J" secondAttribute="bottom" constant="17" id="ghj-lt-uds"/>
+                            <constraint firstItem="i49-zX-Pyp" firstAttribute="centerX" secondItem="tNc-jh-nj7" secondAttribute="centerX" id="nfA-1w-cqi"/>
+                            <constraint firstItem="tNc-jh-nj7" firstAttribute="top" secondItem="i49-zX-Pyp" secondAttribute="top" constant="-84" id="qv1-DW-ioX"/>
                             <constraint firstItem="pF6-uG-fRe" firstAttribute="centerY" secondItem="A8S-Q7-Xrv" secondAttribute="centerY" id="sck-Pt-MFW"/>
                             <constraint firstItem="dD3-sg-m3S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-5" id="xB1-Vp-BMl"/>
                         </constraints>
@@ -124,7 +125,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addBlockMapView" destination="tNc-jh-nj7" id="9do-D9-Bbr"/>
-                        <outlet property="addressMapRKControl" destination="aZW-bC-pnJ" id="YHg-Xj-uus"/>
+                        <outlet property="addressMapRKControl" destination="i49-zX-Pyp" id="h1v-Un-6sJ"/>
                         <outlet property="addressTextField" destination="dD3-sg-m3S" id="UT9-Kd-jwl"/>
                         <outlet property="appInfoButton" destination="SWw-Su-z3A" id="0Fp-G8-TSv"/>
                         <outlet property="findBlockButton" destination="A8S-Q7-Xrv" id="A6r-aP-Ehi"/>

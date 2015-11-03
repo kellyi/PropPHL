@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF1B2F291BAB60470031FA2B /* AddressMapSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F281BAB60470031FA2B /* AddressMapSwitch.swift */; settings = {ASSET_TAGS = (); }; };
-		DF1B2F2D1BADB9640031FA2B /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F2C1BADB9640031FA2B /* Pin.swift */; settings = {ASSET_TAGS = (); }; };
-		DF1B2F6C1BAF031F0031FA2B /* CapitalizeStreetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */; settings = {ASSET_TAGS = (); }; };
-		DF1B2F6E1BAF0BC60031FA2B /* ValidateAddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */; settings = {ASSET_TAGS = (); }; };
-		DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */; settings = {ASSET_TAGS = (); }; };
-		DF80FBE51BA9E47C00B6D2CE /* BlockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE41BA9E47C00B6D2CE /* BlockDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DF80FBEB1BAA0E8100B6D2CE /* FindBlockButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEA1BAA0E8100B6D2CE /* FindBlockButton.swift */; settings = {ASSET_TAGS = (); }; };
-		DF80FBED1BAA0F0D00B6D2CE /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEC1BAA0F0D00B6D2CE /* ColorsExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		DFBBFDB71BB0FCC900DB563A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DFBD9EE71BE469E7005845D5 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = DFBD9EE61BE469E7005845D5 /* about.html */; settings = {ASSET_TAGS = (); }; };
+		DF1B2F291BAB60470031FA2B /* AddressMapSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F281BAB60470031FA2B /* AddressMapSwitch.swift */; };
+		DF1B2F2D1BADB9640031FA2B /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F2C1BADB9640031FA2B /* Pin.swift */; };
+		DF1B2F6C1BAF031F0031FA2B /* CapitalizeStreetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */; };
+		DF1B2F6E1BAF0BC60031FA2B /* ValidateAddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */; };
+		DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */; };
+		DF80FBE51BA9E47C00B6D2CE /* BlockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE41BA9E47C00B6D2CE /* BlockDetailViewController.swift */; };
+		DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */; };
+		DF80FBEB1BAA0E8100B6D2CE /* FindBlockButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEA1BAA0E8100B6D2CE /* FindBlockButton.swift */; };
+		DF80FBED1BAA0F0D00B6D2CE /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBEC1BAA0F0D00B6D2CE /* ColorsExtension.swift */; };
+		DFBBFDB71BB0FCC900DB563A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBBFDB61BB0FCC900DB563A /* InfoViewController.swift */; };
+		DFBD9EE71BE469E7005845D5 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = DFBD9EE61BE469E7005845D5 /* about.html */; };
 		DFC1D94F1BA6847F002482C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D94E1BA6847F002482C4 /* AppDelegate.swift */; };
 		DFC1D9511BA6847F002482C4 /* AddBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9501BA6847F002482C4 /* AddBlockViewController.swift */; };
 		DFC1D9541BA6847F002482C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFC1D9521BA6847F002482C4 /* Main.storyboard */; };
@@ -26,14 +26,14 @@
 		DFC1D95C1BA6847F002482C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFC1D95A1BA6847F002482C4 /* LaunchScreen.storyboard */; };
 		DFC1D9671BA6847F002482C4 /* PropPHLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9661BA6847F002482C4 /* PropPHLTests.swift */; };
 		DFC1D9721BA6847F002482C4 /* PropPHLUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9711BA6847F002482C4 /* PropPHLUITests.swift */; };
-		DFC1D9831BA6850E002482C4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9821BA6850E002482C4 /* CoreDataStackManager.swift */; settings = {ASSET_TAGS = (); }; };
-		DFC1D9871BA6887E002482C4 /* PHLOPAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9861BA6887E002482C4 /* PHLOPAClient.swift */; settings = {ASSET_TAGS = (); }; };
-		DFC1D9891BA68896002482C4 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9881BA68896002482C4 /* Property.swift */; settings = {ASSET_TAGS = (); }; };
-		DFC1D98B1BA6890F002482C4 /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D98A1BA6890F002482C4 /* BlockTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DFC1D9911BA68C31002482C4 /* PropertyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9901BA68C31002482C4 /* PropertyTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DFC1D9931BA694D2002482C4 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9921BA694D2002482C4 /* Block.swift */; settings = {ASSET_TAGS = (); }; };
-		DFD5B9FD1BB39F4000A04CDE /* PropertyDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD5B9FC1BB39F4000A04CDE /* PropertyDetailTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		DFD8BF191BB34D9F008B7C9D /* BlockDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8BF181BB34D9F008B7C9D /* BlockDetailTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DFC1D9831BA6850E002482C4 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9821BA6850E002482C4 /* CoreDataStackManager.swift */; };
+		DFC1D9871BA6887E002482C4 /* PHLOPAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9861BA6887E002482C4 /* PHLOPAClient.swift */; };
+		DFC1D9891BA68896002482C4 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9881BA68896002482C4 /* Property.swift */; };
+		DFC1D98B1BA6890F002482C4 /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D98A1BA6890F002482C4 /* BlockTableViewController.swift */; };
+		DFC1D9911BA68C31002482C4 /* PropertyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9901BA68C31002482C4 /* PropertyTableViewController.swift */; };
+		DFC1D9931BA694D2002482C4 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1D9921BA694D2002482C4 /* Block.swift */; };
+		DFD5B9FD1BB39F4000A04CDE /* PropertyDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD5B9FC1BB39F4000A04CDE /* PropertyDetailTableViewController.swift */; };
+		DFD8BF191BB34D9F008B7C9D /* BlockDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD8BF181BB34D9F008B7C9D /* BlockDetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

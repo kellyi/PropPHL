@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SystemConfiguration
 
 class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate {
     
@@ -191,10 +192,14 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
     // Create pin annotation from LongPress (1.0+ seconds)
     func annotate(gestureRecognizer: UIGestureRecognizer) {
         if gestureRecognizer.state == UIGestureRecognizerState.Began {
-            let touchPoint = gestureRecognizer.locationInView(addBlockMapView)
-            let newCoordinates = addBlockMapView.convertPoint(touchPoint, toCoordinateFromView: addBlockMapView)
-            let location = CLLocation(latitude: newCoordinates.latitude, longitude: newCoordinates.longitude)
-            reverseGeocode(location)
+            if connectedToNetwork() {
+                let touchPoint = gestureRecognizer.locationInView(addBlockMapView)
+                let newCoordinates = addBlockMapView.convertPoint(touchPoint, toCoordinateFromView: addBlockMapView)
+                let location = CLLocation(latitude: newCoordinates.latitude, longitude: newCoordinates.longitude)
+                reverseGeocode(location)
+            } else {
+                showAlert("Couldn't connect to the network.")
+            }
         }
     }
     
@@ -270,11 +275,12 @@ extension AddBlockViewController {
     // Move view up by specified value on receiving notification
     func keyboardWillShow(notification: NSNotification) {
         appInfoButton.enabled = false
+        addressMapRKControl.hidden = true
         appInfoButton.tintColor = .clearColor()
         savedBlocksButton.enabled = false
         savedBlocksButton.tintColor = .clearColor()
         self.navigationController?.navigationBar.hidden = true
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        self.view.frame.origin.y -= getKeyboardHeight(notification) //- 44.0
     }
     
     // Move view down by specified value on receiving notification
@@ -285,12 +291,13 @@ extension AddBlockViewController {
         appInfoButton.tintColor = .oceanColor()
         savedBlocksButton.enabled = true
         savedBlocksButton.tintColor = .oceanColor()
+        addressMapRKControl.hidden = false
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-        return (keyboardSize.CGRectValue().height - 44.0)
+        return (keyboardSize.CGRectValue().height)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -300,6 +307,31 @@ extension AddBlockViewController {
     
     func dismissKeyboard() {
         addressTextField.resignFirstResponder()
+    }
+    
+}
+
+extension AddBlockViewController {
+    
+    func connectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        guard let defaultRouteReachability = withUnsafePointer(&zeroAddress, {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }) else {
+            return false
+        }
+        
+        var flags : SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+        
+        let isReachable = flags.contains(.Reachable)
+        let needsConnection = flags.contains(.ConnectionRequired)
+        return (isReachable && !needsConnection)
     }
     
 }
