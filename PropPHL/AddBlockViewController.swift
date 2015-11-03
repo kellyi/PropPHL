@@ -198,7 +198,7 @@ class AddBlockViewController: UIViewController, MKMapViewDelegate, CLLocationMan
                 let location = CLLocation(latitude: newCoordinates.latitude, longitude: newCoordinates.longitude)
                 reverseGeocode(location)
             } else {
-                showAlert("Couldn't connect to the network.")
+                showAlert("Can't connect to the network.")
             }
         }
     }
