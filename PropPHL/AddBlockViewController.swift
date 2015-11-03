@@ -280,7 +280,7 @@ extension AddBlockViewController {
         savedBlocksButton.enabled = false
         savedBlocksButton.tintColor = .clearColor()
         self.navigationController?.navigationBar.hidden = true
-        self.view.frame.origin.y -= getKeyboardHeight(notification) //- 44.0
+        self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
     // Move view down by specified value on receiving notification
@@ -312,6 +312,8 @@ extension AddBlockViewController {
 }
 
 extension AddBlockViewController {
+    
+    // MARK: - Check for Network Connection
     
     func connectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
