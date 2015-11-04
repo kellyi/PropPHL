@@ -46,28 +46,34 @@ class PHLOPAClient: NSObject {
         let request = NSMutableURLRequest(URL: apiURL!)
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil {
-                completionHandler(success: false, errorString: "Can't connect to the API.")
+                completionHandler(success: false, errorString: "Can't connect to the API. (error code 1)")
             } else {
-                let result = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as! NSDictionary
-                let total = result["total"] as! Int
-                if total == 0 {
-                    completionHandler(success: false, errorString: "No properties found for \(blockAddress)!")
-                } else {
-                    let blockDictionary = [
-                        "timeWhenAdded": NSDate(),
-                        "streetAddress": blockAddress
-                    ]
-                    let block = Block(blockDictionary: blockDictionary, context: self.sharedContext)
-                    self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: 0) { (success, errorString) in
-                        if success {
-                            completionHandler(success: true, errorString: nil)
+                do {
+                    let result = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                    if let total = result["total"] as! Int! {
+                        if total == 0 {
+                            completionHandler(success: false, errorString: "No properties found for \(blockAddress)!")
                         } else {
-                            completionHandler(success: false, errorString: errorString)
+                            let blockDictionary = [
+                                "timeWhenAdded": NSDate(),
+                                "streetAddress": blockAddress
+                            ]
+                            let block = Block(blockDictionary: blockDictionary, context: self.sharedContext)
+                            self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: 0) { (success, errorString) in
+                                if success {
+                                    completionHandler(success: true, errorString: nil)
+                                } else {
+                                    completionHandler(success: false, errorString: errorString)
+                                }
+                            }
                         }
+                    } else {
+                        completionHandler(success: false, errorString: "Can't connect to the API. (error code 2)")
                     }
+                } catch {
+                    completionHandler(success: false, errorString: "Error parsing API data. (error code 3)")
                 }
             }
-            
         }
         task.resume()
     }
@@ -82,39 +88,42 @@ class PHLOPAClient: NSObject {
         let request = NSMutableURLRequest(URL: apiURL!)
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil {
-                completionHandler(success: false, errorString: "Couldn't connect to the APIs.")
+                completionHandler(success: false, errorString: "Couldn't connect to the API. (error code 4)")
             } else {
                 do {
                     let result = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-                    let newResult = result["data"] as! NSDictionary
-                    let properties = newResult["properties"] as! NSArray
-                    var counter = 0
-                    for p in properties {
-                        let dict = p as! NSDictionary
-                        let property = self.propertyFromDictionary(dict)
-                        property!.block = block
-                        let propertyCoordinates = dict["geometry"] as! NSDictionary
-                        var propertyLatitude = 0.0
-                        var propertyLongitude = 0.0
-                        if let lat = propertyCoordinates["y"] as? Double {
-                            propertyLatitude = lat
+                    if let newResult = result["data"] as! NSDictionary! {
+                        let properties = newResult["properties"] as! NSArray
+                        var counter = 0
+                        for p in properties {
+                            let dict = p as! NSDictionary
+                            let property = self.propertyFromDictionary(dict)
+                            property!.block = block
+                            let propertyCoordinates = dict["geometry"] as! NSDictionary
+                            var propertyLatitude = 0.0
+                            var propertyLongitude = 0.0
+                            if let lat = propertyCoordinates["y"] as? Double {
+                                propertyLatitude = lat
+                            }
+                            if let lon = propertyCoordinates["x"] as? Double {
+                                propertyLongitude = lon
+                            }
+                            let pinDictionary = ["latitude": propertyLatitude, "longitude": propertyLongitude]
+                            let pin = self.pinFromDictionary(pinDictionary)
+                            pin!.property = property!
+                            if counter == 0 && skip == 0 { pin!.block = block }
+                            counter++
                         }
-                        if let lon = propertyCoordinates["x"] as? Double {
-                            propertyLongitude = lon
+                        if skip < total {
+                            self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: skip+30, completionHandler: completionHandler)
+                        } else {
+                            completionHandler(success: true, errorString: nil)
                         }
-                        let pinDictionary = ["latitude": propertyLatitude, "longitude": propertyLongitude]
-                        let pin = self.pinFromDictionary(pinDictionary)
-                        pin!.property = property!
-                        if counter == 0 && skip == 0 { pin!.block = block }
-                        counter++
-                    }
-                    if skip < total {
-                        self.getPropertyJSONByBlockUsingCompletionHandler(block, total: total, skip: skip+30, completionHandler: completionHandler)
                     } else {
-                        completionHandler(success: true, errorString: nil)
+                        completionHandler(success: false, errorString: "Error parsing API data. (error code 5)")
                     }
                 } catch {
-                    completionHandler(success: false, errorString: "Error parsing API data.")
+                    completionHandler(success: false, errorString: "Error parsing API data. (error code 6)")
                 }
             }
         }
