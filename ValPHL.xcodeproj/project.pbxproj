@@ -12,6 +12,7 @@
 		DF1B2F6C1BAF031F0031FA2B /* CapitalizeStreetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */; };
 		DF1B2F6E1BAF0BC60031FA2B /* ValidateAddressInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */; };
 		DF5851511BE99E4C00DC5CA6 /* PhillyDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5851501BE99E4C00DC5CA6 /* PhillyDataClient.swift */; };
+		DF5851751BE9A43000DC5CA6 /* PhillyDataClientConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5851741BE9A43000DC5CA6 /* PhillyDataClientConstants.swift */; };
 		DF5A4D391BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */; };
 		DF80FBE51BA9E47C00B6D2CE /* BlockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE41BA9E47C00B6D2CE /* BlockDetailViewController.swift */; };
 		DF80FBE71BA9E48900B6D2CE /* PropertyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */; };
@@ -66,6 +67,7 @@
 		DF1B2F6B1BAF031F0031FA2B /* CapitalizeStreetName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapitalizeStreetName.swift; sourceTree = "<group>"; };
 		DF1B2F6D1BAF0BC60031FA2B /* ValidateAddressInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateAddressInput.swift; sourceTree = "<group>"; };
 		DF5851501BE99E4C00DC5CA6 /* PhillyDataClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhillyDataClient.swift; sourceTree = "<group>"; };
+		DF5851741BE9A43000DC5CA6 /* PhillyDataClientConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhillyDataClientConstants.swift; sourceTree = "<group>"; };
 		DF5A4D381BA75BA8007CD7D8 /* DGRunKeeperSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGRunKeeperSwitch.swift; sourceTree = "<group>"; };
 		DF80FBE41BA9E47C00B6D2CE /* BlockDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockDetailViewController.swift; sourceTree = "<group>"; };
 		DF80FBE61BA9E48900B6D2CE /* PropertyDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyDetailViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				DFC1D9861BA6887E002482C4 /* PHLOPAClient.swift */,
 				DF5851501BE99E4C00DC5CA6 /* PhillyDataClient.swift */,
+				DF5851741BE9A43000DC5CA6 /* PhillyDataClientConstants.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF5851751BE9A43000DC5CA6 /* PhillyDataClientConstants.swift in Sources */,
 				DFC1D9891BA68896002482C4 /* Property.swift in Sources */,
 				DF1B2F2D1BADB9640031FA2B /* Pin.swift in Sources */,
 				DFC1D9931BA694D2002482C4 /* Block.swift in Sources */,
